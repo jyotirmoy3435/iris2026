@@ -1,8 +1,8 @@
 /* Countdown Timer Container */
 .dateCountdown {
   position: fixed;
-  top: 2px;
-  left: 2px;
+  top: 150px;
+  left: 60px;
   z-index: 20;
   padding: 1rem 2rem;
   background: rgba(0, 0, 0, 0.17);
