@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./Navigation.module.css";
+import SocialLinks from "../LandingPage/SocialLinks";
 
 export default function Navigation() {
   // Desktop detection
@@ -86,12 +87,15 @@ export default function Navigation() {
                     {link.label}
                   </Link>
                 ))}
-
-                
               </div>
 
               {/* Footer */}
               <div className={styles.mwd}>Made with Love by Dept. of Visual Media</div>
+
+              {/* Social Links - Mobile Only - Bottom of Menu */}
+              <div className={styles.sidebarSocial}>
+                <SocialLinks />
+              </div>
             </aside>
           </div>
 
