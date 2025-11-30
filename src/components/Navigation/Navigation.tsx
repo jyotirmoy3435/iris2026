@@ -25,6 +25,7 @@ export default function Navigation() {
     { href: "/", label: "Home" },
     { href: "/events", label: "Events" },
     { href: "/gallery", label: "Gallery" },
+    { href: "/team", label: "Team" },
   ];
 
   return (
