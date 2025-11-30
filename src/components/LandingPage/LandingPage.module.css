@@ -301,7 +301,6 @@
   text-transform: uppercase;
 }
 
-/* SPONSORS */
 /* SPONSORS SECTION - Highlighted Neon Style */
 .sponsorsSection {
   padding: 6rem 2rem;
@@ -321,33 +320,61 @@
   transform: translateX(-50%);
 }
 
-.sponsorsGrid {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 4.0rem;
-  margin-top: 3rem;
+/* Carousel Wrapper */
+.sponsorsCarousel {
+  position: relative;
+  max-width: 100%;
+  margin-top: 2rem;
 }
 
-/* Sponsor Logo Styles (Base State) - Cinematic Overlay */
-/* Base — keep original color but dull it slightly */
-.sponsorsGrid img {
+/* Scrollable Row */
+.sponsorsGrid {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  margin-top: 3rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 1rem 0;
+}
+
+/* Hide scrollbars but keep scrolling */
+.sponsorsGrid::-webkit-scrollbar {
+  display: none;
+}
+.sponsorsGrid {
+  -ms-overflow-style: none;  /* IE */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Sponsor Logo Card */
+.sponsorItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+/* Base — keep original color but slightly muted */
+.sponsorLogoContainer img {
   width: 200px;
   height: auto;
-  filter: brightness(0.70) saturate(0.7) contrast(0.95); /* subtle color mute */
+  filter: brightness(0.70) saturate(0.7) contrast(0.95);
   opacity: 0.9;
   transition: 0.45s ease;
   padding: 0.5rem;
   border-radius: 14px;
   border: 2px solid transparent;
   background: radial-gradient(circle, rgba(255,255,255,0.04), transparent);
-  box-shadow: 0 0 0px rgba(242, 221, 124, 0);
+  box-shadow: 0 0 0px rgba(242,221,124,0);
 }
 
 /* Hover — restore original vibrant colors */
 .sponsorItem:hover img {
-  filter: brightness(1.05) saturate(1.1) contrast(1); /* enhanced pop */
+  filter: brightness(1.05) saturate(1.1) contrast(1);
   opacity: 1;
   transform: translateY(-10px) scale(1.13);
   border-color: #f2dd7c;
@@ -355,22 +382,7 @@
               0 0 30px rgba(242, 221, 124, 0.15);
 }
 
-/* Make sure on phones everything shrinks well */
-@media (max-width: 768px) {
-  .sponsorsGrid img {
-    width: 120px;
-  }
-}
-
-.sponsorItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-/* Title text improvements */
+/* Sponsor Label Text */
 .sponsorTitle {
   font-family: 'Poppins', sans-serif;
   font-size: 1.08rem;
@@ -378,6 +390,83 @@
   margin-top: 1.1rem;
   color: #d8d8d8;
   letter-spacing: 0.3px;
+}
+
+/* Navigation Arrows */
+.sponsorsArrow {
+  position: absolute;
+  top: calc(50% - 20px);
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.6);
+  color: #f2dd7c;
+  border: none;
+  font-size: 2.2rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.85;
+  transition: 0.2s ease-in-out;
+}
+
+.sponsorsArrow:hover {
+  background: rgba(242,221,124,0.25);
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Arrow positioning */
+.sponsorsArrowLeft {
+  left: 0.75rem;
+}
+.sponsorsArrowRight {
+  right: 0.75rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  /* Smaller logo size on mobile */
+  .sponsorLogoContainer img {
+    width: 150px;
+    height: auto;
+    /* remove all desktop effects */
+    filter: none;
+    opacity: 1;
+    border-radius: 14px;
+    border: 0;              /* no gold outline */
+    background: none;       /* remove radial background */
+    box-shadow: none;
+    transform: none;
+    padding: 0;             /* cleaner on mobile */
+  }
+
+  /* Kill hover effects on mobile */
+  .sponsorItem:hover img {
+    filter: none;
+    opacity: 1;
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .sponsorsArrow {
+    font-size: 2rem;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .sponsorLogoContainer img {
+    width: 130px;
+  }
+  .sponsorsArrow {
+    font-size: 1.8rem;
+  }
+  .sponsorsArrowLeft {
+    left: 2px;
+  }
+  .sponsorsArrowRight {
+    right: 2px;
+  }
 }
 
 
@@ -543,3 +632,32 @@
 .socialIcon:hover {
   transform: scale(1.15);
 }
+
+/* MOBILE — Fit all 3 speaker cards in a single row */
+@media (max-width: 600px) {
+  .speakersGrid {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .flipCard {
+    width: 200px; /* shrink width */
+    height: 300px; /* reduce height for proportion */
+    flex-shrink: 0;
+  }
+
+  .flipFront img,
+  .flipBack img {
+    height: 200px; /* shrink image height */
+  }
+}
+
+.speakersGrid::-webkit-scrollbar {
+  display: none;
+}
+
+
+

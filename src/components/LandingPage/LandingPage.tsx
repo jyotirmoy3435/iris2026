@@ -1,12 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./LandingPage.module.css";
 import CountdownTimer from "./CountdownTimer";
 import SocialLinks from "./SocialLinks";
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0);
+  const sponsorsRef = useRef<HTMLDivElement | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = () => {
+  if (!sponsorsRef.current) return;
+  const { scrollLeft, scrollWidth, clientWidth } = sponsorsRef.current;
+  setCanScrollLeft(scrollLeft > 0);
+  setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
+};
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +27,14 @@ export default function LandingPage() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+  const el = sponsorsRef.current;
+  if (!el) return;
+  checkScroll();
+  el.addEventListener("scroll", checkScroll);
+  return () => el.removeEventListener("scroll", checkScroll);
+}, []);
 
   return (
     <div className={styles.wrapper}>
@@ -135,40 +154,91 @@ IRIS 2026 offers a diverse range of competitions and activities designed to enga
       </div>
 
       {/* Sponsors Section */}
-      <section className={styles.sponsorsSection}>
+<section className={styles.sponsorsSection}>
   <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
-  <div className={styles.sponsorsGrid}>
 
-    <div className={styles.sponsorItem}>
-      <div className={styles.sponsorLogoContainer}>
-        <img src="/images/sponsors/s1.png" alt="HP" />
+  <div className={styles.sponsorsCarousel}>
+    {/* Left arrow */}
+    <button
+  type="button"
+  className={`${styles.sponsorsArrow} ${styles.sponsorsArrowLeft}`}
+  style={{ opacity: canScrollLeft ? 0.85 : 0.15, pointerEvents: canScrollLeft ? "auto" : "none" }}
+  onClick={() => sponsorsRef.current?.scrollBy({ left: -260, behavior: "smooth" })}
+>
+  ‹
+</button>
+
+    {/* Scrollable track */}
+    <div ref={sponsorsRef} className={styles.sponsorsGrid}>
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s1.png" alt="HP" />
+        </div>
+        <p className={styles.sponsorTitle}>Platinum Sponsor</p>
       </div>
-      <p className={styles.sponsorTitle}>Platinum Sponsor</p>
+
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s2.png" alt="Khadi India" />
+        </div>
+        <p className={styles.sponsorTitle}>Sustainability Partner</p>
+      </div>
+
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s3.png" alt="Trends" />
+        </div>
+        <p className={styles.sponsorTitle}>Event Partner</p>
+      </div>
+
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s4.png" alt="Bank of India" />
+        </div>
+        <p className={styles.sponsorTitle}>Banking Partner</p>
+      </div>
+
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s1.png" alt="HP" />
+        </div>
+        <p className={styles.sponsorTitle}>Platinum Sponsor</p>
+      </div>
+
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s2.png" alt="Khadi India" />
+        </div>
+        <p className={styles.sponsorTitle}>Sustainability Partner</p>
+      </div>
+
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s3.png" alt="Trends" />
+        </div>
+        <p className={styles.sponsorTitle}>Event Partner</p>
+      </div>
+
+      <div className={styles.sponsorItem}>
+        <div className={styles.sponsorLogoContainer}>
+          <img src="/images/sponsors/s4.png" alt="Bank of India" />
+        </div>
+        <p className={styles.sponsorTitle}>Banking Partner</p>
+      </div>
     </div>
 
-    <div className={styles.sponsorItem}>
-      <div className={styles.sponsorLogoContainer}>
-        <img src="/images/sponsors/s2.png" alt="Khadi India" />
-      </div>
-      <p className={styles.sponsorTitle}>Sustainability Partner</p>
-    </div>
-
-    <div className={styles.sponsorItem}>
-      <div className={styles.sponsorLogoContainer}>
-        <img src="/images/sponsors/s3.png" alt="Trends" />
-      </div>
-      <p className={styles.sponsorTitle}>Event Partner</p>
-    </div>
-
-    <div className={styles.sponsorItem}>
-      <div className={styles.sponsorLogoContainer}>
-        <img src="/images/sponsors/s4.png" alt="Bank of India" />
-      </div>
-      <p className={styles.sponsorTitle}>Banking Partner</p>
-    </div>
-
+    {/* Right arrow */}
+    <button
+  type="button"
+  className={`${styles.sponsorsArrow} ${styles.sponsorsArrowRight}`}
+  style={{ opacity: canScrollRight ? 0.85 : 0.15, pointerEvents: canScrollRight ? "auto" : "none" }}
+  onClick={() => sponsorsRef.current?.scrollBy({ left: 260, behavior: "smooth" })}
+>
+  ›
+</button>
   </div>
 </section>
+
 
 
 {/* Speakers Section */}
