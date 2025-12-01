@@ -13,12 +13,9 @@ interface SearchBarProps {
 
 const categories: (EventCategory | "All")[] = [
   "All",
-  "Dance",
-  "Drama",
-  "Music",
-  "Photography",
-  "Text",
-  "Miscellaneous",
+  "Flagship",
+  "Cultural",
+  "Management",
 ];
 
 export default function SearchBar({
