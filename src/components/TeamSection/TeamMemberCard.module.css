@@ -1,6 +1,41 @@
+/* src\components\TeamSection\TeamMemberCard.module.css */
 .cardWrapper {
-  transition: transform 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  margin: 0.5rem;
+  flex: 0 0 auto;
+  position: relative;
 }
-.cardWrapper:hover {
-  transform: translateY(-5px);
+
+.imageContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.nameOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
+  padding-top: 50px;
+  padding-bottom: 16px;
+  text-align: center;
+  color: white;
+  transition: all 0.3s ease-in-out;
+}
+
+.detailsOverlay {
+  position: absolute;
+  /* FIX: Move the details overlay up by the estimated height of the name overlay (~86px) */
+  bottom: 86px; 
+  left: 0;
+  right: 0;
+  z-index: 20;
+  /* The background-color is set to transparent to see the image below it */
+  background-color: rgba(0,0,0,0);
+  padding: 0 16px 16px; 
+  box-sizing: border-box;
 }
