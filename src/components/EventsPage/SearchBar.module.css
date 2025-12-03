@@ -60,39 +60,39 @@
 
 .categoryBtn {
   padding: 0.7rem 1.8rem;
-  background: rgba(26, 26, 26, 0.7);
-  border: 2px solid rgba(242, 221, 124, 0.3);
+  background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00);
+  border: 2px solid rgba(255, 255, 255, 0.06);
   border-radius: 25px;
-  color: rgba(242, 221, 124, 0.8);
-  font-family: 'Abhaya Libre', serif;
+  color: #1a1a1a;
+  font-family: var(--font-ganesha), serif;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
-  letter-spacing: 0.5px;
+  letter-spacing: 2.5px;
 }
 
 .categoryBtn:hover {
-  border-color: #d69b65;
-  color: #f2dd7c;
+  border-color: #ffff00;
+  color: #1a1a1a;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(214, 155, 101, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 127, 0, 0.35);
 }
 
 .categoryBtnActive {
-  background: linear-gradient(135deg, #d69b65, #f2dd7c);
-  border-color: #f2dd7c;
+  background: linear-gradient(135deg, #ff0000, #ff7f00, #ffff00);
+  border-color: #ffff00;
   color: #1a1a1a;
   font-weight: 700;
-  box-shadow: 0 5px 20px rgba(242, 221, 124, 0.4),
-              0 0 30px rgba(214, 155, 101, 0.3);
+  box-shadow: 0 5px 20px rgba(255, 127, 0, 0.45),
+              0 0 30px rgba(255, 0, 0, 0.28);
 }
 
 .categoryBtnActive:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(242, 221, 124, 0.5),
-              0 0 40px rgba(214, 155, 101, 0.4);
+  box-shadow: 0 8px 25px rgba(255, 127, 0, 0.55),
+              0 0 40px rgba(255, 0, 0, 0.36);
 }
 
 /* Responsive Design */

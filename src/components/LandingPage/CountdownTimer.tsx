@@ -20,7 +20,7 @@ export default function CountdownTimer() {
 
   useEffect(() => {
     // OASIS 2025 target date - Update this to actual event date
-    const targetDate = new Date("2025-10-25T00:00:00").getTime();
+    const targetDate = new Date("2026-01-16T00:00:00").getTime();
 
     const calculateTimeLeft = () => {
       const now = new Date().getTime();
