@@ -322,6 +322,17 @@
   text-transform: uppercase;
 }
 
+/* Strong overlay divider (keeps global fixed background) */
+.sectionDivider {
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #f2dd7c88, transparent);
+  margin: 1rem auto 6rem auto;  
+}
+
+
+
+
 /* SPONSORS SECTION - Highlighted Neon Style */
 .sponsorsSection {
   padding: 6rem 2rem;
@@ -503,7 +514,7 @@
 
 /* PAST STARS SECTION */
 .pastStarsSection {
-  padding: 6rem 2rem;
+  padding: 1rem 2rem;
   background: #0b0f14;
   text-align: center;
 }
@@ -619,7 +630,7 @@
   }
 
   .starPosterItem img {
-    width: 140px;
+    width: 100%;
     height: 210px;
   }
 
@@ -632,6 +643,44 @@
 @media (max-width: 500px) {
   .starsArrow {
     font-size: 1.8rem;
+  }
+}
+
+/* MOBILE: show exactly one poster at a time and prevent cutoff */
+@media (max-width: 768px) {
+  /* Make the carousel track act like a paging container */
+  .starsCarouselTrack {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 0.5rem 0;
+    /* ensure track height doesn't clip poster */
+    align-items: center;
+  }
+
+  /* Make each poster take the full visible area of the track */
+  .starPosterItem {
+    flex: 0 0 100%;           /* each item = 100% of track's width */
+    display: flex;
+    justify-content: center;  /* center poster inside the viewport */
+    scroll-snap-align: center;
+    box-sizing: border-box;
+    padding: 0 0.6rem;        /* small side padding so poster isn't flush to edges */
+  }
+
+  /* Poster image fit: contain so whole poster is visible */
+  .starPosterItem img {
+    width: 100%;
+    max-width: 420px;   /* optional cap for large phones */
+    height: auto;
+    object-fit: contain; /* IMPORTANT: never crop poster */
+  }
+
+  /* Keep arrows outside the poster area (no overlap) */
+  .starsArrowLeft, .starsArrowRight {
+    z-index: 10;
+    flex: 0 0 auto;
   }
 }
 
@@ -823,4 +872,34 @@
 .speakersGrid::-webkit-scrollbar {
   display: none;
 }
+
+/* ===== MOBILE: Disable Flip Animation for Speakers ===== */
+@media (max-width: 768px) {
+  /* Stop the card from flipping */
+  .flipInner {
+    transform: none !important;
+  }
+
+  .flipCard:hover .flipInner {
+    transform: none !important;
+  }
+
+  /* Keep only the front side visible */
+  .flipBack {
+    display: none !important;
+  }
+
+  /* Make sure the front is fully visible and centered */
+  .flipFront {
+    position: relative;
+    transform: none !important;
+  }
+
+  /* Prevent weird cropping issues */
+  .flipFront img {
+    height: auto !important;
+    object-fit: contain !important;
+  }
+}
+
 

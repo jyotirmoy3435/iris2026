@@ -265,6 +265,8 @@ export default function LandingPage() {
 
 {/* Past Stars Section */}
 <section className={styles.pastStarsSection}>
+  <div className={styles.sectionDivider}></div>
+
   <h2 className={styles.sectionTitle}>PAST STARS OF OUR MULTIVERSE</h2>
 
   {/* Row 1 – Two main posters */}
@@ -278,14 +280,23 @@ export default function LandingPage() {
 
     {/* Left Arrow */}
     <button
-      type="button"
-      className={`${styles.starsArrow} ${styles.starsArrowLeft}`}
-      onClick={() =>
-        starsRef.current?.scrollBy({ left: -260, behavior: "smooth" })
-      }
-    >
-      ‹
-    </button>
+  type="button"
+  className={`${styles.starsArrow} ${styles.starsArrowLeft}`}
+  onClick={() => {
+    const el = starsRef.current;
+    if (!el) return;
+    const step = el.clientWidth;              // slide by the visible width
+    if (el.scrollLeft <= 0) {
+      // loop to end
+      const max = el.scrollWidth - el.clientWidth;
+      el.scrollTo({ left: max, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: -step, behavior: "smooth" });
+    }
+  }}
+>
+  ‹
+</button>
 
     {/* Posters Track */}
     <div ref={starsRef} className={styles.starsCarouselTrack}>
@@ -307,14 +318,23 @@ export default function LandingPage() {
 
     {/* Right Arrow */}
     <button
-      type="button"
-      className={`${styles.starsArrow} ${styles.starsArrowRight}`}
-      onClick={() =>
-        starsRef.current?.scrollBy({ left: 260, behavior: "smooth" })
-      }
-    >
-      ›
-    </button>
+  type="button"
+  className={`${styles.starsArrow} ${styles.starsArrowRight}`}
+  onClick={() => {
+    const el = starsRef.current;
+    if (!el) return;
+    const step = el.clientWidth;              // slide by the visible width
+    const max = el.scrollWidth - el.clientWidth;
+    if (el.scrollLeft >= max - 1) {
+      // loop to start
+      el.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      el.scrollBy({ left: step, behavior: "smooth" });
+    }
+  }}
+>
+  ›
+</button>
 
   </div>
 </section>
@@ -324,6 +344,9 @@ export default function LandingPage() {
 
 {/* Speakers Section */}
 <section className={styles.speakersSection}>
+
+  <div className={styles.sectionDivider}></div>
+
   <h2 className={styles.sectionTitle}>PAST SPEAKERS OF ENVISION</h2>
   <div className={styles.speakersGrid}>
 
