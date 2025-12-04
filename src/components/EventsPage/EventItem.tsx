@@ -14,24 +14,16 @@ const categoryIcons: Record<string, string> = {
   Flagship: "/images/events/flagship.png",
   Cultural: "/images/events/cultural.png", 
   Management: "/images/events/management.png",
+  Sports: "/images/events/sports.png",
 };
 
 export default function EventItem({ event }: EventItemProps) {
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const handleToggleDetails = () => {
-    setIsFlipped((prev) => !prev);
-  };
-
-  const backDescription = event.detailedDescription || event.description;
 
   return (
     <div className={styles.eventCard}>
       {/* Inner wrapper that flips */}
       <div
-        className={`${styles.eventCardInner} ${
-          isFlipped ? styles.isFlipped : ""
-        }`}
+        className={styles.eventCardInner}
       >
         {/* FRONT SIDE */}
         <div className={`${styles.eventItem} ${styles.eventFront}`}>
@@ -78,51 +70,17 @@ export default function EventItem({ event }: EventItemProps) {
             <button
               type="button"
               className={styles.viewDetailsBtn}
-              onClick={handleToggleDetails}
+              onClick={() => {
+                if (event.link) {
+                  window.open(event.link, '_blank');
+                }
+              }}
             >
               View Details
             </button>
           </div>
         </div>
 
-        {/* BACK SIDE */}
-        <div className={`${styles.eventItem} ${styles.eventBack}`}>
-          <div className={styles.eventContent}>
-            <h3 className={styles.eventTitle}>{event.title}</h3>
-            <p className={styles.eventCategory}>{event.category}</p>
-
-            <p className={styles.eventLongDescription}>{backDescription}</p>
-
-            <div className={styles.eventDetails}>
-              {event.date && (
-                <div className={styles.eventDetail}>
-                  <Calendar size={16} className={styles.detailIcon} />
-                  <span>{event.date}</span>
-                </div>
-              )}
-              {event.time && (
-                <div className={styles.eventDetail}>
-                  <Clock size={16} className={styles.detailIcon} />
-                  <span>{event.time}</span>
-                </div>
-              )}
-              {event.venue && (
-                <div className={styles.eventDetail}>
-                  <MapPin size={16} className={styles.detailIcon} />
-                  <span>{event.venue}</span>
-                </div>
-              )}
-            </div>
-
-            <button
-              type="button"
-              className={styles.backBtn}
-              onClick={handleToggleDetails}
-            >
-              Back
-            </button>
-          </div>
-        </div>
       </div>
     </div>
   );
