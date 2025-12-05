@@ -55,6 +55,47 @@ export default function LandingPage() {
     }
   };
 
+const [isPaused, setIsPaused] = useState(false);
+// ======= continuous RAF scroll (drop-in replacement) =======
+const rafRef = useRef<number | null>(null);
+const startedRef = useRef(false);
+
+useEffect(() => {
+  const el = sponsorsRef.current;
+  if (!el) return;
+
+  let last = performance.now();
+  const pixelsPerSecond = 80; // tune speed here
+
+  const tick = (now: number) => {
+    const dt = now - last;
+    last = now;
+
+    if (!isPaused && el.scrollWidth > el.clientWidth) {
+      const px = (pixelsPerSecond * dt) / 1000;
+      el.scrollLeft += px;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+
+      // If reached very end → jump to start
+      if (el.scrollLeft >= maxScroll - 2) {
+        el.scrollLeft = 0;
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  rafRef.current = requestAnimationFrame(tick);
+
+  return () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  };
+}, [isPaused, sponsors.length]);
+
+
+
+
   const checkScroll = () => {
   if (!sponsorsRef.current) return;
   const { scrollLeft, scrollWidth, clientWidth } = sponsorsRef.current;
@@ -199,7 +240,7 @@ export default function LandingPage() {
 <section className={styles.sponsorsSection}>
       <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
 
-      <div className={styles.sponsorsCarousel}>
+      <div className={styles.sponsorsCarousel} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
         {/* Left Arrow */}
         <button
           type="button"
