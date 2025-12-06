@@ -11,6 +11,90 @@ export default function LandingPage() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const starsRef = useRef<HTMLDivElement | null>(null);
+  const sponsors = [
+  { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
+  { src: "/images/sponsors/s2.png", alt: "Khadi India", title: "Sustainability Partner" },
+  { src: "/images/sponsors/s3.png", alt: "Trends", title: "Event Partner" },
+  { src: "/images/sponsors/s4.png", alt: "Bank of India", title: "Banking Partner" },
+
+  // repeated items preserved to match original output/order
+  { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
+  { src: "/images/sponsors/s2.png", alt: "Khadi India", title: "Sustainability Partner" },
+  { src: "/images/sponsors/s3.png", alt: "Trends", title: "Event Partner" },
+  { src: "/images/sponsors/s4.png", alt: "Bank of India", title: "Banking Partner" },
+];
+  const SCROLL_STEP = 260; // same scroll step as original
+  const scrollToStart = (el: HTMLDivElement) => el.scrollTo({ left: 0, behavior: "smooth" });
+  const scrollToEnd = (el: HTMLDivElement) => el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" });
+
+  const handlePrev = () => {
+    const el = sponsorsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft <= 0) {
+      // at start → jump to end
+      scrollToEnd(el);
+    } else {
+      el.scrollBy({ left: -SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+  const handleNext = () => {
+    const el = sponsorsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft >= maxScroll - 1) {
+      // at end → jump back to start
+      scrollToStart(el);
+    } else {
+      el.scrollBy({ left: SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+const [isPaused, setIsPaused] = useState(false);
+// ======= continuous RAF scroll (drop-in replacement) =======
+const rafRef = useRef<number | null>(null);
+const startedRef = useRef(false);
+
+useEffect(() => {
+  const el = sponsorsRef.current;
+  if (!el) return;
+
+  let last = performance.now();
+  const pixelsPerSecond = 80; // tune speed here
+
+  const tick = (now: number) => {
+    const dt = now - last;
+    last = now;
+
+    if (!isPaused && el.scrollWidth > el.clientWidth) {
+      const px = (pixelsPerSecond * dt) / 1000;
+      el.scrollLeft += px;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+
+      // If reached very end → jump to start
+      if (el.scrollLeft >= maxScroll - 2) {
+        el.scrollLeft = 0;
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  rafRef.current = requestAnimationFrame(tick);
+
+  return () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  };
+}, [isPaused, sponsors.length]);
+
+
+
 
   const checkScroll = () => {
   if (!sponsorsRef.current) return;
@@ -153,113 +237,44 @@ export default function LandingPage() {
         </div>
       </div>
 
-    {/* Sponsors Section */}
 <section className={styles.sponsorsSection}>
-  <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
+      <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
 
-  <div className={styles.sponsorsCarousel}>
-    {/* Left Arrow */}
-    <button
-      type="button"
-      className={`${styles.sponsorsArrow} ${styles.sponsorsArrowLeft}`}
-      onClick={() => {
-        const el = sponsorsRef.current;
-        if (!el) return;
-        const { scrollLeft, clientWidth, scrollWidth } = el;
-        const maxScroll = scrollWidth - clientWidth;
+      <div className={styles.sponsorsCarousel} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+        {/* Left Arrow */}
+        <button
+          type="button"
+          aria-label="Scroll sponsors left"
+          className={`${styles.sponsorsArrow} ${styles.sponsorsArrowLeft}`}
+          onClick={handlePrev}
+        >
+          ‹
+        </button>
 
-        if (scrollLeft <= 0) {
-          // at start → jump to end
-          el.scrollTo({ left: maxScroll, behavior: "smooth" });
-        } else {
-          el.scrollBy({ left: -260, behavior: "smooth" });
-        }
-      }}
-    >
-      ‹
-    </button>
-
-    {/* Scrollable track */}
-    <div ref={sponsorsRef} className={styles.sponsorsGrid}>
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s1.png" alt="HP" />
+        {/* Scrollable track */}
+        <div ref={sponsorsRef} className={styles.sponsorsGrid}>
+          {sponsors.map((s, idx) => (
+            <div key={`${s.alt}-${idx}`} className={styles.sponsorItem}>
+              <div className={styles.sponsorLogoContainer}>
+                <img src={s.src} alt={s.alt} />
+              </div>
+              <p className={styles.sponsorTitle}>{s.title}</p>
+            </div>
+          ))}
         </div>
-        <p className={styles.sponsorTitle}>Platinum Sponsor</p>
+
+        {/* Right Arrow */}
+        <button
+          type="button"
+          aria-label="Scroll sponsors right"
+          className={`${styles.sponsorsArrow} ${styles.sponsorsArrowRight}`}
+          onClick={handleNext}
+        >
+          ›
+        </button>
       </div>
+    </section>
 
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s2.png" alt="Khadi India" />
-        </div>
-        <p className={styles.sponsorTitle}>Sustainability Partner</p>
-      </div>
-
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s3.png" alt="Trends" />
-        </div>
-        <p className={styles.sponsorTitle}>Event Partner</p>
-      </div>
-
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s4.png" alt="Bank of India" />
-        </div>
-        <p className={styles.sponsorTitle}>Banking Partner</p>
-      </div>
-
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s1.png" alt="HP" />
-        </div>
-        <p className={styles.sponsorTitle}>Platinum Sponsor</p>
-      </div>
-
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s2.png" alt="Khadi India" />
-        </div>
-        <p className={styles.sponsorTitle}>Sustainability Partner</p>
-      </div>
-
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s3.png" alt="Trends" />
-        </div>
-        <p className={styles.sponsorTitle}>Event Partner</p>
-      </div>
-
-      <div className={styles.sponsorItem}>
-        <div className={styles.sponsorLogoContainer}>
-          <img src="/images/sponsors/s4.png" alt="Bank of India" />
-        </div>
-        <p className={styles.sponsorTitle}>Banking Partner</p>
-      </div>
-    </div>
-
-    {/* Right Arrow */}
-    <button
-      type="button"
-      className={`${styles.sponsorsArrow} ${styles.sponsorsArrowRight}`}
-      onClick={() => {
-        const el = sponsorsRef.current;
-        if (!el) return;
-        const { scrollLeft, clientWidth, scrollWidth } = el;
-        const maxScroll = scrollWidth - clientWidth;
-
-        if (scrollLeft >= maxScroll - 1) {
-          // at end → jump back to start
-          el.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          el.scrollBy({ left: 260, behavior: "smooth" });
-        }
-      }}
-    >
-      ›
-    </button>
-  </div>
-</section>
 
 
 
@@ -342,71 +357,45 @@ export default function LandingPage() {
 
 
 
-{/* Speakers Section */}
 <section className={styles.speakersSection}>
-
   <div className={styles.sectionDivider}></div>
 
   <h2 className={styles.sectionTitle}>PAST SPEAKERS OF ENVISION</h2>
+
   <div className={styles.speakersGrid}>
-
     {/* Speaker Card */}
-    <div className={styles.flipCard}>
-      <div className={styles.flipInner}>
-        {/* Front */}
-        <div className={styles.flipFront}>
-          <img src="/images/speakers/sp1.png" alt="Rahul Gehani" />
-          <h3>Rahul Gehani</h3>
-          <p>Partner, Everest Group</p>
-        </div>
-        {/* Back */}
-        <div className={styles.flipBack}>
-          <h3>Rahul Gehani</h3>
-          <p>Partner, Everest Group</p>
-          <a href="#" target="_blank">
-            <img src="/icons/linkedin.svg" alt="LinkedIn" className={styles.socialIcon} />
-          </a>
-        </div>
-      </div>
+    <div className={styles.speakerCard}>
+      <img
+        src="/images/speakers/sp1.png"
+        alt="Rahul Gehani"
+        className={styles.speakerImgRect}
+      />
+      <h3>Rahul Gehani</h3>
+      <p>Partner, Everest Group</p>
     </div>
 
-    {/* Repeat Speaker Cards */}
-    <div className={styles.flipCard}>
-      <div className={styles.flipInner}>
-        <div className={styles.flipFront}>
-          <img src="/images/speakers/sp2.png" alt="K Radhakrishnan" />
-          <h3>K Radhakrishnan</h3>
-          <p>Former Chairman, ISRO</p>
-        </div>
-        <div className={styles.flipBack}>
-          <h3>K Radhakrishnan</h3>
-          <p>Former Chairman, ISRO</p>
-          <a href="#" target="_blank">
-            <img src="/icons/linkedin.svg" alt="LinkedIn" className={styles.socialIcon} />
-          </a>
-        </div>
-      </div>
+    <div className={styles.speakerCard}>
+      <img
+        src="/images/speakers/sp2.png"
+        alt="K Radhakrishnan"
+        className={styles.speakerImgRect}
+      />
+      <h3>K Radhakrishnan</h3>
+      <p>Former Chairman, ISRO</p>
     </div>
 
-    <div className={styles.flipCard}>
-      <div className={styles.flipInner}>
-        <div className={styles.flipFront}>
-          <img src="/images/speakers/sp3.png" alt="Rana Kapoor" />
-          <h3>Rana Kapoor</h3>
-          <p>Former CEO & MD, Yes Bank</p>
-        </div>
-        <div className={styles.flipBack}>
-          <h3>Rana Kapoor</h3>
-          <p>Former CEO & MD, Yes Bank</p>
-          <a href="#" target="_blank">
-            <img src="/icons/linkedin.svg" alt="LinkedIn" className={styles.socialIcon} />
-          </a>
-        </div>
-      </div>
+    <div className={styles.speakerCard}>
+      <img
+        src="/images/speakers/sp3.png"
+        alt="Rana Kapoor"
+        className={styles.speakerImgRect}
+      />
+      <h3>Rana Kapoor</h3>
+      <p>Former CEO & MD, Yes Bank</p>
     </div>
-
   </div>
 </section>
+
 
       
 
