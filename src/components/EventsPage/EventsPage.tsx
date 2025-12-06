@@ -47,7 +47,7 @@ const eventsData: Event[] = [
   {
     id: "4",
     title: "Picture Perfect: Short Film Competition",
-    category: "Management",
+    category: "Cultural",
     link: "https://unstop.com/events/picture-perfect-short-film-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1598058",
     image: "/images/events/picture-perfect.png",
   },
@@ -110,14 +110,14 @@ const eventsData: Event[] = [
   {
     id: "13",
     title: "Kalpavriksha",
-    category: "Flagship",
+    category: "Management",
     link: "https://unstop.com/competitions/kalpavriksha-the-social-business-plan-iris-2026-iim-indores-flagship-fest-iim-indore-1597415",
     image: "/images/events/kalpavriksha.png",
   },
   {
     id: "14",
     title: "Vyapaar Sanasad",
-    category: "Management",
+    category: "Flagship",
     link: "https://unstop.com/competitions/vyapar-sansad-the-corporate-governance-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1593029",
     image: "/images/events/vyapar-sansad.png",
   },
@@ -133,7 +133,7 @@ const eventsData: Event[] = [
   {
     id: "16",
     title: "Beyond Lines",
-    category: "Management",
+    category: "Cultural",
     link: "https://unstop.com/competitions/beyond-lines-article-writing-iris-2026-iim-indores-flagship-fest-iim-indore-1599407",
     image: "/images/events/beyond-lines.png",
   },
@@ -141,7 +141,7 @@ const eventsData: Event[] = [
   {
     id: "17",
     title: "Jam Competition",
-    category: "Management",
+    category: "Cultural",
     link: "https://unstop.com/events/jam-just-a-minute-iris-2026-iim-indores-flagship-fest-iim-indore-1599439",
     image: "/images/events/jam.png",
   },
@@ -149,7 +149,7 @@ const eventsData: Event[] = [
   {
     id: "18",
     title: "Lasya",
-    category: "Flagship",
+    category: "Cultural",
     link: "https://unstop.com/events/lasya-iris-2026-iim-indores-flagship-fest-iim-indore-1598052",
     image: "/images/events/lasya.png",
   },
@@ -157,7 +157,7 @@ const eventsData: Event[] = [
   {
     id: "19",
     title: "Voice Of Iris",
-    category: "Flagship",
+    category: "Cultural",
     link: "https://unstop.com/events/voice-of-iris-iris-2026-iim-indores-flagship-fest-iim-indore-1598054",
     image: "/images/events/voice-of-iris.png",
   },
@@ -165,7 +165,7 @@ const eventsData: Event[] = [
   {
     id: "20",
     title: "Zero One Infinity",
-    category: "Cultural",
+    category: "Management",
     link: "https://unstop.com/competitions/zero-one-infinity-it-consulting-event-iris-2026-iim-indores-flagship-fest-iim-indore-1597507",
     image: "/images/events/zero-one-infinity.png",
   },
@@ -173,7 +173,7 @@ const eventsData: Event[] = [
   {
     id: "21",
     title: "Jigyasa: The Quizzing Event",
-    category: "Cultural",
+    category: "Management",
     link: "https://unstop.com/competitions/klueless-iris-2026-iim-indores-flagship-fest-iim-indore-1596862",
     image: "/images/events/jigyasa.png",
   },
@@ -196,7 +196,7 @@ const eventsData: Event[] = [
   {
     id: "24",
     title: "B2C: Marketing Case Competition",
-    category: "Cultural",
+    category: "Management",
     link: "https://unstop.com/competitions/b2c-marketing-case-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1596897",
     image: "/images/events/b2c.png",
   },
@@ -320,6 +320,18 @@ const eventsData: Event[] = [
     category: "Sports",
     link: "https://unstop.com/events/basketball-mens-iris-2026-iim-indores-flagship-fest-iim-indore-1599398",
     image: "/images/events/basketball-men.png",
+  },
+  {
+    id: "42",
+    title: "Awaaz: The Nukkad Natak Competition",
+    category: "Cultural",
+    link: "https://unstop.com/events/awaaz-the-nukkad-natak-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1605992",
+  },
+  {
+    id: "42",
+    title: "Awaaz: The Nukkad Natak Competition",
+    category: "Cultural",
+    link: "https://unstop.com/events/awaaz-the-nukkad-natak-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1605992",
   },
 ];
 
