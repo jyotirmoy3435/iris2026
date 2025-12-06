@@ -1,185 +1,80 @@
-/* Outer wrapper that gives 3D perspective */
+/* Card wrapper */
 .eventCard {
-  perspective: 1200px;
-  width: 100%;
-  height: 100%;
-}
-
-/* Inner element that actually flips */
-/* Inner element that actually flips */
-/* .eventCardInner {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 220px; /* adjust as needed for your layout */
-  /*transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-} */
-
-/* .isFlipped {
-  transform: rotateY(180deg);
-} */
-
-.eventCardInner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-}
-
-/* Base card for both sides */
-.eventItem {
-  position: absolute;
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
-  width: 100%;
-  height: 100%;
+  max-width: 280px;
+  margin: 0 auto;
   border-radius: 16px;
-  padding: 24px 18px 16px 28px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  /* Background image with subtle dark overlay so text remains readable */
-  background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.03)), url('/images/events/evecont.jpg') center/cover no-repeat;
-  /* keep text in front and readable */
-  color: #4a0e0e; /* dark maroon */
-  display: flex;
-  gap: 12px;
-  backface-visibility: hidden;
   overflow: hidden;
+  background: #000;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
-/* FRONT SIDE */
-.eventFront {
-  transform: rotateY(0deg);
+/* Poster image (fully visible) */
+.eventImage {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* BACK SIDE */
-/* BACK SIDE */
-/* .eventBack {
-  transform: rotateY(180deg);
-  background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.03)), url('/images/events/evecont.jpg') center/cover no-repeat;
-} */
-
-/* Icon section */
-.eventIcon {
-  flex-shrink: 0;
-  display: flex;
-  align-items: flex-start;
+/* Button ON IMAGE — bottom center */
+/* Card wrapper */
+.eventCard {
+  position: relative;
+  width: 100%;
+  max-width: 280px;       /* compact card */
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 }
 
-.categoryIcon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+/* Poster image - full visibility */
+.eventImage {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Main content */
-.eventContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  justify-content: center;
-}
-
-.eventTitle {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.eventCategory {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  opacity: 0.85;
-}
-
-.eventDescription {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 0.9rem;
-  opacity: 0.95;
-}
-
-/* Long description on back – different lengths are handled */
-.eventLongDescription {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-top: 8px;
-  opacity: 0.95;
-  max-height: 180px; /* prevents card from exploding in height */
-  overflow-y: auto;  /* scroll if too long */
-}
-
-/* Details row (date, time, venue) */
-.eventDetails {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin-top: 10px;
-  font-size: 0.78rem;
-  opacity: 0.9;
-}
-
-.eventDetail {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.detailIcon {
-  display: inline-block;
-}
-
-/* Overlay on FRONT side when hovering */
-.eventOverlay {
+/* Button ON IMAGE — bottom center */
+.registerButton {
   position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.1)
-  );
-  opacity: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 12px;
-  transition: opacity 0.2s ease;
+  left: 50%;
+  bottom: 4px;          /* LOWERED button */
+  transform: translateX(-50%);
+
+  padding: 6px 14px;
+  border: none;
+  outline: none;
+  border-radius: 999px;
+
+  background: #f97316;    /* warm orange */
+  color: #ffffff;
+
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+
+  opacity: 0.95;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
 }
 
-.eventFront:hover .eventOverlay {
+.registerButton:hover {
   opacity: 1;
 }
 
-/* Buttons */
-.viewDetailsBtn,
-.backBtn {
-  border: none;
-  outline: none;
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  background: #f97316; /* orange-ish, change to fest brand color if needed */
-  color: #ffffff;
-  letter-spacing: 0.03em;
-}
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .eventCard {
+    max-width: 240px;
+  }
 
-.viewDetailsBtn:hover,
-.backBtn:hover {
-  filter: brightness(1.08);
+  .registerButton {
+    bottom: 8px;         /* slightly lower on mobile */
+    font-size: 0.7rem;
+    padding: 5px 12px;
+  }
 }
-
-.backBtn {
-  align-self: flex-start;
-  margin-top: 14px;
-}
-
-/* .backBtn {
-  align-self: flex-start;
-  margin-top: 14px;
-} */
