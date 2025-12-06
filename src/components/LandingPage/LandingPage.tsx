@@ -127,7 +127,7 @@ useEffect(() => {
         {/* Desktop Background */}
         <div className={styles.desktopBackground}>
           <img
-            src="/images/landing/imagebackground.png"
+            src="/images/landing/bg_landscape.webp"
             alt="Edo Mountains"
             className={styles.landingImage}
             style={{ transform: `translateY(${scrollY * 0.5}px)` }}
@@ -142,7 +142,7 @@ useEffect(() => {
             className={styles.mobileBackground}
           /> */}
           <img
-            src="/images/landing/backgroundimage_mobile.jpeg"
+            src="/images/landing/bg_portrait.webp"
             alt="Mountains"
             className={styles.mobileMountains}
           // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
@@ -182,21 +182,27 @@ useEffect(() => {
               </a>
             </div> */}
 
-            {/* Foreground Tree */}
+            {/* Foreground Video */}
             <div className={styles.foregroundContainer}>
               <div className={styles.treeContainer}>
                 <div className={styles.tree}>
-                  <img
-                    src="/images/landing/background1.png"
-                    alt="Tree"
+                  <video
+                    src="/background-video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className={styles.treeDesktop}
                   />
-                  <img
-                    src="/images/landing/background1.png"
-                    alt="Tree"
+                  <video
+                    src="/background-video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className={styles.treeMob}
                   />
-                  <SocialLinks />
+                  {/*<SocialLinks />*/}
                 </div>
               </div>
             </div>
