@@ -1,41 +1,81 @@
-/* src\components\TeamSection\TeamMemberCard.module.css */
-.cardWrapper {
-  display: flex;
-  justify-content: center;
-  margin: 0.5rem;
-  flex: 0 0 auto;
+.card {
+  width: 240px;
+  height: 320px;
   position: relative;
+  border-radius: 18px;
+  overflow: hidden;
 }
 
-.imageContainer {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.nameOverlay {
+/* Name bar */
+.nameBar {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 10;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0) 100%);
-  padding-top: 50px;
-  padding-bottom: 16px;
+  width: 100%;
+  padding: 12px;
   text-align: center;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.4);
   color: white;
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease;
 }
 
-.detailsOverlay {
+.card:hover .nameBar {
+  transform: translateY(-135%);
+}
+
+/* Hover overlay */
+.overlay {
   position: absolute;
-  /* FIX: Move the details overlay up by the estimated height of the name overlay (~86px) */
-  bottom: 86px; 
-  left: 0;
-  right: 0;
-  z-index: 20;
-  /* The background-color is set to transparent to see the image below it */
-  background-color: rgba(0,0,0,0);
-  padding: 0 16px 16px; 
-  box-sizing: border-box;
+  bottom: -45%;
+  height: 45%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px); /* ✅ very subtle now */
+  color: white;
+  padding: 14px;
+  text-align: center;
+  transition: bottom 0.3s ease;
+}
+
+.card:hover .overlay {
+  bottom: 0;
+}
+
+.overlay h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.role {
+  font-size: 13px;
+  margin: 4px 0;
+  opacity: 0.85;
+}
+
+.bio {
+  font-size: 12px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  opacity: 0.8;
+}
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.social a {
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.social a:hover {
+  transform: scale(1.15);
 }

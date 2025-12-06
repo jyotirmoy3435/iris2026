@@ -1,40 +1,53 @@
 .section {
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto 5rem;
-  box-sizing: border-box;
-  padding: 0 1rem;
+  margin-bottom: 6rem;
 }
 
 .title {
-  font-size: 3.5rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-bottom: 3rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  font-family: sans-serif;
   text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 3rem;
+  letter-spacing: 1px;
 }
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  align-items: start;
-  width: 100%;
-  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(var(--columns, 4), 1fr);
+  gap: 32px;
+  justify-items: center;
 }
 
-/* Responsive adjustments */
+/* Only apply special centering when .centerLastTwo is present.
+   This avoids affecting other grids (like the 2-column Overall Coordinators). */
+.centerLastTwo > :nth-last-child(2) {
+  /* place the second-last item into column 2 (1-based) */
+  grid-column: 2;
+}
+
+.centerLastTwo > :last-child {
+  /* place the last item into column 3 (1-based) */
+  grid-column: 3;
+}
+
+/* Tablet: fallback to 2 columns, clear manual placement */
 @media (max-width: 1024px) {
-  .title { font-size: 3rem; }
-  .grid { gap: 1.8rem; }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .centerLastTwo > :nth-last-child(2),
+  .centerLastTwo > :last-child {
+    grid-column: auto;
+  }
 }
 
-@media (max-width: 768px) {
-  .title { font-size: 2.5rem; }
-  .grid { gap: 1.5rem; flex-direction: column; align-items: center; }
+/* Mobile: single column, normal flow */
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .centerLastTwo > :nth-last-child(2),
+  .centerLastTwo > :last-child {
+    grid-column: auto;
+  }
 }
