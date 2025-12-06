@@ -16,6 +16,7 @@ const categories: (EventCategory | "All")[] = [
   "Flagship",
   "Cultural",
   "Management",
+  "Sports",
 ];
 
 export default function SearchBar({

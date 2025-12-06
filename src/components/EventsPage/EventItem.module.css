@@ -1,171 +1,69 @@
-/* Outer wrapper that gives 3D perspective */
+/* Outer card – NO background panel, only image + button */
 .eventCard {
-  perspective: 1200px;
-  width: 100%;
-  height: 100%;
-}
-
-/* Inner element that actually flips */
-.eventCardInner {
   position: relative;
   width: 100%;
-  height: 100%;
-  min-height: 220px; /* adjust as needed for your layout */
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
-
-.isFlipped {
-  transform: rotateY(180deg);
-}
-
-/* Base card for both sides */
-.eventItem {
-  position: absolute;
-  inset: 0; /* top:0; right:0; bottom:0; left:0 */
-  width: 100%;
-  height: 100%;
-  border-radius: 16px;
-  padding: 24px 18px 16px 28px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
-  /* Background image with subtle dark overlay so text remains readable */
-  background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.03)), url('/images/events/evecont.jpg') center/cover no-repeat;
-  /* keep text in front and readable */
-  color: #4a0e0e; /* dark maroon */
-  display: flex;
-  gap: 12px;
-  backface-visibility: hidden;
-  overflow: hidden;
-}
-
-/* FRONT SIDE */
-.eventFront {
-  transform: rotateY(0deg);
-}
-
-/* BACK SIDE */
-.eventBack {
-  transform: rotateY(180deg);
-  background: linear-gradient(rgba(0,0,0,0.03), rgba(0,0,0,0.03)), url('/images/events/evecont.jpg') center/cover no-repeat;
-}
-
-/* Icon section */
-.eventIcon {
-  flex-shrink: 0;
-  display: flex;
-  align-items: flex-start;
-}
-
-.categoryIcon {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-}
-
-/* Main content */
-.eventContent {
-  flex: 1;
+  max-width: 360px;
+  margin: 0 auto;
+  background: transparent;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  justify-content: center;
-}
-
-.eventTitle {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin: 0;
-}
-
-.eventCategory {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  opacity: 0.85;
-}
-
-.eventDescription {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 0.9rem;
-  opacity: 0.95;
-}
-
-/* Long description on back – different lengths are handled */
-.eventLongDescription {
-  font-family: var(--font-ganesha), sans-serif;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  margin-top: 8px;
-  opacity: 0.95;
-  max-height: 180px; /* prevents card from exploding in height */
-  overflow-y: auto;  /* scroll if too long */
-}
-
-/* Details row (date, time, venue) */
-.eventDetails {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  margin-top: 10px;
-  font-size: 0.78rem;
-  opacity: 0.9;
-}
-
-.eventDetail {
-  display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.6rem;           /* space between image and button */
 }
 
-.detailIcon {
-  display: inline-block;
+/* Wrapper around the poster – gives nice radius + shadow */
+.imageWrapper {
+  width: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Overlay on FRONT side when hovering */
-.eventOverlay {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.7),
-    rgba(0, 0, 0, 0.1)
-  );
-  opacity: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 12px;
-  transition: opacity 0.2s ease;
+/* Poster image */
+.eventImage {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
-.eventFront:hover .eventOverlay {
-  opacity: 1;
-}
-
-/* Buttons */
-.viewDetailsBtn,
-.backBtn {
+/* Single Register button (desktop + mobile) */
+.registerButton {
   border: none;
   outline: none;
-  padding: 8px 14px;
   border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  cursor: pointer;
-  background: #f97316; /* orange-ish, change to fest brand color if needed */
+  padding: 7px 22px;
+  background: #f97316;
   color: #ffffff;
-  letter-spacing: 0.03em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+  margin-bottom: 0.4rem;
 }
 
-.viewDetailsBtn:hover,
-.backBtn:hover {
-  filter: brightness(1.08);
+.registerButton:hover,
+.registerButton:focus-visible {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
 }
 
-.backBtn {
-  align-self: flex-start;
-  margin-top: 14px;
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 768px) {
+  .eventCard {
+    max-width: 100%;
+    gap: 0.5rem;       /* slightly tighter on mobile */
+  }
+
+  .imageWrapper {
+    border-radius: 16px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  }
+
+  .registerButton {
+    font-size: 0.85rem;
+    padding: 6px 18px;
+    margin-bottom: 0.5rem;
+  }
 }
