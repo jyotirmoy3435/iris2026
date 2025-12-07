@@ -7,7 +7,6 @@
   left: 0;
   right: 0;
   z-index: 9999;
-  background: rgba(140, 140, 140, 0.20);
   backdrop-filter: blur(6px);
   padding: 0.45rem 1.5rem;
   display: flex;
@@ -21,23 +20,20 @@
   align-items: center;
 }
 
-/* ✅ ITALIC + STYLIZED NAV TEXT */
+/* Base link */
 .desktopLink {
-  color: #ffffff;
+  color: var(--nav-color, #ffffff);
   text-decoration: none;
-
   font-family: "Poppins", "Japan Ramen", sans-serif;
-  font-style: italic;
   font-weight: 500;
-
   font-size: 1.15rem;
   letter-spacing: 0.08em;
   text-transform: capitalize;
-
   padding: 0.3rem 0.6rem;
   border-radius: 8px;
-
-  transition: all 0.3s ease;
+  transition:
+    color 0.2s linear,
+    transform 0.3s ease;
   position: relative;
 }
 
@@ -53,12 +49,22 @@
   transform: translateX(-50%);
 }
 
+/* Hover */
 .desktopLink:hover {
   color: #f2dd7c;
   transform: translateY(-2px) skewX(-3deg);
 }
 
 .desktopLink:hover::after {
+  width: 80%;
+}
+
+/* ✅ ACTIVE DESKTOP LINK */
+.desktopLink.active {
+  color: #f2dd7c;
+}
+
+.desktopLink.active::after {
   width: 80%;
 }
 
@@ -77,11 +83,11 @@
   top: 0;
   right: 0;
   z-index: 9999;
-  padding: 1.5rem;
+  padding: 1.4rem;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background: rgba(140, 140, 140, 0.20);
+  background: rgba(140, 140, 140, 0.2);
   backdrop-filter: blur(6px);
   border-bottom-left-radius: 12px;
   transition: opacity 0.3s ease, transform 0.3s ease;
@@ -97,28 +103,29 @@
   background: none;
   border: none;
   cursor: pointer;
-  padding: 0.5rem;
+  padding: 0.25rem;
   transition: transform 0.3s ease;
 }
 
 .hamMenuBtn:hover {
-  transform: scale(1.15);
+  transform: scale(1.1); /* ✅ smoother for smaller icon */
 }
 
+/* ✅ REDUCED BURGER ICON SIZE */
 .moon {
-  width: 50px;
-  height: 50px;
+  width: 34px;
+  height: 34px;
   object-fit: contain;
-  filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.8));
+  filter: drop-shadow(0px 0px 6px rgba(255, 255, 255, 0.7));
   transition: filter 0.3s ease;
 }
 
 .hamMenuBtn:hover .moon {
-  filter: drop-shadow(0px 0px 20px rgba(255, 255, 255, 1));
+  filter: drop-shadow(0px 0px 12px rgba(255, 255, 255, 0.9));
 }
 
 /* ============================================= */
-/*           SIDEBAR – Slide-in + Stagger        */
+/*           SIDEBAR                            */
 /* ============================================= */
 
 .sidebarContainer {
@@ -187,13 +194,11 @@
 .sidebarClose:hover {
   background: rgba(242, 221, 124, 0.9);
   transform: rotate(90deg) scale(1.1);
-  box-shadow: 0 0 15px rgba(242, 221, 124, 0.6);
 }
 
 .hamX {
   width: 24px;
   height: 24px;
-  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.4));
 }
 
 /* Sidebar Items */
@@ -211,21 +216,30 @@
   max-width: 300px;
   padding: 1.2rem 1.5rem;
   background: rgba(255, 255, 255, 0.95);
-  background-image: url(/images/paper-texture.webp);
-  background-size: cover;
   border: 2px solid #000;
   border-radius: 15px;
   text-decoration: none;
   color: #000;
   font-family: "Japan Ramen", sans-serif;
   font-size: 1.5rem;
-  font-weight: 500;
   text-align: center;
   transition: all 0.3s ease;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.5s ease forwards;
   animation-delay: calc(0.1s * var(--i));
+}
+
+.sidebarItem:hover {
+  transform: scale(1.05) translateY(-2px);
+  box-shadow: 0 0 20px rgba(242, 221, 124, 0.7);
+}
+
+/* ✅ ACTIVE SIDEBAR ITEM */
+.sidebarItem.active {
+  background: linear-gradient(135deg, #f2dd7c 0%, #d69b65 100%);
+  box-shadow: 0 0 25px rgba(242, 221, 124, 0.8);
+  transform: scale(1.07);
 }
 
 @keyframes fadeInUp {
@@ -235,94 +249,14 @@
   }
 }
 
-.sidebarItem:hover {
-  transform: scale(1.05) translateY(-2px);
-  box-shadow: 0 0 20px rgba(242, 221, 124, 0.7);
-  background-color: rgba(242, 221, 124, 0.2);
-}
-
-/* Register Button */
-.registerItem {
-  background: linear-gradient(135deg, #f2dd7c 0%, #d69b65 100%);
-  border-color: #d69b65;
-  color: #000;
-  font-weight: bold;
-  box-shadow: 0 0 15px rgba(242, 221, 124, 0.5);
-}
-
-.registerItem:hover {
-  box-shadow: 0 0 30px rgba(242, 221, 124, 0.9);
-  transform: scale(1.08) translateY(-3px);
-}
-
-/* Footer */
-.mwd {
-  text-align: center;
-  color: #d69b65;
-  font-size: 1.2rem;
-  font-family: "NoyagiDemo", sans-serif;
-  padding: 1.5rem 0 0.5rem 0;
-  margin-top: auto;
-  opacity: 0;
-  animation: fadeIn 0.6s ease 0.4s forwards;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.3rem;
-}
-
-.loveIcon {
-  width: 20px;
-  height: 20px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-/* Social Links in Sidebar */
-.sidebarSocial {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0 1.5rem 0;
-  border-top: 1px solid rgba(242, 221, 124, 0.2);
-  opacity: 0;
-  animation: fadeIn 0.6s ease 0.5s forwards;
-}
-
-.sidebarSocial > div {
-  transform: scale(0.8);
-  transform-origin: center;
-}
-
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-  }
-}
-
 .wrapper {
   position: fixed;
   inset: 0;
   z-index: 5000;
   pointer-events: none;
-  transition: backdrop-filter 0.4s ease;
 }
 
 .wrapper.mask {
   backdrop-filter: blur(12px);
   background: rgba(0, 0, 0, 0.35);
-}
-
-@media (max-width: 480px) {
-  .sidebar {
-    width: 92vw;
-  }
-  .sidebarNav {
-    gap: 1.4rem;
-    margin-top: 4rem;
-  }
-  .sidebarItem {
-    font-size: 1.3rem;
-    padding: 1rem 1.2rem;
-  }
 }
