@@ -144,7 +144,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: var(--font-japan-ramen), sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: clamp(1.2rem, 3vw, 2rem);
   color: #1a1a1a;
   font-weight: 700;
@@ -343,7 +343,7 @@
 
 /* SECTION TITLES */
 .sectionTitle {
-  font-family: var(--font-japan-ramen);
+  font-family: "Langar-Regular";
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
@@ -786,6 +786,7 @@
 @media (max-width: 600px) {
   .sectionTitle {
     font-size: 2.2rem;
+    font-family: "Langar-Regular", sans-serif;
   }
 
   .speakersGrid {

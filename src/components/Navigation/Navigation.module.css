@@ -24,7 +24,7 @@
 .desktopLink {
   color: var(--nav-color, #ffffff);
   text-decoration: none;
-  font-family: "Poppins", "Japan Ramen", sans-serif;
+  font-family: "Langar-Regular";
   font-weight: 500;
   font-size: 1.15rem;
   letter-spacing: 0.08em;
@@ -220,7 +220,7 @@
   border-radius: 15px;
   text-decoration: none;
   color: #000;
-  font-family: "Japan Ramen", sans-serif;
+  font-family: "Langar-Regular", sans-serif;
   font-size: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;

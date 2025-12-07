@@ -84,6 +84,7 @@
 
 .mainTitle {
   font-size: clamp(2.5rem, 6vw, 4rem);
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 700;
   color: #1f2937;
   margin-bottom: 1rem;
@@ -95,6 +96,7 @@
 
 .subtitle {
   font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-family: "Langar-Regular", sans-serif;
   color: #6b7280;
   font-weight: 300;
   letter-spacing: 0.05em;
@@ -117,6 +119,7 @@
 
 .scrollText {
   margin-top: 0.5rem;
+  font-family: "Poppins-Regular", sans-serif;
   font-size: 0.9rem;
   opacity: 0.9;
   letter-spacing: 0.05em;
@@ -137,6 +140,7 @@
 
 .sectionTitle {
   text-align: center;
+  font-family: "Langar-Regular", sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
   color: #1f2937;
   margin-bottom: 3rem;
@@ -326,6 +330,7 @@
 
 .footerTitle {
   font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   margin-bottom: 1rem;
   color: #fde68a;
@@ -350,6 +355,7 @@
 .contactCategory {
   color: #fbbf24;
   font-size: 1rem;
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -438,6 +444,7 @@
 
 .emailTitle {
   font-size: 1.2rem;
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   color: #fbbf24;
   margin-bottom: 0.5rem;
@@ -447,6 +454,7 @@
 
 .emailAddress {
   color: white;
+  font-family: "Poppins-Regular", sans-serif;
   font-size: 1rem;
   margin-bottom: 2rem;
   padding: 0.5rem;
@@ -458,10 +466,12 @@
 .questionsSection {
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   padding-top: 1.5rem;
+  font-family: "Poppins-Regular", sans-serif;
 }
 
 .questionsTitle {
   font-size: 1.1rem;
+  font-family: "Poppins-SemiBold", sans-serif;
   font-weight: 600;
   color: white;
   margin-bottom: 0.75rem;
@@ -470,6 +480,7 @@
 .askLink {
   color: #fbbf24;
   text-decoration: underline;
+  font-family: "Poppins-Medium", sans-serif;
   font-weight: 500;
   transition: color 0.3s ease;
 }

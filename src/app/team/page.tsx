@@ -330,8 +330,8 @@ const TeamPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <TeamSection title="Overall Coordinators" members={coreTeamMembers} columns={2} />
-      <TeamSection title="Vertical Coordinators" members={verticalCoordinators} columns={4} />
+      <TeamSection title="OVERALL COORDINATORS" members={coreTeamMembers} columns={2} />
+      <TeamSection title="VERTICAL COORDINATORS" members={verticalCoordinators} columns={4} />
     </div>
   );
 };
