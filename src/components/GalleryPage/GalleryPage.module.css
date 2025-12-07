@@ -141,6 +141,7 @@
 
 .mainTitle {
   font-size: clamp(2.5rem, 6vw, 4rem);
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 700;
   color: #1f2937;
   margin-bottom: 1rem;
@@ -152,6 +153,7 @@
 
 .subtitle {
   font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-family: "Langar-Regular", sans-serif;
   color: #6b7280;
   font-weight: 300;
   letter-spacing: 0.05em;
@@ -174,6 +176,7 @@
 
 .scrollText {
   margin-top: 0.5rem;
+  font-family: "Poppins-Regular", sans-serif;
   font-size: 0.9rem;
   opacity: 0.9;
   letter-spacing: 0.05em;
@@ -195,6 +198,7 @@
 
 .sectionTitle {
   text-align: center;
+  font-family: "Langar-Regular", sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
   color: #1f2937;
   margin-bottom: 3rem;
@@ -384,6 +388,7 @@
 
 .footerTitle {
   font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   margin-bottom: 2rem;
   color: #fde68a;
@@ -496,6 +501,7 @@
 
 .emailTitle {
   font-size: 1.2rem;
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   color: #fbbf24;
   margin-bottom: 0.5rem;
@@ -520,6 +526,7 @@
 
 .questionsTitle {
   font-size: 1.1rem;
+  font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   color: white;
   margin-bottom: 0.75rem;
