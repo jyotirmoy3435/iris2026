@@ -348,9 +348,33 @@ export default function EventsPage() {
   });
 
   return (
-    <div className={styles.eventsContainer}>
-      {/* Background decorations */}
-      <EventsBackground category={selectedCategory} />
+     <div className={styles.wrapper}>
+      {/* Fixed Parallax Background */}
+      <div className={styles.backgroundContainer}>
+        {/* Desktop Background */}
+        <div className={styles.desktopBackground}>
+          <img
+            src="/images/landing/bg_landscape.webp"
+            alt="Edo Mountains"
+            className={styles.landingImage}
+            style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+          />
+        </div>
+
+        {/* Mobile Background */}
+        <div className={styles.mobileBackgroundContainer}>
+          {/* <img
+            src="/svgs/svgs/landing/mobileBackground.svg"
+            alt="Background"
+            className={styles.mobileBackground}
+          /> */}
+          <img
+            src="/images/landing/bg_portrait.webp"
+            alt="Mountains"
+            className={styles.mobileMountains}
+          // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          />
+        </div></div>
 
       {/* Main content */}
       <div className={styles.eventsSubContainer}>

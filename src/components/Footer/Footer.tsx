@@ -19,13 +19,13 @@ export default function Footer() {
           
           <div className={styles.contactPerson}>
             <h5>Shubham Sharma</h5>
-            <a href="mailto:p24shubhams@iirmidr.ac.in">p24shubhams@iirmidr.ac.in</a>
+            <a href="mailto:p24shubhams@iimidr.ac.in">p24shubhams@iimidr.ac.in</a>
             <p>+91 7385552034</p>
           </div>
           
           <div className={styles.contactPerson}>
             <h5>Nawang</h5>
-            <a href="mailto:p24nawangb@iirmidr.ac.in">p24nawangb@iirmidr.ac.in</a>
+            <a href="mailto:p24nawangb@iimidr.ac.in">p24nawangb@iimidr.ac.in</a>
             <p>+91 9911995537</p>
           </div>
         </div>
@@ -36,13 +36,13 @@ export default function Footer() {
           
           <div className={styles.contactPerson}>
             <h5>Anirudh Kumar</h5>
-            <a href="mailto:p24anirudhk@iirmidr.ac.in">p24anirudhk@iirmidr.ac.in</a>
+            <a href="mailto:p24anirudhk@iimidr.ac.in">p24anirudhk@iimidr.ac.in</a>
             <p>+91 9559085353</p>
           </div>
           
           <div className={styles.contactPerson}>
             <h5>Prachi Ekhar</h5>
-            <a href="mailto:p24prachim@iirmidr.ac.in">p24prachim@iirmidr.ac.in</a>
+            <a href="mailto:p24prachim@iimidr.ac.in">p24prachim@iimidr.ac.in</a>
             <p>+91 9359231527</p>
           </div>
         </div>
@@ -53,19 +53,19 @@ export default function Footer() {
           
           <div className={styles.contactPerson}>
             <h5>Sahil Telrandhe</h5>
-            <a href="mailto:p24sahilt@iirmidr.ac.in">p24sahilt@iirmidr.ac.in</a>
+            <a href="mailto:p24sahilt@iimidr.ac.in">p24sahilt@iimidr.ac.in</a>
             <p>+91 9168369988</p>
           </div>
           
           <div className={styles.contactPerson}>
             <h5>Vibhu Sharma</h5>
-            <a href="mailto:p24vibhus@iirmidr.ac.in">p24vibhus@iirmidr.ac.in</a>
+            <a href="mailto:p24vibhus@iimidr.ac.in">p24vibhus@iimidr.ac.in</a>
             <p>+91 6306179572</p>
           </div>
           
           <div className={styles.contactPerson}>
             <h5>Anushka Vani</h5>
-            <a href="mailto:p24anushkav@iirmidr.ac.in">p24anushkav@iirmidr.ac.in</a>
+            <a href="mailto:p24anushkav@iimidr.ac.in">p24anushkav@iimidr.ac.in</a>
             <p>+91 7608000795</p>
           </div>
         </div>

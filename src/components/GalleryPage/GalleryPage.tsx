@@ -55,18 +55,34 @@ export default function GalleryPage() {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <BackButton />
-      
-      {/* Background Container */}
+     <div className={styles.wrapper}>
+            <BackButton />
+      {/* Fixed Parallax Background */}
       <div className={styles.backgroundContainer}>
-        <div 
-          className={styles.skyLayer}
-          style={{
-            transform: `translateY(${scrollY * 0.1}px)`,
-          }}
-        />
-      </div>
+        {/* Desktop Background */}
+        <div className={styles.desktopBackground}>
+          <img
+            src="/images/landing/bg_landscape.webp"
+            alt="Edo Mountains"
+            className={styles.landingImage}
+            style={{ transform: `translateY(${scrollY * 0.5}px)` }}
+          />
+        </div>
+
+        {/* Mobile Background */}
+        <div className={styles.mobileBackgroundContainer}>
+          {/* <img
+            src="/svgs/svgs/landing/mobileBackground.svg"
+            alt="Background"
+            className={styles.mobileBackground}
+          /> */}
+          <img
+            src="/images/landing/bg_portrait.webp"
+            alt="Mountains"
+            className={styles.mobileMountains}
+          // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          />
+        </div></div>
 
       {/* Hero Section */}
       <div className={styles.heroContainer}>
