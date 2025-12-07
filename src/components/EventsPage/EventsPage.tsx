@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./EventsPage.module.css";
 import SearchBar from "./SearchBar";
 import EventsList from "./EventsList";
@@ -336,6 +336,17 @@ export default function EventsPage() {
   const [selectedCategory, setSelectedCategory] = useState<EventCategory | "All">(
     "All"
   );
+
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+      const handleScroll = () => {
+        setScrollY(window.scrollY);
+      };
+  
+      window.addEventListener("scroll", handleScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
 
   const filteredEvents = eventsData.filter((event) => {
     const matchesSearch =
