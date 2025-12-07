@@ -2,15 +2,15 @@
   margin-bottom: 6rem;
 }
 
+/* ✅ Default title styling */
 .title {
   text-align: center;
   font-size: 1.8rem;
   letter-spacing: 1px;
-
-  margin-top: 2rem;     /* ✅ pushes "Overall Coordinators" down */
   margin-bottom: 3rem;
 }
 
+/* ✅ Grid */
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--columns, 4), 1fr);
@@ -27,7 +27,9 @@
   grid-column: 3;
 }
 
+/* ========================= */
 /* Tablet */
+/* ========================= */
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
@@ -39,8 +41,20 @@
   }
 }
 
-/* Mobile */
+/* ========================= */
+/* ✅ Mobile FIX */
+/* ######################### */
 @media (max-width: 640px) {
+  /* ✅ Push entire section below fixed navbar */
+  .section {
+    padding-top: 90px; /* adjust if navbar height changes */
+  }
+
+  .title {
+    margin-top: 0;
+    font-size: 1.6rem;
+  }
+
   .grid {
     grid-template-columns: 1fr;
   }

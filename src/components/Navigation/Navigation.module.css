@@ -1,5 +1,5 @@
 /* ============================================= */
-/*           DESKTOP HEADER – Reduced Height     */
+/*           DESKTOP HEADER                     */
 /* ============================================= */
 .desktopHeader {
   position: fixed;
@@ -7,9 +7,9 @@
   left: 0;
   right: 0;
   z-index: 9999;
-  background: rgba(50, 50, 50, 0.65);
+  background: rgba(140, 140, 140, 0.20);
   backdrop-filter: blur(6px);
-  padding: 0.45rem 1.5rem; /* REDUCED HEIGHT */
+  padding: 0.45rem 1.5rem;
   display: flex;
   justify-content: center;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
@@ -17,18 +17,26 @@
 
 .desktopNav {
   display: flex;
-  gap: 2rem; /* Slightly reduced spacing */
+  gap: 2rem;
   align-items: center;
 }
 
+/* ✅ ITALIC + STYLIZED NAV TEXT */
 .desktopLink {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
-  font-family: "Japan Ramen", sans-serif;
-  font-size: 1.25rem; /* Slightly smaller */
+
+  font-family: "Poppins", "Japan Ramen", sans-serif;
+  font-style: italic;
   font-weight: 500;
-  padding: 0.25rem 0.5rem; /* Reduced padding */
+
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: capitalize;
+
+  padding: 0.3rem 0.6rem;
   border-radius: 8px;
+
   transition: all 0.3s ease;
   position: relative;
 }
@@ -47,7 +55,7 @@
 
 .desktopLink:hover {
   color: #f2dd7c;
-  transform: translateY(-2px);
+  transform: translateY(-2px) skewX(-3deg);
 }
 
 .desktopLink:hover::after {
@@ -61,7 +69,7 @@
 }
 
 /* ============================================= */
-/*           MOBILE NAVIGATION VISIBLE BG        */
+/*           MOBILE NAV                         */
 /* ============================================= */
 
 .nav {
@@ -73,10 +81,10 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  background: rgba(50, 50, 50, 0.65);
+  background: rgba(140, 140, 140, 0.20);
   backdrop-filter: blur(6px);
   border-bottom-left-radius: 12px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .hideHamburger {
