@@ -13,8 +13,8 @@ interface SearchBarProps {
 
 const categories: (EventCategory | "All")[] = [
   "All",
-  "Flagship",
   "Cultural",
+  "Flagship",
   "Management",
   "Sports",
 ];
