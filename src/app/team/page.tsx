@@ -1,6 +1,7 @@
 import React from 'react';
 import TeamSection from '@/components/TeamSection/TeamSection';
 import styles from './TeamPage.module.css';
+import { Title } from '@radix-ui/react-dialog';
 
 export const metadata = {
   title: 'Our Team - IRIS 2026',
@@ -330,6 +331,7 @@ const TeamPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <title>Our Team - IRIS 2026</title>
       <TeamSection title="OVERALL COORDINATORS" members={coreTeamMembers} columns={2} />
       <TeamSection title="VERTICAL COORDINATORS" members={verticalCoordinators} columns={4} />
     </div>
