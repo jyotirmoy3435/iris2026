@@ -69,7 +69,7 @@
 /* Logo Container */
 .logoContainer {
   position: absolute;
-  top: 32%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
@@ -81,9 +81,22 @@
 }
 
 .logo {
-  width: clamp(250px, 40vw, 200px);
+  width: clamp(350px, 60vw, 500px);
   height: auto;
   filter: drop-shadow(0 4px 20px rgba(242, 221, 124, 0.4));
+}
+
+.countdownContainer {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  animation: fadeIn 1s ease-in-out 0.5s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 /* Scroller Wrapper */
@@ -259,14 +272,19 @@
   }
 
   .logoContainer {
-    top: 75% !important;
-    gap: 1rem;
+    top: 25% !important;
+    /* gap: 1rem; */
   }
 
   .logo {
-    width: clamp(180px, 50vw, 300px);
+    width: clamp(300px, 50vw, 400px);
   }
 
+  .countdownContainer {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+  }
   /* MOBILE FIX: Background image should cover, not contain */
   .mobileMountains {
     object-fit: cover !important;

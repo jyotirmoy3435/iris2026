@@ -1,13 +1,14 @@
 /* Countdown Timer Container */
 .dateCountdown {
+  font-family: "Langar", sans-serif;
   position: relative;
   padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.17);
+  background: rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   border: 2px solid rgba(242, 221, 124, 0.3);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(242, 221, 124, 0.2);
+  /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), */
+    /* 0 0 30px rgba(242, 221, 124, 0.2); */
   animation: fadeInUp 0.5s ease-in 0.5s both;
 }
 
@@ -25,6 +26,8 @@
   flex-direction: column;
   align-items: center;
   gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
 }
 
 /* Value Styling */
@@ -32,9 +35,9 @@
   font-family: var(--font-japan-ramen), monospace;
   font-size: clamp(1rem, 2.5vw, 2rem);
   font-weight: 700;
-  color: rgb(89, 85, 85);
-  text-shadow: 0 0 20px rgba(242, 221, 124, 0.5),
-    0 0 40px rgba(214, 155, 101, 0.3);
+  color: black;
+  /* text-shadow: 0 0 20px rgba(242, 221, 124, 0.5), */
+    /* 0 0 40px rgba(214, 155, 101, 0.3); */
   line-height: 1;
   min-width: 60px;
   text-align: center;
@@ -49,7 +52,7 @@
 .label {
   font-family: 'Abhaya Libre', serif;
   font-size: clamp(0.7rem, 1vw, 0.5rem);
-  color: rgb(89, 85, 85);
+  color: black;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
@@ -59,7 +62,8 @@
 .separator {
   font-family: var(--font-japan-ramen), monospace;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
-  color: #d69b65;
+  margin-bottom: 5%;
+  color: crimson;
   font-weight: 700;
   opacity: 0.7;
   animation: blink 2s ease-in-out infinite;
@@ -130,12 +134,12 @@
   .dateCountdown {
     position: relative;
     padding: 1rem 2rem;
-    background: rgba(0, 0, 0, 0.17);
+    background: rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     border: 2px solid rgba(242, 221, 124, 0.3);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5),
-      0 0 30px rgba(242, 221, 124, 0.2);
+    /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), */
+      /* 0 0 30px rgba(242, 221, 124, 0.2); */
     animation: fadeInUp 0.5s ease-in 0.5s both;
   }
 
@@ -157,12 +161,12 @@
 
   /* Value Styling */
   .value {
-    font-family: var(--font-japan-ramen), monospace;
+    /* font-family: var(--font-japan-ramen), monospace; */
     font-size: clamp(1rem, 2.5vw, 2rem);
     font-weight: 700;
-    color: #f2dd7c;
-    text-shadow: 0 0 20px rgba(242, 221, 124, 0.5),
-      0 0 40px rgba(214, 155, 101, 0.3);
+    /* color: #f2dd7c; */
+    /* text-shadow: 0 0 20px rgba(242, 221, 124, 0.5), */
+      /* 0 0 40px rgba(214, 155, 101, 0.3); */
     line-height: 1;
     min-width: 60px;
     text-align: center;
@@ -175,9 +179,9 @@
 
   /* Label Styling */
   .label {
-    font-family: 'Abhaya Libre', serif;
+    /* font-family: 'Abhaya Libre', serif; */
     font-size: clamp(0.7rem, 1vw, 0.5rem);
-    color: rgba(242, 221, 124, 0.8);
+    /* color: rgba(242, 221, 124, 0.8); */
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 600;
@@ -185,9 +189,9 @@
 
   /* Separator */
   .separator {
-    font-family: var(--font-japan-ramen), monospace;
+    /* font-family: var(--font-japan-ramen), monospace; */
     font-size: clamp(1.5rem, 3vw, 2.5rem);
-    color: #d69b65;
+    /* color: #d69b65; */
     font-weight: 700;
     opacity: 0.7;
     animation: blink 2s ease-in-out infinite;

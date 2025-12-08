@@ -156,9 +156,10 @@ useEffect(() => {
             alt="OASIS 2025"
             className={styles.logo}
           />
-          <CountdownTimer />
+          
         </div>
-
+        <div className={styles.countdownContainer}>  <CountdownTimer /></div>
+        
       </div>
 
       {/* Scrollable Content */}
