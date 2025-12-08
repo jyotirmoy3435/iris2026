@@ -40,8 +40,8 @@
   text-align: center;
   font-weight: 600;
   font-family: "Poppins-SemiBold", sans-serif;
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
+  background: rgba(244, 211, 66, 0.829);
+  color: black;
   transition: transform 0.3s ease;
 }
 
@@ -58,9 +58,11 @@
   bottom: -45%;
   height: 45%;
   width: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  font-family: "Poppins-Bold", sans-serif;
+  font-size: small;
+  background: rgba(244, 211, 66, 0.829);
   backdrop-filter: blur(4px);
-  color: white;
+  color: black;
   padding: 14px;
   text-align: center;
   transition: bottom 0.3s ease;
@@ -99,7 +101,7 @@
 }
 
 .social a {
-  color: white;
+  color: black;
   transition: transform 0.2s ease;
 }
 
