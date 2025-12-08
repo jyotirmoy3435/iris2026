@@ -334,16 +334,26 @@ export default function EventsPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const filteredEvents = eventsData.filter((event) => {
-    const matchesSearch = event.title
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase());
+  const filteredEvents = eventsData
+    .filter((event) => {
+      const matchesSearch = event.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
 
-    const matchesCategory =
-      selectedCategory === "All" || event.category === selectedCategory;
+      const matchesCategory =
+        selectedCategory === "All" || event.category === selectedCategory;
 
-    return matchesSearch && matchesCategory;
-  });
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a, b) => {
+      const categoryOrder: Record<EventCategory, number> = {
+        Cultural: 0,
+        Flagship: 1,
+        Management: 2,
+        Sports: 3,
+      };
+      return categoryOrder[a.category] - categoryOrder[b.category];
+    });
 
   return (
     <div className={styles.wrapper}>
@@ -372,10 +382,6 @@ export default function EventsPage() {
 
       {/* CONTENT */}
       <div className={styles.eventsSubContainer}>
-        <div className={styles.eventsHeading}>
-          <h1 className={styles.eventsTitle}>Events</h1>
-        </div>
-
         <SearchBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}

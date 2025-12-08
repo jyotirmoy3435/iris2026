@@ -294,8 +294,8 @@
 /* Add this to your GalleryPage.module.css */
 
 .footerContainer {
-  background: linear-gradient(135deg, #7f1d1d, #991b1b, #b91c1c);
-  color: white;
+  background: #6b351d;
+  color: #f3edd7;
   padding: 2rem 0 0;
   /* margin-top: 4rem; */
   position: relative;
@@ -333,7 +333,7 @@
   font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #fde68a;
+  color: #f3edd7;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -353,14 +353,14 @@
 }
 
 .contactCategory {
-  color: #fbbf24;
+  color: #f3edd7;
   font-size: 1rem;
   font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #fbbf24;
+  border-bottom: 2px solid #f3edd7;
   padding-bottom: 0.5rem;
 }
 
@@ -380,19 +380,19 @@
 .contactPerson h5 {
   /* font-size: 1.1rem; */
   font-weight: 600;
-  color: white;
+  color: #f3edd7;
   font-family: "Poppins-SemiBold", sans-serif;
   /* margin-bottom: 0.5rem; */
 }
 
 .contactPerson p, .contactPerson a {
-  color: #fde68a;
+  color: #f3edd7;
   font-size: 0.9rem;
   /* margin-bottom: 0.25rem; */
   opacity: 0.9;
 }
 .contactPerson p{
-  color: white;
+  color: #f3edd7;
 }
 
 .socialSection {
@@ -423,19 +423,19 @@
 .socialIcon:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: translateY(-3px);
-  border-color: #fbbf24;
+  border-color: #f3edd7;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
 .iconSvg {
   width: 24px;
   height: 24px;
-  fill: white;
+  fill: #f3edd7;
   transition: fill 0.3s ease;
 }
 
 .socialIcon:hover .iconSvg {
-  fill: #fbbf24;
+  fill: #ffffff;
 }
 
 .emailSection {
@@ -451,21 +451,21 @@
   font-size: 1.2rem;
   font-family: "Langar-Regular", sans-serif;
   font-weight: 600;
-  color: #fbbf24;
+  color: #f3edd7;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .emailAddress {
-  color: white;
+  color: #f3edd7;
   font-family: "Poppins-Regular", sans-serif;
   font-size: 1rem;
   margin-bottom: 2rem;
   padding: 0.5rem;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 8px;
-  border-left: 3px solid #fbbf24;
+  border-left: 3px solid #f3edd7;
 }
 
 .questionsSection {
@@ -478,12 +478,12 @@
   font-size: 1.1rem;
   font-family: "Poppins-SemiBold", sans-serif;
   font-weight: 600;
-  color: white;
+  color: #f3edd7;
   margin-bottom: 0.75rem;
 }
 
 .askLink {
-  color: #fbbf24;
+  color: #f3edd7;
   text-decoration: underline;
   font-family: "Poppins-Medium", sans-serif;
   font-weight: 500;
@@ -491,7 +491,7 @@
 }
 
 .askLink:hover {
-  color: #fde68a;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -509,7 +509,7 @@
 }
 
 .bottomBar p {
-  color: #fde68a;
+  color: #f3edd7;
   font-size: 0.9rem;
   margin: 0;
   opacity: 0.8;
