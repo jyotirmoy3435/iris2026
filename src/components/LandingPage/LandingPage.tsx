@@ -1,12 +1,174 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import styles from "./LandingPage.module.css";
 import CountdownTimer from "./CountdownTimer";
 import SocialLinks from "./SocialLinks";
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0);
+  const sponsorsRef = useRef<HTMLDivElement | null>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  const starsRef = useRef<HTMLDivElement | null>(null);
+  const [isStarsPaused, setIsStarsPaused] = useState(false);
+const starsRafRef = useRef<number | null>(null);
+  const sponsors = [
+  { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
+  { src: "/images/sponsors/s2.png", alt: "SBI", title: "Platinum Sponsor" },
+  { src: "/images/sponsors/s3.png", alt: "Lifestyle", title: "Fashion Partner" },
+  { src: "/images/sponsors/s4.png", alt: "Unstop", title: "Platform Partner" },
+
+  // repeated items preserved to match original output/order
+  { src: "/images/sponsors/s5.png", alt: "Business  Standard", title: "Media Partner" },
+  { src: "/images/sponsors/s6.png", alt: "Safexpress", title: "Logistics Partner" },
+  { src: "/images/sponsors/s7.png", alt: "SheKunj", title: "Community Partner" },
+  { src: "/images/sponsors/s8.png", alt: "Jyesta", title: "Career Accelerator Partner" },
+];
+  const SCROLL_STEP = 260; // same scroll step as original
+  const scrollToStart = (el: HTMLDivElement) => el.scrollTo({ left: 0, behavior: "smooth" });
+  const scrollToEnd = (el: HTMLDivElement) => el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" });
+
+  const handlePrev = () => {
+    const el = sponsorsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft <= 0) {
+      // at start → jump to end
+      scrollToEnd(el);
+    } else {
+      el.scrollBy({ left: -SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+  const handleNext = () => {
+    const el = sponsorsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft >= maxScroll - 1) {
+      // at end → jump back to start
+      scrollToStart(el);
+    } else {
+      el.scrollBy({ left: SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+const [isPaused, setIsPaused] = useState(false);
+// ======= continuous RAF scroll (drop-in replacement) =======
+const rafRef = useRef<number | null>(null);
+const startedRef = useRef(false);
+
+useEffect(() => {
+  const el = sponsorsRef.current;
+  if (!el) return;
+
+  let last = performance.now();
+  const pixelsPerSecond = 80; // tune speed here
+
+  const tick = (now: number) => {
+    const dt = now - last;
+    last = now;
+
+    if (!isPaused && el.scrollWidth > el.clientWidth) {
+      const px = (pixelsPerSecond * dt) / 1000;
+      el.scrollLeft += px;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+
+      // If reached very end → jump to start
+      if (el.scrollLeft >= maxScroll - 2) {
+        el.scrollLeft = 0;
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
+  rafRef.current = requestAnimationFrame(tick);
+
+  return () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  };
+}, [isPaused, sponsors.length]);
+
+//-------STARS-----------
+
+  const handlePrevStars = () => {
+    const el = starsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft <= 0) {
+      // at start → jump to end
+      scrollToEnd(el);
+    } else {
+      el.scrollBy({ left: -SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+  const handleNextStars = () => {
+    const el = starsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft >= maxScroll - 1) {
+      // at end → jump back to start
+      scrollToStart(el);
+    } else {
+      el.scrollBy({ left: SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+useEffect(() => {
+  const el = starsRef.current;
+  if (!el) return;
+
+  let last = performance.now();
+  const pixelsPerSecond = 80; // adjust to change speed
+
+  const tick = (now: number) => {
+    const dt = now - last;
+    last = now;
+
+    // only scroll if not paused and there is actually overflow
+    if (!isStarsPaused && el.scrollWidth > el.clientWidth) {
+      const px = (pixelsPerSecond * dt) / 1000;
+
+      el.scrollLeft = el.scrollLeft + px;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= maxScroll - 1) {
+        // reached end → jump back to start
+        el.scrollLeft = 0;
+      }
+    }
+
+    starsRafRef.current = requestAnimationFrame(tick);
+  };
+
+  starsRafRef.current = requestAnimationFrame(tick);
+
+  return () => {
+    if (starsRafRef.current) cancelAnimationFrame(starsRafRef.current);
+  };
+}, [isStarsPaused]);
+
+
+
+
+
+  const checkScroll = () => {
+  if (!sponsorsRef.current) return;
+  const { scrollLeft, scrollWidth, clientWidth } = sponsorsRef.current;
+  setCanScrollLeft(scrollLeft > 0);
+  setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
+};
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,71 +179,67 @@ export default function LandingPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+  const el = sponsorsRef.current;
+  if (!el) return;
+  checkScroll();
+  el.addEventListener("scroll", checkScroll);
+  return () => el.removeEventListener("scroll", checkScroll);
+}, []);
+
   return (
     <div className={styles.wrapper}>
-      {/* Background Container with Parallax */}
+      {/* Fixed Parallax Background */}
       <div className={styles.backgroundContainer}>
         {/* Desktop Background */}
         <div className={styles.desktopBackground}>
           <img
-            src="/images/landing/background1.png"
+            src="/images/landing/bg_landscape.webp"
             alt="Edo Mountains"
             className={styles.landingImage}
-            style={{
-              transform: `translateY(${scrollY * 0.5}px)`,
-            }}
+            style={{ transform: `translateY(${scrollY * 0.5}px)` }}
           />
         </div>
 
         {/* Mobile Background */}
         <div className={styles.mobileBackgroundContainer}>
-          <img
-            src="/svgs/landing/mobileBackground.svg"
+          {/* <img
+            src="/svgs/svgs/landing/mobileBackground.svg"
             alt="Background"
             className={styles.mobileBackground}
-          />
+          /> */}
           <img
-            src="/images/landing/mobileMountains.png"
+            src="/images/landing/bg_portrait.webp"
             alt="Mountains"
             className={styles.mobileMountains}
-            style={{
-              transform: `translateY(${scrollY * 0.3}px)`,
-            }}
-          />
-          <img
-            src="/images/landing/mobileCloud.png"
-            alt="Clouds"
-            className={styles.mobileCloud}
-            style={{
-              transform: `translateX(${scrollY * 0.2}px)`,
-            }}
+          // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
           />
         </div>
 
-        {/* Logo Container */}
+        {/* Logo + Timer - Position Preserved */}
         <div className={styles.logoContainer}>
           <img
-            src="/images/landing/oasisLogo.png"
+            src="/images/landing/irislogo.png"
             alt="OASIS 2025"
             className={styles.logo}
           />
+          
         </div>
+        <div className={styles.countdownContainer}>  <CountdownTimer /></div>
+        
       </div>
 
-      {/* Countdown Timer */}
-      <CountdownTimer />
-
-      {/* Scroller for Content */}
+      {/* Scrollable Content */}
       <div className={styles.scrollerWrapper}>
         <div className={styles.scroller}>
           <div className={styles.landingContainer}>
-            {/* Register Button */}
-            <div className={styles.registerBtnContainer}>
+            {/* Optional Register Button (uncomment if needed) */}
+            {/* <div className={styles.registerBtnContainer}>
               <a href="/register" className={styles.registerBtn}>
                 <img
                   src="/svgs/landing/registerBtn.svg"
                   alt="Register"
-                  className={styles.registerBtn}
+                  className={styles.desktopRegisterBtn}
                 />
                 <img
                   src="/svgs/landing/mobileRegisterBtn.svg"
@@ -90,31 +248,30 @@ export default function LandingPage() {
                 />
                 <span className={styles.registerBtnText}>Register Now</span>
               </a>
-            </div>
+            </div> */}
 
-            {/* Foreground Container with Tree */}
+            {/* Foreground Video */}
             <div className={styles.foregroundContainer}>
               <div className={styles.treeContainer}>
                 <div className={styles.tree}>
-                  {/* Desktop Tree */}
-                  <img
-                    src="/images/landing/tree1.png"
-                    alt="Tree"
+                  <video
+                    src="/background-video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className={styles.treeDesktop}
                   />
-                  {/* Mobile Tree */}
-                  <img
-                    src="/images/landing/treeMob.png"
-                    alt="Tree"
+                  <video
+                    src="/background-video.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className={styles.treeMob}
                   />
-
-                  {/* Social Links Component */}
-                  <SocialLinks />
+                  {/*<SocialLinks />*/}
                 </div>
-
-                {/* Tree Extender for Scroll */}
-                <div className={styles.treeExtender}></div>
               </div>
             </div>
           </div>
@@ -122,23 +279,214 @@ export default function LandingPage() {
       </div>
 
       {/* Bottom Container for About Us Section */}
-      <div className={styles.bottomContainer}>
+      {/* Bottom Container for About Us Section */}
+     {/*} <div className={styles.bottomContainer}>
         <div className={styles.bottomOverlay}></div>
         <div className={styles.aboutUsContainer}>
           <div className={styles.aboutUsWrapper}>
-            {/* About Us content will go here */}
-            <h2 style={{ fontFamily: "var(--font-japan-ramen)", fontSize: "3rem", textAlign: "center", color: "#f2dd7c" }}>
-              About OASIS
+            <h2
+              style={{
+                fontFamily: "var(--font-japan-ramen)",
+                fontSize: "3rem",
+                textAlign: "center",
+                color: "#f2dd7c",
+              }}
+            >
+              About IRIS
             </h2>
-            <p style={{ fontFamily: "Abhaya Libre", fontSize: "1.2rem", textAlign: "center", maxWidth: "800px", margin: "2rem auto", lineHeight: "1.8" }}>
-              OASIS is the annual cultural festival of BITS Pilani, Pilani Campus.
-              It is a 3-4 day festival held in the month of October-November.
-              This year marks the 53rd edition of OASIS, celebrating the theme
-              &quot;Whispers of Edo&quot; - a journey through traditional Japanese culture.
+            <p
+              style={{
+                fontFamily: "Abhaya Libre",
+                fontSize: "1.2rem",
+                textAlign: "center",
+                maxWidth: "800px",
+                margin: "2rem auto",
+                lineHeight: "1.8",
+              }}
+            >
+              IIM Indore is set to host IRIS 2026, its annual cultural and management festival, in the month of Jan, 2026. Recognized as one of Central India's premier B-school fests, IRIS attracts over 40,000 participants from across the country, blending intellectual challenges, creative showcases, and industry insights into a dynamic three-day event.
+              IRIS 2026 offers a diverse range of competitions and activities designed to engage students across disciplines. Business enthusiasts can put their strategic acumen to the test in various case study challenges and entrepreneurship contests, while creative minds can participate in cultural events spanning fashion, dance, music, and quizzing.
             </p>
+            <div style={{ textAlign: "center", marginTop: "2rem" }}>
+  <a
+    href="/brochure/iris-brochure.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: "inline-block",
+      padding: "14px 34px",
+      background: "linear-gradient(90deg, #f2dd7c, #c7b566)",
+      color: "#262626",
+      borderRadius: "6px",
+      fontFamily: "Abhaya Libre",
+      fontWeight: "700",
+      letterSpacing: "1px",
+      fontSize: "1.2rem",
+      textDecoration: "none",
+      transition: "all 0.3s ease",
+      boxShadow: "0 4px 10px rgba(0,0,0,0.25)",
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = "translateY(-4px)";
+      e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.35)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = "translateY(0)";
+      e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.25)";
+    }}
+  >
+    Know More
+  </a>
+</div>
+
           </div>
         </div>
+      </div>*/}
+
+<section className={styles.sponsorsSection}>
+      <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
+
+      <div className={styles.sponsorsCarousel} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+        {/* Left Arrow */}
+        <button
+          type="button"
+          aria-label="Scroll sponsors left"
+          className={`${styles.sponsorsArrow} ${styles.sponsorsArrowLeft}`}
+          onClick={handlePrev}
+        >
+          ‹
+        </button>
+
+        {/* Scrollable track */}
+        <div ref={sponsorsRef} className={styles.sponsorsGrid}>
+          {sponsors.map((s, idx) => (
+            <div key={`${s.alt}-${idx}`} className={styles.sponsorItem}>
+              <div className={styles.sponsorLogoContainer}>
+                <img src={s.src} alt={s.alt} />
+              </div>
+              <p className={styles.sponsorTitle}>{s.title}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Right Arrow */}
+        <button
+          type="button"
+          aria-label="Scroll sponsors right"
+          className={`${styles.sponsorsArrow} ${styles.sponsorsArrowRight}`}
+          onClick={handleNext}
+        >
+          ›
+        </button>
       </div>
+    </section>
+
+
+
+
+{/* Past Stars Section */}
+<section className={styles.pastStarsSection}>
+  <div className={styles.sectionDivider}></div>
+
+  <h2 className={styles.sectionTitle}>PAST STARS OF OUR MULTIVERSE</h2>
+
+  {/* Row 1 – Two main posters */}
+  <div className={styles.starsMainRow}>
+    <img src="/images/stars/main1.png" alt="Main Star 1" className={styles.starMainPoster} />
+    <img src="/images/stars/main2.png" alt="Main Star 2" className={styles.starMainPoster} />
+  </div>
+
+  <div className={styles.starsCarouselRow}
+     onMouseEnter={() => setIsStarsPaused(true)}
+     onMouseLeave={() => setIsStarsPaused(false)}
+>
+  {/* Row 2 – Carousel */}
+    {/* Left Arrow */}
+    <button
+          type="button"
+          aria-label="Scroll stars left"
+          className={`${styles.starsArrow} ${styles.starsArrowLeft}`}
+          onClick={handlePrevStars}
+        >
+          ‹
+        </button>
+
+  {/* Posters Track */}
+  <div ref={starsRef} className={styles.starsCarouselTrack}>
+    {[
+      "/images/stars/p1.png",
+      "/images/stars/p2.png",
+      "/images/stars/p3.png",
+      "/images/stars/p4.png",
+      "/images/stars/p5.png",
+      "/images/stars/p6.png",
+      "/images/stars/p7.png",
+      "/images/stars/p8.png",
+    ].map((src, i) => (
+      <div key={i} className={styles.starPosterItem}>
+        <img src={src} alt={`Star Poster ${i + 1}`} />
+      </div>
+    ))}
+  </div>
+
+  {/* Right Arrow */}
+  <button
+          type="button"
+          aria-label="Scroll stars right"
+          className={`${styles.starsArrow} ${styles.starsArrowRight}`}
+          onClick={handleNextStars}
+        >
+          ›
+        </button>
+
+  </div>
+</section>
+
+
+
+
+<section className={styles.speakersSection}>
+  <div className={styles.sectionDivider}></div>
+
+  <h2 className={styles.sectionTitle}>PAST SPEAKERS OF ENVISION</h2>
+
+  <div className={styles.speakersGrid}>
+    {/* Speaker Card */}
+    <div className={styles.speakerCard}>
+      <img
+        src="/images/speakers/sp1.png"
+        alt="Rahul Gehani"
+        className={styles.speakerImgRect}
+      />
+      <h3>Rahul Gehani</h3>
+      <p>Partner, Everest Group</p>
+    </div>
+
+    <div className={styles.speakerCard}>
+      <img
+        src="/images/speakers/sp2.png"
+        alt="K Radhakrishnan"
+        className={styles.speakerImgRect}
+      />
+      <h3>K Radhakrishnan</h3>
+      <p>Former Chairman, ISRO</p>
+    </div>
+
+    <div className={styles.speakerCard}>
+      <img
+        src="/images/speakers/sp3.png"
+        alt="Rana Kapoor"
+        className={styles.speakerImgRect}
+      />
+      <h3>Rana Kapoor</h3>
+      <p>Former CEO & MD, Yes Bank</p>
+    </div>
+  </div>
+</section>
+
+
+      
+
     </div>
   );
 }

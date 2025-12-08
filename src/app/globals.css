@@ -1,56 +1,44 @@
 @import "tailwindcss";
 
-/* Custom Fonts - Japanese Theme */
+/* ============================= */
+/*         CUSTOM FONTS          */
+/* ============================= */
+
+/* Theme Font - Indiverse */
 @font-face {
-  font-family: "Japan Ramen";
-  src: url(/fonts/japanRamen.otf) format("opentype");
-  font-weight: 400;
-  font-style: normal;
+  font-family: "Saman";
+  src: url("/fonts/Saman.ttf") format("truetype");
   font-display: swap;
 }
 
+/* Title Font */
 @font-face {
-  font-family: "Ibarra Real Nova SemiBold";
-  src: url(/fonts/IbarraRealNova-SemiBold.ttf) format("truetype");
+  font-family: "Langar-Regular";
+  src: url("/fonts/Langar-Regular.ttf") format("truetype");
   font-display: swap;
 }
 
-@font-face {
-  font-family: "DM Serif Text";
-  src: url(/fonts/DMSerifText-Regular.ttf) format("truetype");
-  font-display: swap;
-}
+/* Paragraph Font - Poppins Variants */
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-Black.ttf") format("truetype"); font-weight: 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-BlackItalic.ttf") format("truetype"); font-weight: 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-Bold.ttf") format("truetype"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-BoldItalic.ttf") format("truetype"); font-weight: 700; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-ExtraBold.ttf") format("truetype"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-ExtraBoldItalic.ttf") format("truetype"); font-weight: 800; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-ExtraLight.ttf") format("truetype"); font-weight: 200; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-ExtraLightItalic.ttf") format("truetype"); font-weight: 200; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-Italic.ttf") format("truetype"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-Light.ttf") format("truetype"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-LightItalic.ttf") format("truetype"); font-weight: 300; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-Medium.ttf") format("truetype"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-MediumItalic.ttf") format("truetype"); font-weight: 500; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-SemiBold.ttf") format("truetype"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-SemiBoldItalic.ttf") format("truetype"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-Thin.ttf") format("truetype"); font-weight: 100; font-style: normal; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("/fonts/Poppins-ThinItalic.ttf") format("truetype"); font-weight: 100; font-style: italic; font-display: swap; }
 
-@font-face {
-  font-family: "Abhaya Libre Extrabold";
-  src: url(/fonts/AbhayaLibre-ExtraBold.ttf) format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Abhaya Libre";
-  src: url(/fonts/AbhayaLibre-Regular.ttf) format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Shippori Mincho";
-  src: url(/fonts/ShipporiMincho-Regular.ttf) format("truetype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "The Last Shuriken";
-  src: url(/fonts/TheLastShuriken.otf) format("opentype");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "NoyagiDemo";
-  src: url(/fonts/NoyagiDemo.ttf) format("truetype");
-  font-display: swap;
-}
-
+/* Root Variables */
 :root {
   --background: #000000;
   --foreground: #ffffff;
@@ -59,121 +47,33 @@
   --accent-gold: rgb(208, 176, 99);
   --brown-wood: #7f5934;
   --paper-texture: url(/images/paper-texture.webp);
+
+  --font-indiverse: "Saman", sans-serif;
+  --font-title: "Langar-Regular", serif;
+  --font-paragraph: "Poppins", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-japan: "Japan Ramen";
-  --font-ibarra: "Ibarra Real Nova SemiBold";
-  --font-dm-serif: "DM Serif Text";
-  --font-abhaya-bold: "Abhaya Libre Extrabold";
-  --font-abhaya: "Abhaya Libre";
-  --font-shippori: "Shippori Mincho";
-  --font-shuriken: "The Last Shuriken";
-  --font-noyagi: "NoyagiDemo";
-}
+/* Reset & Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; overflow-x: hidden; touch-action: manipulation; }
+body { background: var(--background); color: var(--foreground); font-family: var(--font-paragraph); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scrollbar-width: none; -ms-overflow-style: none; }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 0; height: 0; display: none; }
+::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.1); }
+::-webkit-scrollbar-thumb { background: var(--primary-gold); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--secondary-gold); }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Abhaya Libre", serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--primary-gold);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-gold);
-}
-
-/* Animation Keyframes from Original Site */
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideDown {
-  from {
-    transform: translateY(-100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+/* Animation Keyframes */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity:0 } to { opacity:1 } }
+@keyframes slideUp { from { transform:translateY(100%); opacity:0 } to { transform:translateY(0); opacity:1 } }
+@keyframes slideDown { from { transform:translateY(-100%); opacity:0 } to { transform:translateY(0); opacity:1 } }
+@keyframes scaleIn { from { transform:scale(0); opacity:0 } to { transform:scale(1); opacity:1 } }
 
 /* Utility Classes */
-.paper-texture {
-  background: url('/images/paper-texture.webp') repeat;
-  opacity: 0.05;
-}
-
-.sepia-filter {
-  filter: sepia() saturate(4.5) hue-rotate(-10deg);
-}
-
-.glow-gold {
-  box-shadow: 0 0 24px var(--primary-gold);
-  border: 0.2vw solid var(--primary-gold);
-}
+.paper-texture { background: url('/images/paper-texture.webp') repeat; opacity: 0.05; }
+.sepia-filter { filter: sepia() saturate(4.5) hue-rotate(-10deg); }
+.glow-gold { box-shadow: 0 0 24px var(--primary-gold); border: 0.2vw solid var(--primary-gold); }
+.title { font-family: var(--font-title); }
+.indiverse { font-family: var(--font-indiverse); }

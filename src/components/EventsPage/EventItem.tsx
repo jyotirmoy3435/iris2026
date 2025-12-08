@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, Clock, MapPin } from "lucide-react";
+import { useState } from "react";
 import styles from "./EventItem.module.css";
 import type { Event } from "./EventsPage";
 
@@ -8,59 +8,52 @@ interface EventItemProps {
   event: Event;
 }
 
-const categoryIcons: Record<string, string> = {
-  Dance: "/images/events/dance.png",
-  Drama: "/images/events/drama.png",
-  Music: "/images/events/music.png",
-  Photography: "/images/events/photography.png",
-  Text: "/images/events/text.png",
-  Miscellaneous: "/images/events/misc.png",
-};
-
 export default function EventItem({ event }: EventItemProps) {
+  const [imgSrc, setImgSrc] = useState(
+    event.image || "/images/events/default-event.png"
+  );
+
+  const handleRegisterClick = () => {
+    if (event.link) {
+      window.open(event.link, "_blank", "noopener,noreferrer");
+    }
+  };
+
+  const handleImageError = () => {
+    setImgSrc("/images/events/default-event.png");
+  };
+
   return (
-    <div className={styles.eventItem}>
-      {/* Category Icon */}
-      <div className={styles.eventIcon}>
-        <img
-          src={categoryIcons[event.category] || "/images/events/misc.png"}
-          alt={event.category}
-          className={styles.categoryIcon}
-        />
-      </div>
+    <div className={styles.eventCard}>
+      <div className={styles.cardFrame}>
+        <div className={styles.imageWrapper}>
+          {/* Category pill */}
 
-      {/* Event Content */}
-      <div className={styles.eventContent}>
-        <h3 className={styles.eventTitle}>{event.title}</h3>
-        <p className={styles.eventCategory}>{event.category}</p>
-        <p className={styles.eventDescription}>{event.description}</p>
+          {/* Poster */}
+          <img
+            src={imgSrc}
+            alt={event.title}
+            className={styles.eventImage}
+            onError={handleImageError}
+          />
 
-        {/* Event Details */}
-        <div className={styles.eventDetails}>
-          {event.date && (
-            <div className={styles.eventDetail}>
-              <Calendar size={16} className={styles.detailIcon} />
-              <span>{event.date}</span>
-            </div>
-          )}
-          {event.time && (
-            <div className={styles.eventDetail}>
-              <Clock size={16} className={styles.detailIcon} />
-              <span>{event.time}</span>
-            </div>
-          )}
-          {event.venue && (
-            <div className={styles.eventDetail}>
-              <MapPin size={16} className={styles.detailIcon} />
-              <span>{event.venue}</span>
-            </div>
-          )}
+          {/* Dark overlay + register on hover/tap */}
+          <div className={styles.hoverOverlay}>
+            <button
+              type="button"
+              className={styles.registerButton}
+              onClick={handleRegisterClick}
+              aria-label={`Register for ${event.title}`}
+            >
+              Register
+            </button>
+          </div>
+
+          {/* Title strip at bottom */}
+          <div className={styles.titleBar}>
+            <span className={styles.titleText}>{event.title}</span>
+          </div>
         </div>
-      </div>
-
-      {/* Hover Overlay */}
-      <div className={styles.eventOverlay}>
-        <button className={styles.viewDetailsBtn}>View Details</button>
       </div>
     </div>
   );

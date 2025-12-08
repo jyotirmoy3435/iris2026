@@ -1,85 +1,69 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
-// Load custom Japanese fonts
-const japanRamen = localFont({
-  src: "../../public/fonts/japanRamen.otf",
-  variable: "--font-japan-ramen",
+// Load custom fonts
+const saman = localFont({
+  src: "../../public/fonts/Saman.ttf",
+  variable: "--font-saman",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "OASIS 2025 | Whispers Of Edo",
+  title: "IRIS 2026 | Indiverse",
   description:
-    "The official website of Oasis 2025 | Whispers Of Edo. Asia's Largest Student-Run College Cultural Festival returns for its 53rd edition in 2025! Est. 1971",
-  applicationName: "OASIS 2025",
+    "The official website of IRIS 2026 | Indiverse. Indias's Premier Management Student-Run College Cultural Festival returns for 2026!",
+  applicationName: "IRIS 2026",
   keywords: [
-    "oasis",
-    "Oasis",
-    "oasis bits pilani",
-    "bits",
-    "bits pilani",
-    "bits pilani pilani campus",
-    "bppc",
+    "IRIS",
+    "IIM",
+    "Indore",
+    "Madhya Pradesh",
+    "IIM Indore",
+    "PGP",
+    "MBA",
+    "Business",
+    "Master of Business Administration",
+    "IRIS 2026",
+    "2026",
+    "IRIS IIM Indore",
+    "IIM IRIS",
+    "management fest",
+    "management",
     "college fest",
-    "oasis 2025",
-    "2025",
-    "oasis bits",
-    "bits oasis",
-    "bits pilani oasis",
-    "oasis bppc",
-    "college fest bits",
-    "bits pilani fest",
-    "oasis 2025 dates",
-    "bits pilani cultural fest",
-    "oasis bits pilani 2025",
-    "oasis in pilani",
-    "bppc fest",
-    "whispers of edo",
-    "edo japan",
-    "edo period",
-    "japanese theme",
-    "japanese culture fest",
-    "geisha",
-    "hanami",
-    "traditional japan",
-    "edo era celebration",
-    "whispers of edo theme",
-    "cultural japan oasis",
-    "japan-inspired fest",
-    "oasis 2025 whispers of edo",
-    "oasis japan theme",
-    "edo vibes",
-    "shuriken",
-    "rocktaves",
+    "fest",
+    "Madhya Pradesh",
+    "cultural fest",
+    "Indiverse",
+    "college cultural fest",
     "engineering",
-    "bits fest 2025",
-    "student fest india",
+    "student fest India",
   ],
   authors: [{ name: "Department of Visual Media, BITS Pilani" }],
   openGraph: {
     type: "website",
-    title: "OASIS 2025 | Whispers Of Edo",
+    title: "IRIS 2026 | Indiverse",
     description:
-      "Asia's Largest Student-Run College Cultural Festival returns for its 53rd edition in 2025! Est. 1971",
-    url: "https://www.bits-oasis.org/",
-    siteName: "OASIS 2025 | Whispers Of Edo",
+    "The official website of IRIS 2026 | Indiverse. Indias's Premier Management Student-Run College Cultural Festival returns for 2026!",
+    url: "https://www.iris-iimidr.com/",
+    siteName: "IRIS 2026 | Indiverse",
     images: [
       {
-        url: "https://www.bits-oasis.org/logo2.png",
-        alt: "OASIS 2025 Logo",
+        url: "https://www.iris-iimidr.com/",
+        alt: "IRIS 2026 Logo",
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "OASIS 2025 | Whispers Of Edo",
-    description:
-      "Asia's Largest Student-Run College Cultural Festival returns for its 53rd edition in 2025! Est. 1971",
-    images: ["https://www.bits-oasis.org/logo2.png"],
-    site: "@bitsoasis",
-  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "IRIS 2026 | Indiverse",
+  //   description:
+  //     "Asia's Largest Student-Run College Cultural Festival returns for its 53rd edition in 2025! Est. 1971",
+  //   images: ["https://www.bits-oasis.org/logo2.png"],
+  //   site: "@bitsoasis",
+  // },
   icons: {
     icon: "/logo2.png",
   },
@@ -98,19 +82,11 @@ export default function RootLayout({
       <head>
         {/* Preload critical assets */}
         <link rel="preload" as="image" href="/videos/ink-spread-5.gif" />
-        <link
-          rel="preload"
-          as="font"
-          href="/fonts/japanRamen.ttf"
-          type="font/ttf"
-          crossOrigin="anonymous"
-        />
       </head>
-      <body className={`${japanRamen.variable} antialiased`}>
-        {/* Portal roots for modals and backdrops */}
-        <div id="modal-root"></div>
-        <div id="backdrop-root"></div>
+      <body className={`${saman.variable} antialiased`}>
+        <Navigation />
         <div id="root">{children}</div>
+        <Footer />
       </body>
     </html>
   );
