@@ -615,8 +615,8 @@
   display: flex;
   gap: 2rem;
   overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
   padding: 0.5rem 0;
   -ms-overflow-style: none; /* IE */
   scrollbar-width: none;    /* Firefox */
@@ -678,6 +678,21 @@
   margin-right: 0.5rem;
 }
 
+.starsCarouselTrack {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: auto;     /* important: no smooth here for RAF */
+  scrollbar-width: none;
+}
+
+.starsCarouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.starPosterItem {
+  flex: 0 0 auto;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .starMainPoster {
@@ -687,11 +702,6 @@
 
   .starsCarouselRow {
     gap: 0.6rem;
-  }
-
-  .starPosterItem img {
-    width: 100%;
-    height: 210px;
   }
 
   .starsArrow {
@@ -706,20 +716,12 @@
   }
 
   /* Make each poster take the full visible area of the track */
-  .starPosterItem {
-    flex: 0 0 100%;           /* each item = 100% of track's width */
-    display: flex;
-    justify-content: center;  /* center poster inside the viewport */
-    scroll-snap-align: center;
-    box-sizing: border-box;
-    padding: 0 0.6rem;        /* small side padding so poster isn't flush to edges */
-  }
 
   /* Poster image fit: contain so whole poster is visible */
   .starPosterItem img {
-    max-width: 420px;   /* optional cap for large phones */
-    height: auto;
-    object-fit: contain; /* IMPORTANT: never crop poster */
+    height: 270px;     /* or 250px etc */
+    width: auto;       /* let width adjust */
+    object-fit: contain;
   }
 
   /* Keep arrows outside the poster area (no overlap) */

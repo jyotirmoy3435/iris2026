@@ -43,6 +43,7 @@ export default function Navigation() {
 
   const navLinks: NavLink[] = [
     { href: "/", label: "HOME" },
+    { href: "/about", label: "ABOUT IRIS" },
     { href: "/events", label: "EVENTS" },
     { href: "/gallery", label: "GALLERY" },
     { href: "/team", label: "TEAM" },

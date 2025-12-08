@@ -11,17 +11,19 @@ export default function LandingPage() {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const starsRef = useRef<HTMLDivElement | null>(null);
+  const [isStarsPaused, setIsStarsPaused] = useState(false);
+const starsRafRef = useRef<number | null>(null);
   const sponsors = [
   { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
-  { src: "/images/sponsors/s2.png", alt: "Khadi India", title: "Sustainability Partner" },
-  { src: "/images/sponsors/s3.png", alt: "Trends", title: "Event Partner" },
-  { src: "/images/sponsors/s4.png", alt: "Bank of India", title: "Banking Partner" },
+  { src: "/images/sponsors/s2.png", alt: "SBI", title: "Platinum Sponsor" },
+  { src: "/images/sponsors/s3.png", alt: "Lifestyle", title: "Fashion Partner" },
+  { src: "/images/sponsors/s4.png", alt: "Unstop", title: "Platform Partner" },
 
   // repeated items preserved to match original output/order
-  { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
-  { src: "/images/sponsors/s2.png", alt: "Khadi India", title: "Sustainability Partner" },
-  { src: "/images/sponsors/s3.png", alt: "Trends", title: "Event Partner" },
-  { src: "/images/sponsors/s4.png", alt: "Bank of India", title: "Banking Partner" },
+  { src: "/images/sponsors/s5.png", alt: "Business  Standard", title: "Media Partner" },
+  { src: "/images/sponsors/s6.png", alt: "Safexpress", title: "Logistics Partner" },
+  { src: "/images/sponsors/s7.png", alt: "SheKunj", title: "Community Partner" },
+  { src: "/images/sponsors/s8.png", alt: "Jyesta", title: "Career Accelerator Partner" },
 ];
   const SCROLL_STEP = 260; // same scroll step as original
   const scrollToStart = (el: HTMLDivElement) => el.scrollTo({ left: 0, behavior: "smooth" });
@@ -92,6 +94,71 @@ useEffect(() => {
     if (rafRef.current) cancelAnimationFrame(rafRef.current);
   };
 }, [isPaused, sponsors.length]);
+
+//-------STARS-----------
+
+  const handlePrevStars = () => {
+    const el = starsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft <= 0) {
+      // at start → jump to end
+      scrollToEnd(el);
+    } else {
+      el.scrollBy({ left: -SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+  const handleNextStars = () => {
+    const el = starsRef.current;
+    if (!el) return;
+    const { scrollLeft, clientWidth, scrollWidth } = el;
+    const maxScroll = scrollWidth - clientWidth;
+
+    if (scrollLeft >= maxScroll - 1) {
+      // at end → jump back to start
+      scrollToStart(el);
+    } else {
+      el.scrollBy({ left: SCROLL_STEP, behavior: "smooth" });
+    }
+  };
+
+useEffect(() => {
+  const el = starsRef.current;
+  if (!el) return;
+
+  let last = performance.now();
+  const pixelsPerSecond = 80; // adjust to change speed
+
+  const tick = (now: number) => {
+    const dt = now - last;
+    last = now;
+
+    // only scroll if not paused and there is actually overflow
+    if (!isStarsPaused && el.scrollWidth > el.clientWidth) {
+      const px = (pixelsPerSecond * dt) / 1000;
+
+      el.scrollLeft = el.scrollLeft + px;
+
+      const maxScroll = el.scrollWidth - el.clientWidth;
+      if (el.scrollLeft >= maxScroll - 1) {
+        // reached end → jump back to start
+        el.scrollLeft = 0;
+      }
+    }
+
+    starsRafRef.current = requestAnimationFrame(tick);
+  };
+
+  starsRafRef.current = requestAnimationFrame(tick);
+
+  return () => {
+    if (starsRafRef.current) cancelAnimationFrame(starsRafRef.current);
+  };
+}, [isStarsPaused]);
+
 
 
 
@@ -213,7 +280,7 @@ useEffect(() => {
 
       {/* Bottom Container for About Us Section */}
       {/* Bottom Container for About Us Section */}
-      <div className={styles.bottomContainer}>
+     {/*} <div className={styles.bottomContainer}>
         <div className={styles.bottomOverlay}></div>
         <div className={styles.aboutUsContainer}>
           <div className={styles.aboutUsWrapper}>
@@ -274,7 +341,7 @@ useEffect(() => {
 
           </div>
         </div>
-      </div>
+      </div>*/}
 
 <section className={styles.sponsorsSection}>
       <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
@@ -329,66 +396,48 @@ useEffect(() => {
     <img src="/images/stars/main2.png" alt="Main Star 2" className={styles.starMainPoster} />
   </div>
 
+  <div className={styles.starsCarouselRow}
+     onMouseEnter={() => setIsStarsPaused(true)}
+     onMouseLeave={() => setIsStarsPaused(false)}
+>
   {/* Row 2 – Carousel */}
-  <div className={styles.starsCarouselRow}>
-
     {/* Left Arrow */}
     <button
-  type="button"
-  className={`${styles.starsArrow} ${styles.starsArrowLeft}`}
-  onClick={() => {
-    const el = starsRef.current;
-    if (!el) return;
-    const step = el.clientWidth;              // slide by the visible width
-    if (el.scrollLeft <= 0) {
-      // loop to end
-      const max = el.scrollWidth - el.clientWidth;
-      el.scrollTo({ left: max, behavior: "smooth" });
-    } else {
-      el.scrollBy({ left: -step, behavior: "smooth" });
-    }
-  }}
->
-  ‹
-</button>
+          type="button"
+          aria-label="Scroll stars left"
+          className={`${styles.starsArrow} ${styles.starsArrowLeft}`}
+          onClick={handlePrevStars}
+        >
+          ‹
+        </button>
 
-    {/* Posters Track */}
-    <div ref={starsRef} className={styles.starsCarouselTrack}>
-      {[
-        "/images/stars/p1.png",
-        "/images/stars/p2.png",
-        "/images/stars/p3.png",
-        "/images/stars/p4.png",
-        "/images/stars/p5.png",
-        "/images/stars/p6.png",
-        "/images/stars/p7.png",
-        "/images/stars/p8.png",
-      ].map((src, i) => (
-        <div key={i} className={styles.starPosterItem}>
-          <img src={src} alt={`Star Poster ${i + 1}`} />
-        </div>
-      ))}
-    </div>
+  {/* Posters Track */}
+  <div ref={starsRef} className={styles.starsCarouselTrack}>
+    {[
+      "/images/stars/p1.png",
+      "/images/stars/p2.png",
+      "/images/stars/p3.png",
+      "/images/stars/p4.png",
+      "/images/stars/p5.png",
+      "/images/stars/p6.png",
+      "/images/stars/p7.png",
+      "/images/stars/p8.png",
+    ].map((src, i) => (
+      <div key={i} className={styles.starPosterItem}>
+        <img src={src} alt={`Star Poster ${i + 1}`} />
+      </div>
+    ))}
+  </div>
 
-    {/* Right Arrow */}
-    <button
-  type="button"
-  className={`${styles.starsArrow} ${styles.starsArrowRight}`}
-  onClick={() => {
-    const el = starsRef.current;
-    if (!el) return;
-    const step = el.clientWidth;              // slide by the visible width
-    const max = el.scrollWidth - el.clientWidth;
-    if (el.scrollLeft >= max - 1) {
-      // loop to start
-      el.scrollTo({ left: 0, behavior: "smooth" });
-    } else {
-      el.scrollBy({ left: step, behavior: "smooth" });
-    }
-  }}
->
-  ›
-</button>
+  {/* Right Arrow */}
+  <button
+          type="button"
+          aria-label="Scroll stars right"
+          className={`${styles.starsArrow} ${styles.starsArrowRight}`}
+          onClick={handleNextStars}
+        >
+          ›
+        </button>
 
   </div>
 </section>
