@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import styles from "./EventsPage.module.css";
 import SearchBar from "./SearchBar";
 import EventsList from "./EventsList";
-import EventsBackground from "./EventsBackground";
 
 export type EventCategory = "Flagship" | "Cultural" | "Management" | "Sports";
 
@@ -12,13 +11,13 @@ export interface Event {
   id: string;
   title: string;
   category: EventCategory;
-  description?: string;          // optional, not used in card now
-  detailedDescription?: string;  // optional, not used in card now
-  date?: string;                 // optional, not used in card now
+  description?: string;
+  detailedDescription?: string;
+  date?: string;
   time?: string;
   venue?: string;
-  image?: string;                // poster image path
-  link?: string;                 // URL to open in new tab
+  image?: string;
+  link?: string;
 }
 
 // Sample events data - Replace with actual data
@@ -121,7 +120,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/competitions/vyapar-sansad-the-corporate-governance-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1593029",
     image: "/images/events/vyapar-sansad.png",
   },
-
   {
     id: "15",
     title: "Laavanya",
@@ -129,7 +127,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/events/laavanya-iris-2026-iim-indores-flagship-fest-iim-indore-1593020",
     image: "/images/events/laavanya.png",
   },
-  
   {
     id: "16",
     title: "Beyond Lines",
@@ -137,7 +134,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/competitions/beyond-lines-article-writing-iris-2026-iim-indores-flagship-fest-iim-indore-1599407",
     image: "/images/events/beyond-lines.png",
   },
-
   {
     id: "17",
     title: "Jam Competition",
@@ -145,7 +141,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/events/jam-just-a-minute-iris-2026-iim-indores-flagship-fest-iim-indore-1599439",
     image: "/images/events/jam.png",
   },
-
   {
     id: "18",
     title: "Lasya",
@@ -153,7 +148,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/events/lasya-iris-2026-iim-indores-flagship-fest-iim-indore-1598052",
     image: "/images/events/lasya.png",
   },
-
   {
     id: "19",
     title: "Voice Of Iris",
@@ -161,7 +155,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/events/voice-of-iris-iris-2026-iim-indores-flagship-fest-iim-indore-1598054",
     image: "/images/events/voice-of-iris.png",
   },
-
   {
     id: "20",
     title: "Zero One Infinity",
@@ -169,7 +162,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/competitions/zero-one-infinity-it-consulting-event-iris-2026-iim-indores-flagship-fest-iim-indore-1597507",
     image: "/images/events/zero-one-infinity.png",
   },
-
   {
     id: "21",
     title: "Jigyasa: The Quizzing Event",
@@ -184,7 +176,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/events/asian-parliamentary-debate-iris-2026-iim-indores-flagship-fest-iim-indore-1602528",
     image: "/images/events/asian-parli.png",
   },
-
   {
     id: "23",
     title: "Drona: A Day at IIM Indore",
@@ -192,7 +183,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/workshops-webinars/drona-a-day-at-iim-indore-iris-2026-iim-indores-flagship-fest-iim-indore-1597947",
     image: "/images/events/drona.png",
   },
-
   {
     id: "24",
     title: "B2C: Marketing Case Competition",
@@ -200,7 +190,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/competitions/b2c-marketing-case-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1596897",
     image: "/images/events/b2c.png",
   },
-
   {
     id: "25",
     title: "Table Tennis (Men's Singles)",
@@ -208,7 +197,6 @@ const eventsData: Event[] = [
     link: "https://unstop.com/events/table-tennis-mens-singles-iris-2026-iim-indores-flagship-fest-iim-indore-1599411",
     image: "/images/events/tt-men-singles.png",
   },
-
   {
     id: "26",
     title: "Table Tennis (Men's Doubles)",
@@ -327,30 +315,29 @@ const eventsData: Event[] = [
     category: "Cultural",
     link: "https://unstop.com/events/awaaz-the-nukkad-natak-competition-iris-2026-iim-indores-flagship-fest-iim-indore-1605992",
     image: "/images/events/nukkad-natak.png",
-
   },
 ];
 
 export default function EventsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<EventCategory | "All">(
-    "All"
+    "All",
   );
-
   const [scrollY, setScrollY] = useState(0);
-  useEffect(() => {
-      const handleScroll = () => {
-        setScrollY(window.scrollY);
-      };
-  
-      window.addEventListener("scroll", handleScroll, { passive: true });
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const filteredEvents = eventsData.filter((event) => {
-    const matchesSearch =
-      event.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = event.title
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
 
     const matchesCategory =
       selectedCategory === "All" || event.category === selectedCategory;
@@ -359,42 +346,36 @@ export default function EventsPage() {
   });
 
   return (
-     <div className={styles.wrapper}>
-      {/* Fixed Parallax Background */}
+    <div className={styles.wrapper}>
+      {/* FIXED BACKGROUND (your existing BG images) */}
       <div className={styles.backgroundContainer}>
-        {/* Desktop Background */}
         <div className={styles.desktopBackground}>
           <img
             src="/images/landing/bg_landscape.webp"
-            alt="Edo Mountains"
+            alt="IRIS background"
             className={styles.landingImage}
             style={{ transform: `translateY(${scrollY * 0.5}px)` }}
           />
         </div>
 
-        {/* Mobile Background */}
         <div className={styles.mobileBackgroundContainer}>
-          {/* <img
-            src="/svgs/svgs/landing/mobileBackground.svg"
-            alt="Background"
-            className={styles.mobileBackground}
-          /> */}
           <img
             src="/images/landing/bg_portrait.webp"
-            alt="Mountains"
+            alt="IRIS background mobile"
             className={styles.mobileMountains}
-          // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
           />
-        </div></div>
+        </div>
 
-      {/* Main content */}
+        {/* 👇 Grey blur over the whole background – like Team page */}
+        <div className={styles.backgroundBlur} />
+      </div>
+
+      {/* CONTENT */}
       <div className={styles.eventsSubContainer}>
-        {/* Heading */}
         <div className={styles.eventsHeading}>
           <h1 className={styles.eventsTitle}>Events</h1>
         </div>
 
-        {/* Search + Filters */}
         <SearchBar
           searchQuery={searchQuery}
           onSearchChange={setSearchQuery}
@@ -402,10 +383,8 @@ export default function EventsPage() {
           onCategoryChange={setSelectedCategory}
         />
 
-        {/* Events list */}
         <EventsList events={filteredEvents} />
 
-        {/* No Results Message */}
         {filteredEvents.length === 0 && (
           <div className={styles.noResults}>
             <p>No events found matching your criteria.</p>

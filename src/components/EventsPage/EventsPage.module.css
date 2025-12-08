@@ -1,53 +1,37 @@
-/* Events Page Container */
-.eventsContainer {
-  position: relative;
-  font-family: "Poppins", sans-serif;
-  width: 100%;
-  min-height: 100vh;
-  background: #000;
-  overflow-x: hidden;
-  padding-top: 80px;
-}
-
-/* Events Sub Container */
-.eventsSubContainer {
-  font-family: "Poppins", sans-serif;
-  position: relative;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2rem;
-  z-index: 10;
-}
-
+/* Wrapper – same idea as Team page */
 .wrapper {
   position: relative;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
   padding-top: 80px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* Background Container with Parallax */
+/* Content container */
+.eventsSubContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 3.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* BACKGROUND with painting */
 .backgroundContainer {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  inset: 0;
   z-index: -1;
   overflow: hidden;
 }
 
-/* Desktop Background */
 .desktopBackground {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: block;
 }
 
@@ -58,127 +42,87 @@
   will-change: transform;
 }
 
-/* Mobile Background Container */
+/* Mobile BG */
 .mobileBackgroundContainer {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   display: none;
 }
 
-.mobileBackground {
+.mobileMountains {
   position: absolute;
+  top: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.mobileMountains {
+/* 👇 THIS is the grey blur overlay like Team page */
+.backgroundBlur {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  /* will-change: transform; */
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);        /* grey / dark veil */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-.mobileCloud {
-  position: absolute;
-  top: 10%;
-  left: 0;
-  width: 100%;
-  height: auto;
-  opacity: 0.8;
-  will-change: transform;
-}
-
-
-/* Events Heading */
+/* Heading */
 .eventsHeading {
-  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 3rem;
-}
-
-.eventsBanner {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  filter: drop-shadow(0 10px 30px rgba(242, 221, 124, 0.3));
 }
 
 .eventsTitle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-family: "Langar-Regular", sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
-  color: #1a1a1a;
+  color: #fdf5db;
   font-weight: 700;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.7);
   letter-spacing: 2px;
 }
 
-/* No Results Message */
+/* No-results text */
 .noResults {
   text-align: center;
-  padding: 4rem 2rem;
-  color: rgb(0, 0, 0);
+  padding: 3rem 1.5rem 1rem;
+  color: #f5e7c2;
   font-weight: bold;
   font-family: "Poppins-SemiBold", sans-serif;
-  text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.85);
 }
 
 .noResults p {
   font-family: "Poppins", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
 }
 
 .noResultsHint {
   font-size: 1rem;
-  color: rgb(0, 0, 0);
-  font-weight: bold;
-  text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.85);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .eventsContainer {
+  .wrapper {
     padding-top: 60px;
   }
 
   .eventsSubContainer {
-    padding: 1.5rem;
+    padding: 2rem 1.2rem 3rem;
   }
 
-  .eventsHeading {
-    margin-bottom: 2rem;
+  .desktopBackground {
+    display: none;
   }
 
-  .eventsBanner {
-    max-width: 400px;
-  }
-
-  .eventsTitle {
-    font-size: clamp(2rem, 8vw, 3rem);
+  .mobileBackgroundContainer {
+    display: block;
   }
 }
 
 @media (max-width: 550px) {
   .eventsSubContainer {
-    padding: 1rem;
-  }
-
-  .eventsHeading {
-    margin-bottom: 1.5rem;
-  }
-
-  .eventsBanner {
-    max-width: 300px;
+    padding: 1.6rem 0.9rem 2.5rem;
   }
 }

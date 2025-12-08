@@ -25,22 +25,36 @@ export default function EventItem({ event }: EventItemProps) {
 
   return (
     <div className={styles.eventCard}>
-      <div className={styles.imageWrapper}>
-        <img
-          src={imgSrc}
-          alt={event.title}
-          className={styles.eventImage}
-          onError={handleImageError}
-        />
-      </div>
+      <div className={styles.cardFrame}>
+        <div className={styles.imageWrapper}>
+          {/* Category pill */}
 
-      <button
-        type="button"
-        className={styles.registerButton}
-        onClick={handleRegisterClick}
-      >
-        Register
-      </button>
+          {/* Poster */}
+          <img
+            src={imgSrc}
+            alt={event.title}
+            className={styles.eventImage}
+            onError={handleImageError}
+          />
+
+          {/* Dark overlay + register on hover/tap */}
+          <div className={styles.hoverOverlay}>
+            <button
+              type="button"
+              className={styles.registerButton}
+              onClick={handleRegisterClick}
+              aria-label={`Register for ${event.title}`}
+            >
+              Register
+            </button>
+          </div>
+
+          {/* Title strip at bottom */}
+          <div className={styles.titleBar}>
+            <span className={styles.titleText}>{event.title}</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
