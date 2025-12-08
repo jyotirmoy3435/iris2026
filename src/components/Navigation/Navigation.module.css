@@ -22,7 +22,7 @@
 
 /* Base link */
 .desktopLink {
-  color: var(--nav-color, #ffffff);
+  color: #000;
   text-decoration: none;
   font-family: "Langar-Regular";
   font-weight: 500;
@@ -44,14 +44,14 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: #f2dd7c;
+  background: #8E0000;
   transition: all 0.3s ease;
   transform: translateX(-50%);
 }
 
 /* Hover */
 .desktopLink:hover {
-  color: #f2dd7c;
+  color: #8E0000;
   transform: translateY(-2px) skewX(-3deg);
 }
 
@@ -61,7 +61,7 @@
 
 /* ✅ ACTIVE DESKTOP LINK */
 .desktopLink.active {
-  color: #f2dd7c;
+  color: #8E0000;
 }
 
 .desktopLink.active::after {
