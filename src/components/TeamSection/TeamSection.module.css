@@ -1,5 +1,5 @@
 .section {
-  margin-bottom: 6rem;
+  margin-bottom: 2rem;
 }
 
 /* ✅ Default title styling */
@@ -12,7 +12,9 @@
   margin-bottom: 1.5rem;
 }
 
+/* ========================= */
 /* ✅ Grid */
+/* ========================= */
 .grid {
   display: grid;
   grid-template-columns: repeat(var(--columns, 4), 1fr);
@@ -21,7 +23,7 @@
   font-family: "Poppins-SemiBold", sans-serif;
 }
 
-/* Center last two items when 4 columns */
+/* ✅ Center last two items when 4 columns */
 .centerLastTwo > :nth-last-child(2) {
   grid-column: 2;
 }
@@ -31,7 +33,7 @@
 }
 
 /* ========================= */
-/* Tablet */
+/* ✅ Tablet */
 /* ========================= */
 @media (max-width: 1024px) {
   .grid {
@@ -46,9 +48,8 @@
 
 /* ========================= */
 /* ✅ Mobile FIX */
-/* ######################### */
+/* ========================= */
 @media (max-width: 640px) {
-  /* ✅ Push entire section below fixed navbar */
   .section {
     padding-top: 90px; /* adjust if navbar height changes */
   }
