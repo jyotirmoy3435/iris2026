@@ -333,14 +333,14 @@ const TeamPage: React.FC = () => {
     <div className={styles.container}>
       <title>Our Team - IRIS 2026</title>
 
-      <h1 style={{  
+      {/* <h1 style={{  
         fontFamily: 'Langar-Regular',
         textAlign: 'center',
         fontSize: '2.8rem',
         letterSpacing: '1px',
         marginTop: '0.5rem',
         marginBottom: '-1.5rem',
-        color: '#f2dd7c'}}>Meet the IRIS 2026 Team</h1>
+        color: '#f2dd7c'}}>Meet the IRIS 2026 Team</h1> */}
       <TeamSection title="Overall Coordinators" members={coreTeamMembers} columns={2} />
       <TeamSection title="Vertical Coordinators" members={verticalCoordinators} columns={4} />
     </div>

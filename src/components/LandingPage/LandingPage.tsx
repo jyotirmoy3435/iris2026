@@ -12,19 +12,19 @@ export default function LandingPage() {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const starsRef = useRef<HTMLDivElement | null>(null);
   const [isStarsPaused, setIsStarsPaused] = useState(false);
-const starsRafRef = useRef<number | null>(null);
+  const starsRafRef = useRef<number | null>(null);
   const sponsors = [
-  { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
-  { src: "/images/sponsors/s2.png", alt: "SBI", title: "Platinum Sponsor" },
-  { src: "/images/sponsors/s3.png", alt: "Lifestyle", title: "Fashion Partner" },
-  { src: "/images/sponsors/s4.png", alt: "Unstop", title: "Platform Partner" },
+    { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
+    { src: "/images/sponsors/s2.png", alt: "SBI", title: "Platinum Sponsor" },
+    { src: "/images/sponsors/s3.png", alt: "Lifestyle", title: "Fashion Partner" },
+    { src: "/images/sponsors/s4.png", alt: "Unstop", title: "Platform Partner" },
 
-  // repeated items preserved to match original output/order
-  { src: "/images/sponsors/s5.png", alt: "Business  Standard", title: "Media Partner" },
-  { src: "/images/sponsors/s6.png", alt: "Safexpress", title: "Logistics Partner" },
-  { src: "/images/sponsors/s7.png", alt: "SheKunj", title: "Community Partner" },
-  { src: "/images/sponsors/s8.png", alt: "Jyesta", title: "Career Accelerator Partner" },
-];
+    // repeated items preserved to match original output/order
+    { src: "/images/sponsors/s5.png", alt: "Business  Standard", title: "Media Partner" },
+    { src: "/images/sponsors/s6.png", alt: "Safexpress", title: "Logistics Partner" },
+    { src: "/images/sponsors/s7.png", alt: "SheKunj", title: "Community Partner" },
+    { src: "/images/sponsors/s8.png", alt: "Jyesta", title: "Career Accelerator Partner" },
+  ];
   const SCROLL_STEP = 260; // same scroll step as original
   const scrollToStart = (el: HTMLDivElement) => el.scrollTo({ left: 0, behavior: "smooth" });
   const scrollToEnd = (el: HTMLDivElement) => el.scrollTo({ left: el.scrollWidth - el.clientWidth, behavior: "smooth" });
@@ -57,45 +57,45 @@ const starsRafRef = useRef<number | null>(null);
     }
   };
 
-const [isPaused, setIsPaused] = useState(false);
-// ======= continuous RAF scroll (drop-in replacement) =======
-const rafRef = useRef<number | null>(null);
-const startedRef = useRef(false);
+  const [isPaused, setIsPaused] = useState(false);
+  // ======= continuous RAF scroll (drop-in replacement) =======
+  const rafRef = useRef<number | null>(null);
+  const startedRef = useRef(false);
 
-useEffect(() => {
-  const el = sponsorsRef.current;
-  if (!el) return;
+  useEffect(() => {
+    const el = sponsorsRef.current;
+    if (!el) return;
 
-  let last = performance.now();
-  const pixelsPerSecond = 80; // tune speed here
+    let last = performance.now();
+    const pixelsPerSecond = 80; // tune speed here
 
-  const tick = (now: number) => {
-    const dt = now - last;
-    last = now;
+    const tick = (now: number) => {
+      const dt = now - last;
+      last = now;
 
-    if (!isPaused && el.scrollWidth > el.clientWidth) {
-      const px = (pixelsPerSecond * dt) / 1000;
-      el.scrollLeft += px;
+      if (!isPaused && el.scrollWidth > el.clientWidth) {
+        const px = (pixelsPerSecond * dt) / 1000;
+        el.scrollLeft += px;
 
-      const maxScroll = el.scrollWidth - el.clientWidth;
+        const maxScroll = el.scrollWidth - el.clientWidth;
 
-      // If reached very end → jump to start
-      if (el.scrollLeft >= maxScroll - 2) {
-        el.scrollLeft = 0;
+        // If reached very end → jump to start
+        if (el.scrollLeft >= maxScroll - 2) {
+          el.scrollLeft = 0;
+        }
       }
-    }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
 
     rafRef.current = requestAnimationFrame(tick);
-  };
 
-  rafRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [isPaused, sponsors.length]);
 
-  return () => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-  };
-}, [isPaused, sponsors.length]);
-
-//-------STARS-----------
+  //-------STARS-----------
 
   const handlePrevStars = () => {
     const el = starsRef.current;
@@ -125,50 +125,50 @@ useEffect(() => {
     }
   };
 
-useEffect(() => {
-  const el = starsRef.current;
-  if (!el) return;
+  useEffect(() => {
+    const el = starsRef.current;
+    if (!el) return;
 
-  let last = performance.now();
-  const pixelsPerSecond = 80; // adjust to change speed
+    let last = performance.now();
+    const pixelsPerSecond = 80; // adjust to change speed
 
-  const tick = (now: number) => {
-    const dt = now - last;
-    last = now;
+    const tick = (now: number) => {
+      const dt = now - last;
+      last = now;
 
-    // only scroll if not paused and there is actually overflow
-    if (!isStarsPaused && el.scrollWidth > el.clientWidth) {
-      const px = (pixelsPerSecond * dt) / 1000;
+      // only scroll if not paused and there is actually overflow
+      if (!isStarsPaused && el.scrollWidth > el.clientWidth) {
+        const px = (pixelsPerSecond * dt) / 1000;
 
-      el.scrollLeft = el.scrollLeft + px;
+        el.scrollLeft = el.scrollLeft + px;
 
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      if (el.scrollLeft >= maxScroll - 1) {
-        // reached end → jump back to start
-        el.scrollLeft = 0;
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        if (el.scrollLeft >= maxScroll - 1) {
+          // reached end → jump back to start
+          el.scrollLeft = 0;
+        }
       }
-    }
+
+      starsRafRef.current = requestAnimationFrame(tick);
+    };
 
     starsRafRef.current = requestAnimationFrame(tick);
-  };
 
-  starsRafRef.current = requestAnimationFrame(tick);
-
-  return () => {
-    if (starsRafRef.current) cancelAnimationFrame(starsRafRef.current);
-  };
-}, [isStarsPaused]);
+    return () => {
+      if (starsRafRef.current) cancelAnimationFrame(starsRafRef.current);
+    };
+  }, [isStarsPaused]);
 
 
 
 
 
   const checkScroll = () => {
-  if (!sponsorsRef.current) return;
-  const { scrollLeft, scrollWidth, clientWidth } = sponsorsRef.current;
-  setCanScrollLeft(scrollLeft > 0);
-  setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
-};
+    if (!sponsorsRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = sponsorsRef.current;
+    setCanScrollLeft(scrollLeft > 0);
+    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -180,12 +180,12 @@ useEffect(() => {
   }, []);
 
   useEffect(() => {
-  const el = sponsorsRef.current;
-  if (!el) return;
-  checkScroll();
-  el.addEventListener("scroll", checkScroll);
-  return () => el.removeEventListener("scroll", checkScroll);
-}, []);
+    const el = sponsorsRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener("scroll", checkScroll);
+    return () => el.removeEventListener("scroll", checkScroll);
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -220,14 +220,15 @@ useEffect(() => {
         <div className={styles.logoContainer}>
           <img
             src="/images/landing/irislogo.png"
-            alt="OASIS 2025"
+            alt="IRIS 2026"
             className={styles.logo}
           />
-          
+
         </div>
         <div className={styles.countdownContainer}>  <CountdownTimer /></div>
-        
+
       </div>
+
 
       {/* Scrollable Content */}
       <div className={styles.scrollerWrapper}>
@@ -250,232 +251,220 @@ useEffect(() => {
               </a>
             </div> */}
 
+            {/* --- UPDATED ABOUT US SECTION --- */}
+            {/* <div className={styles.bottomContainer}> */}
+              <div className={styles.bottomOverlay}></div>
+              <div className={styles.irisThemeContainer}>
+                <div className={styles.irisThemeWrapper}>
+
+                  <h2 className={styles.sectionTitle}>FEST THEME</h2>
+
+                  <div className={styles.irisThemeGrid}>
+                    {/* Left Side: Image (approx 70% width) */}
+                    <div className={styles.irisThemeImageSide}>
+                      <img
+                        // Placeholder: Change this to your desired about image
+                        src="/images/aboutus/indieverse.jpeg"
+                        alt="INDIEVERSE"
+                        className={styles.irisThemeFeatureImage}
+                      />
+                    </div>
+
+                    {/* Right Side: Text + Date + Register */}
+                    <div className={styles.irisThemeContentSide}>
+
+                      {/* 2 Lines regarding IRIS */}
+                      <p className={styles.irisThemeDescriptionText}>
+                        Step into Indieverse - the official theme of IRIS’26!
+                        A celebration of India’s rich diversity, where timeless culture, vibrant cinema, and modern innovation unite to showcase the many shades of one nation.
+                        Join us at IIM Indore for a dynamic experience that engages students across all disciplines.
+                      </p>
+
+                      {/* Date Display */}
+                      {/* <div className={styles.dateDisplay}>
+                        <span className={styles.dateLabel} style={{ fontWeight: 'bold' }}>16<sup>th</sup> - 18<sup>th</sup> January, 2026</span>
+                      </div> */}
+
+                      {/* Register Button */}
+                      <a
+                        href="https://unstop.com/college-fests/iris-2026-iim-indores-flagship-fest-indian-institute-of-management-iim-indore-416510" // Replace with your new website URL
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.newRegisterBtn}
+                      >
+                        Register Now
+                      </a>
+
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+            {/* </div> */}
+
+            <section className={styles.sponsorsSection}>
+              <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
+
+              <div className={styles.sponsorsCarousel} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
+                {/* Left Arrow */}
+                <button
+                  type="button"
+                  aria-label="Scroll sponsors left"
+                  className={`${styles.sponsorsArrow} ${styles.sponsorsArrowLeft}`}
+                  onClick={handlePrev}
+                >
+                  ‹
+                </button>
+
+                {/* Scrollable track */}
+                <div ref={sponsorsRef} className={styles.sponsorsGrid}>
+                  {sponsors.map((s, idx) => (
+                    <div key={`${s.alt}-${idx}`} className={styles.sponsorItem}>
+                      <div className={styles.sponsorLogoContainer}>
+                        <img src={s.src} alt={s.alt} />
+                      </div>
+                      <p className={styles.sponsorTitle}>{s.title}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Right Arrow */}
+                <button
+                  type="button"
+                  aria-label="Scroll sponsors right"
+                  className={`${styles.sponsorsArrow} ${styles.sponsorsArrowRight}`}
+                  onClick={handleNext}
+                >
+                  ›
+                </button>
+              </div>
+            </section>
+
             {/* Foreground Video */}
-            <div className={styles.foregroundContainer}>
+            <section className={styles.glimpsesSection}>
+              <h2 className={styles.sectionTitle}>PAST GLIMPSES</h2>
               <div className={styles.treeContainer}>
                 <div className={styles.tree}>
                   <video
                     src="/background-video.mp4"
-                    autoPlay
-                    loop
-                    muted
+                    poster="/iris_logo.png"
+                    controls
+                    // loop
                     playsInline
                     className={styles.treeDesktop}
                   />
                   <video
                     src="/background-video.mp4"
-                    autoPlay
-                    loop
-                    muted
+                    poster="/iris_logo.png"
+                    controls
+                    // loop
                     playsInline
                     className={styles.treeMob}
                   />
                   {/*<SocialLinks />*/}
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </section>
 
-      {/* Bottom Container for About Us Section */}
-      {/* Bottom Container for About Us Section */}
-      {/* --- UPDATED ABOUT US SECTION --- */}
-      <div className={styles.bottomContainer}>
-        <div className={styles.bottomOverlay}></div>
-        <div className={styles.aboutUsContainer}>
-          <div className={styles.aboutUsWrapper}>
+            {/* Past Stars Section */}
+            <section className={styles.pastStarsSection}>
             
-            <h2 className={styles.sectionTitle}>INDIEVERSE </h2>
-            
-            <div className={styles.aboutGrid}>
-              {/* Left Side: Image (approx 70% width) */}
-              <div className={styles.aboutImageSide}>
-                <img 
-                  // Placeholder: Change this to your desired about image
-                  src="/images/aboutus/indieverse.jpeg" 
-                  alt="INDIEVERSE" 
-                  className={styles.aboutFeatureImage} 
-                />
+              <h2 className={styles.sectionTitle}>PAST STARS</h2>
+
+              {/* Row 1 – Two main posters */}
+              <div className={styles.starsMainRow}>
+                <img src="/images/stars/main1.png" alt="Main Star 1" className={styles.starMainPoster} />
+                <img src="/images/stars/main2.png" alt="Main Star 2" className={styles.starMainPoster} />
               </div>
 
-              {/* Right Side: Text + Date + Register */}
-              <div className={styles.aboutContentSide}>
-                
-                {/* 2 Lines regarding IRIS */}
-                <p className={styles.aboutDescriptionText}>
-                  Step into Indieverse - the official theme of IRIS’26!
-                  A celebration of India’s rich diversity, where timeless culture, vibrant cinema, and modern innovation unite to showcase the many shades of one nation.
-                  Join us at IIM Indore for a dynamic experience that engages students across all disciplines.
-                </p>
+              <div className={styles.starsCarouselRow}
+                onMouseEnter={() => setIsStarsPaused(true)}
+                onMouseLeave={() => setIsStarsPaused(false)}
+              >
+                {/* Row 2 – Carousel */}
+                {/* Left Arrow */}
+                <button
+                  type="button"
+                  aria-label="Scroll stars left"
+                  className={`${styles.starsArrow} ${styles.starsArrowLeft}`}
+                  onClick={handlePrevStars}
+                >
+                  ‹
+                </button>
 
-                {/* Date Display */}
-                <div className={styles.dateDisplay}>
-                  <span className={styles.dateLabel} style={{ fontWeight: 'bold' }}>16<sup>th</sup> - 18<sup>th</sup> January, 2026</span>
-                  {/* <span className={styles.dateValue}>{}</span> */}
+                {/* Posters Track */}
+                <div ref={starsRef} className={styles.starsCarouselTrack}>
+                  {[
+                    "/images/stars/p1.png",
+                    "/images/stars/p2.png",
+                    "/images/stars/p3.png",
+                    "/images/stars/p4.png",
+                    "/images/stars/p5.png",
+                    "/images/stars/p6.png",
+                    "/images/stars/p7.png",
+                    "/images/stars/p8.png",
+                  ].map((src, i) => (
+                    <div key={i} className={styles.starPosterItem}>
+                      <img src={src} alt={`Star Poster ${i + 1}`} />
+                    </div>
+                  ))}
                 </div>
 
-                {/* Register Button */}
-                <a 
-                  href="https://unstop.com/college-fests/iris-2026-iim-indores-flagship-fest-indian-institute-of-management-iim-indore-416510" // Replace with your new website URL
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className={styles.newRegisterBtn}
+                {/* Right Arrow */}
+                <button
+                  type="button"
+                  aria-label="Scroll stars right"
+                  className={`${styles.starsArrow} ${styles.starsArrowRight}`}
+                  onClick={handleNextStars}
                 >
-                  Register Now
-                </a>
+                  ›
+                </button>
 
               </div>
+            </section>
 
+            <section className={styles.speakersSection}>
+
+              <h2 className={styles.sectionTitle}>PAST SPEAKERS</h2>
+
+              <div className={styles.speakersGrid}>
+                {/* Speaker Card */}
+                <div className={styles.speakerCard}>
+                  <img
+                    src="/images/speakers/sp1.png"
+                    alt="Rahul Gehani"
+                    className={styles.speakerImgRect}
+                  />
+                  <h3>Rahul Gehani</h3>
+                  <p>Partner, Everest Group</p>
+                </div>
+
+                <div className={styles.speakerCard}>
+                  <img
+                    src="/images/speakers/sp2.png"
+                    alt="K Radhakrishnan"
+                    className={styles.speakerImgRect}
+                  />
+                  <h3>K Radhakrishnan</h3>
+                  <p>Former Chairman, ISRO</p>
+                </div>
+
+                <div className={styles.speakerCard}>
+                  <img
+                    src="/images/speakers/sp3.png"
+                    alt="Rana Kapoor"
+                    className={styles.speakerImgRect}
+                  />
+                  <h3>Rana Kapoor</h3>
+                  <p>Former CEO & MD, Yes Bank</p>
+                </div>
+              </div>
+            </section>
 
           </div>
         </div>
       </div>
-      </div>
-
-<section className={styles.sponsorsSection}>
-      <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
-
-      <div className={styles.sponsorsCarousel} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-        {/* Left Arrow */}
-        <button
-          type="button"
-          aria-label="Scroll sponsors left"
-          className={`${styles.sponsorsArrow} ${styles.sponsorsArrowLeft}`}
-          onClick={handlePrev}
-        >
-          ‹
-        </button>
-
-        {/* Scrollable track */}
-        <div ref={sponsorsRef} className={styles.sponsorsGrid}>
-          {sponsors.map((s, idx) => (
-            <div key={`${s.alt}-${idx}`} className={styles.sponsorItem}>
-              <div className={styles.sponsorLogoContainer}>
-                <img src={s.src} alt={s.alt} />
-              </div>
-              <p className={styles.sponsorTitle}>{s.title}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Right Arrow */}
-        <button
-          type="button"
-          aria-label="Scroll sponsors right"
-          className={`${styles.sponsorsArrow} ${styles.sponsorsArrowRight}`}
-          onClick={handleNext}
-        >
-          ›
-        </button>
-      </div>
-    </section>
-
-
-
-
-{/* Past Stars Section */}
-<section className={styles.pastStarsSection}>
-  <div className={styles.sectionDivider}></div>
-
-  <h2 className={styles.sectionTitle}>PAST STARS OF OUR MULTIVERSE</h2>
-
-  {/* Row 1 – Two main posters */}
-  <div className={styles.starsMainRow}>
-    <img src="/images/stars/main1.png" alt="Main Star 1" className={styles.starMainPoster} />
-    <img src="/images/stars/main2.png" alt="Main Star 2" className={styles.starMainPoster} />
-  </div>
-
-  <div className={styles.starsCarouselRow}
-     onMouseEnter={() => setIsStarsPaused(true)}
-     onMouseLeave={() => setIsStarsPaused(false)}
->
-  {/* Row 2 – Carousel */}
-    {/* Left Arrow */}
-    <button
-          type="button"
-          aria-label="Scroll stars left"
-          className={`${styles.starsArrow} ${styles.starsArrowLeft}`}
-          onClick={handlePrevStars}
-        >
-          ‹
-        </button>
-
-  {/* Posters Track */}
-  <div ref={starsRef} className={styles.starsCarouselTrack}>
-    {[
-      "/images/stars/p1.png",
-      "/images/stars/p2.png",
-      "/images/stars/p3.png",
-      "/images/stars/p4.png",
-      "/images/stars/p5.png",
-      "/images/stars/p6.png",
-      "/images/stars/p7.png",
-      "/images/stars/p8.png",
-    ].map((src, i) => (
-      <div key={i} className={styles.starPosterItem}>
-        <img src={src} alt={`Star Poster ${i + 1}`} />
-      </div>
-    ))}
-  </div>
-
-  {/* Right Arrow */}
-  <button
-          type="button"
-          aria-label="Scroll stars right"
-          className={`${styles.starsArrow} ${styles.starsArrowRight}`}
-          onClick={handleNextStars}
-        >
-          ›
-        </button>
-
-  </div>
-</section>
-
-
-
-
-<section className={styles.speakersSection}>
-  <div className={styles.sectionDivider}></div>
-
-  <h2 className={styles.sectionTitle}>PAST SPEAKERS OF ENVISION</h2>
-
-  <div className={styles.speakersGrid}>
-    {/* Speaker Card */}
-    <div className={styles.speakerCard}>
-      <img
-        src="/images/speakers/sp1.png"
-        alt="Rahul Gehani"
-        className={styles.speakerImgRect}
-      />
-      <h3>Rahul Gehani</h3>
-      <p>Partner, Everest Group</p>
-    </div>
-
-    <div className={styles.speakerCard}>
-      <img
-        src="/images/speakers/sp2.png"
-        alt="K Radhakrishnan"
-        className={styles.speakerImgRect}
-      />
-      <h3>K Radhakrishnan</h3>
-      <p>Former Chairman, ISRO</p>
-    </div>
-
-    <div className={styles.speakerCard}>
-      <img
-        src="/images/speakers/sp3.png"
-        alt="Rana Kapoor"
-        className={styles.speakerImgRect}
-      />
-      <h3>Rana Kapoor</h3>
-      <p>Former CEO & MD, Yes Bank</p>
-    </div>
-  </div>
-</section>
-
-
-      
 
     </div>
   );

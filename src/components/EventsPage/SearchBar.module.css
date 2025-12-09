@@ -29,11 +29,18 @@
   padding: 1rem 1.5rem 1rem 3.5rem;
   border-radius: 999px;
 
-  background: radial-gradient(
+  /* background: radial-gradient(
     circle at 0% 0%,
     #fdf5df 0%,
     #f7efd8 40%,
     #f2dd7c 100%
+  ); */
+
+  background: linear-gradient(
+    135deg,
+    #f7efd8 0%,
+    #f2dd7c 60%,
+    #e8c96c 100%
   );
 
   border: 1px solid rgba(242, 221, 124, 0.9);
@@ -42,7 +49,7 @@
     0 0 18px rgba(255, 255, 255, 0.8);
 
   color: #3b2b17;
-  font-family: "Abhaya Libre", serif;
+  font-family: "langar-regular", sans-serif;
   font-size: 1.1rem;
   outline: none;
   transition: box-shadow 0.25s ease, transform 0.2s ease;
@@ -81,7 +88,7 @@
   );
 
   color: #3b2b17;
-  font-family: var(--font-ganesha), serif;
+  font-family: "langar-regular", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 2px;
