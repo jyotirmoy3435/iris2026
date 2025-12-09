@@ -247,6 +247,149 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+.aboutHeader {
+  font-family: "var(--font-japan-ramen)", sans-serif; /* fallback */
+  font-size: 3rem;
+  text-align: center;
+  color: #f2dd7c;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.aboutGrid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Side 1: Image (approx 65-70%) */
+.aboutImageSide {
+  flex: 0 0 40%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(242, 221, 124, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.aboutFeatureImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  /* Add a subtle hover effect if desired */
+  transition: transform 0.5s ease;
+}
+
+.aboutImageSide:hover .aboutFeatureImage {
+  transform: scale(1.02);
+}
+
+/* Side 2: Content */
+.aboutContentSide {
+  flex: 1; /* Takes remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.aboutDescriptionText {
+  font-family: "Abhaya Libre", serif;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 1.5rem;
+  /* Limit to roughly 2-3 lines visually if text is long */
+  display: -webkit-box;
+  /*-webkit-line-clamp: 4;*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.dateDisplay {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(242, 221, 124, 0.05);
+  border-left: 3px solid #f2dd7c;
+  width: 100%;
+}
+
+.dateLabel {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5 rem;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* margin-bottom: 0.25rem; */
+}
+
+.dateValue {
+  font-family: "Abhaya Libre", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* New Register Button */
+.newRegisterBtn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: #f2dd7c; /* Solid Gold */
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(242, 221, 124, 0.3);
+  width: 100%; /* Full width on the small column looks good */
+  text-align: center;
+}
+
+.newRegisterBtn:hover {
+  background: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive Logic for the About Split */
+@media (max-width: 900px) {
+  .aboutGrid {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .aboutImageSide {
+    flex: none;
+    width: 100%;
+  }
+
+  .aboutContentSide {
+    width: 100%;
+    align-items: center; /* Center align on mobile */
+    text-align: center;
+  }
+
+  .dateDisplay {
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid #f2dd7c;
+  }
+  
+  .newRegisterBtn {
+    width: auto; /* Auto width on mobile */
+    min-width: 200px;
+  }
+}
 
 /* Animations */
 @keyframes fadeIn {

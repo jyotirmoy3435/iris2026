@@ -280,68 +280,58 @@ useEffect(() => {
 
       {/* Bottom Container for About Us Section */}
       {/* Bottom Container for About Us Section */}
-     {/*} <div className={styles.bottomContainer}>
+      {/* --- UPDATED ABOUT US SECTION --- */}
+      <div className={styles.bottomContainer}>
         <div className={styles.bottomOverlay}></div>
         <div className={styles.aboutUsContainer}>
           <div className={styles.aboutUsWrapper}>
-            <h2
-              style={{
-                fontFamily: "var(--font-japan-ramen)",
-                fontSize: "3rem",
-                textAlign: "center",
-                color: "#f2dd7c",
-              }}
-            >
-              About IRIS
-            </h2>
-            <p
-              style={{
-                fontFamily: "Abhaya Libre",
-                fontSize: "1.2rem",
-                textAlign: "center",
-                maxWidth: "800px",
-                margin: "2rem auto",
-                lineHeight: "1.8",
-              }}
-            >
-              IIM Indore is set to host IRIS 2026, its annual cultural and management festival, in the month of Jan, 2026. Recognized as one of Central India's premier B-school fests, IRIS attracts over 40,000 participants from across the country, blending intellectual challenges, creative showcases, and industry insights into a dynamic three-day event.
-              IRIS 2026 offers a diverse range of competitions and activities designed to engage students across disciplines. Business enthusiasts can put their strategic acumen to the test in various case study challenges and entrepreneurship contests, while creative minds can participate in cultural events spanning fashion, dance, music, and quizzing.
-            </p>
-            <div style={{ textAlign: "center", marginTop: "2rem" }}>
-  <a
-    href="/brochure/iris-brochure.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-    style={{
-      display: "inline-block",
-      padding: "14px 34px",
-      background: "linear-gradient(90deg, #f2dd7c, #c7b566)",
-      color: "#262626",
-      borderRadius: "6px",
-      fontFamily: "Abhaya Libre",
-      fontWeight: "700",
-      letterSpacing: "1px",
-      fontSize: "1.2rem",
-      textDecoration: "none",
-      transition: "all 0.3s ease",
-      boxShadow: "0 4px 10px rgba(0,0,0,0.25)",
-    }}
-    onMouseEnter={(e) => {
-      e.currentTarget.style.transform = "translateY(-4px)";
-      e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.35)";
-    }}
-    onMouseLeave={(e) => {
-      e.currentTarget.style.transform = "translateY(0)";
-      e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.25)";
-    }}
-  >
-    Know More
-  </a>
-</div>
+            
+            <h2 className={styles.sectionTitle}>INDIEVERSE </h2>
+            
+            <div className={styles.aboutGrid}>
+              {/* Left Side: Image (approx 70% width) */}
+              <div className={styles.aboutImageSide}>
+                <img 
+                  // Placeholder: Change this to your desired about image
+                  src="/images/aboutus/indieverse.jpeg" 
+                  alt="INDIEVERSE" 
+                  className={styles.aboutFeatureImage} 
+                />
+              </div>
+
+              {/* Right Side: Text + Date + Register */}
+              <div className={styles.aboutContentSide}>
+                
+                {/* 2 Lines regarding IRIS */}
+                <p className={styles.aboutDescriptionText}>
+                  Step into Indieverse - the official theme of IRIS’26!
+                  A celebration of India’s rich diversity, where timeless culture, vibrant cinema, and modern innovation unite to showcase the many shades of one nation.
+                  Join us at IIM Indore for a dynamic experience that engages students across all disciplines.
+                </p>
+
+                {/* Date Display */}
+                <div className={styles.dateDisplay}>
+                  <span className={styles.dateLabel} style={{ fontWeight: 'bold' }}>16<sup>th</sup> - 18<sup>th</sup> January, 2026</span>
+                  {/* <span className={styles.dateValue}>{}</span> */}
+                </div>
+
+                {/* Register Button */}
+                <a 
+                  href="https://unstop.com/college-fests/iris-2026-iim-indores-flagship-fest-indian-institute-of-management-iim-indore-416510" // Replace with your new website URL
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className={styles.newRegisterBtn}
+                >
+                  Register Now
+                </a>
+
+              </div>
+
 
           </div>
         </div>
-      </div>*/}
+      </div>
+      </div>
 
 <section className={styles.sponsorsSection}>
       <h2 className={styles.sectionTitle}>ASSOCIATIONS</h2>
