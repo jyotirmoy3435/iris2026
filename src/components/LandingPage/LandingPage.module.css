@@ -51,16 +51,16 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
-  will-change: transform;
+  /* will-change: transform; */
 }
 
 .mobileCloud {
   position: absolute;
   top: 10%;
   left: 0;
-  width: 120%;
+  width: 100%;
   height: auto;
   opacity: 0.8;
   will-change: transform;
@@ -69,24 +69,46 @@
 /* Logo Container */
 .logoContainer {
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
   animation: fadeIn 1s ease-in-out 0.5s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 .logo {
-  width: clamp(250px, 40vw, 600px);
+  width: clamp(350px, 60vw, 500px);
   height: auto;
   filter: drop-shadow(0 4px 20px rgba(242, 221, 124, 0.4));
+}
+
+.countdownContainer {
+  position: absolute;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  animation: fadeIn 1s ease-in-out 0.5s both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
 /* Scroller Wrapper */
 .scrollerWrapper {
   position: relative;
   width: 100%;
-  min-height: 200vh;
+  /* min-height: 200vh; */
+  /* background: linear-gradient(rgba(0, 0, 0, 0), #000); */
+  /* background: linear-gradient(
+    rgba(0, 0, 0, 0) 50%, 
+    rgba(0, 0, 0, 1) 100%
+  ); */
 }
 
 .scroller {
@@ -140,7 +162,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: var(--font-japan-ramen), sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: clamp(1.2rem, 3vw, 2rem);
   color: #1a1a1a;
   font-weight: 700;
@@ -150,35 +172,60 @@
 }
 
 /* Foreground Container with Tree */
-.foregroundContainer {
+.glimpsesSection {
+  z-index: 0;
   position: relative;
   width: 100%;
-  z-index: 5;
+  padding: 1rem 1.5rem 2rem;
+  overflow: hidden;
+  background: rgba(26, 26, 26, 0.9);
+}
+
+/* Decorative top divider */
+.glimpsesSection::before {
+  content: "";
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #f2dd7c88, transparent);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1; 
 }
 
 .treeContainer {
   position: relative;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
+  overflow: hidden;
 }
 
 .tree {
   position: relative;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  overflow: hidden;
 }
 
 .treeDesktop {
   width: 100%;
   height: auto;
   display: block;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
 }
 
 .treeMob {
   display: none;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  object-fit: cover;
 }
 
 .treeExtender {
@@ -194,6 +241,7 @@
   min-height: 60vh;
   background: linear-gradient(to bottom, transparent, #000);
   z-index: 4;
+  margin-top: 0px;
 }
 
 .bottomOverlay {
@@ -207,16 +255,161 @@
   pointer-events: none;
 }
 
-.aboutUsContainer {
+.irisThemeContainer {
+  background-color: rgba(26, 26, 26, 0.9);
   position: relative;
   width: 100%;
-  padding: 6rem 2rem;
+  padding: 1rem 1.5rem 2rem;
   z-index: 5;
 }
 
-.aboutUsWrapper {
+.irisThemeWrapper {
   max-width: 1200px;
   margin: 0 auto;
+}
+.aboutHeader {
+  font-family: "var(--font-japan-ramen)", sans-serif; /* fallback */
+  font-size: 3rem;
+  text-align: center;
+  color: #f2dd7c;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.irisThemeGrid {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Side 1: Image (approx 65-70%) */
+.irisThemeImageSide {
+  flex: 0 0 50%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(242, 221, 124, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.irisThemeFeatureImage {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  /* Add a subtle hover effect if desired */
+  transition: transform 0.5s ease;
+}
+
+.irisThemeImageSide:hover .irisThemeFeatureImage {
+  transform: scale(1.02);
+}
+
+/* Side 2: Content */
+.irisThemeContentSide {
+  flex: 1; /* Takes remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.irisThemeDescriptionText {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin-bottom: 1.5rem;
+  /* Limit to roughly 2-3 lines visually if text is long */
+  display: -webkit-box;
+  /*-webkit-line-clamp: 4;*/
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: justify;
+}
+
+.dateDisplay {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: rgba(242, 221, 124, 0.05);
+  border-left: 3px solid #f2dd7c;
+  width: 100%;
+}
+
+.dateLabel {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5 rem;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* margin-bottom: 0.25rem; */
+}
+
+.dateValue {
+  font-family: "Abhaya Libre", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* New Register Button */
+.newRegisterBtn {
+  display: inline-block;
+  padding: 16px 40px;
+  background: #f2dd7c; /* Solid Gold */
+  color: #000;
+  font-family: "Langar-Regular", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(242, 221, 124, 0.3);
+  width: 100%; /* Full width on the small column looks good */
+  text-align: center;
+}
+
+.newRegisterBtn:hover {
+  background: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive Logic for the About Split */
+@media (max-width: 900px) {
+  .irisThemeGrid {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .irisThemeImageSide {
+    flex: none;
+    width: 100%;
+  }
+
+  .irisThemeContentSide {
+    width: 100%;
+    align-items: center; /* Center align on mobile */
+    text-align: center;
+  }
+
+  .dateDisplay {
+    text-align: center;
+    border-left: none;
+    border-top: 3px solid #f2dd7c;
+  }
+  
+  .newRegisterBtn {
+    width: auto; /* Auto width on mobile */
+    min-width: 200px;
+  }
 }
 
 /* Animations */
@@ -225,6 +418,7 @@
     opacity: 0;
     transform: translate(-50%, -50%) translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translate(-50%, -50%) translateY(0);
@@ -242,11 +436,23 @@
   }
 
   .logoContainer {
-    top: 40%;
+    top: 25% !important;
+    /* gap: 1rem; */
   }
 
   .logo {
-    width: clamp(200px, 60vw, 400px);
+    width: clamp(300px, 50vw, 400px);
+  }
+
+  .countdownContainer {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+  }
+  /* MOBILE FIX: Background image should cover, not contain */
+  .mobileMountains {
+    object-fit: cover !important;
+    object-position: center center;
   }
 
   .registerBtn img {
@@ -266,18 +472,41 @@
     display: none;
   }
 
+ /* MOBILE FIX: Video section - zoom in with cover */
   .treeMob {
     display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1.2);
   }
 
-  .aboutUsContainer {
-    padding: 4rem 1.5rem;
+  /* MOBILE FIX: Reduce negative margin */
+  .bottomContainer {
+    margin-top: -30px !important;
+  }
+
+  .irisThemeContainer {
+    padding: 1rem 1.5rem 2rem;
+  }
+
+  /* Flip cards - smaller on tablets */
+  .flipCard {
+    width: 220px;
+    height: 320px;
   }
 }
 
 @media (max-width: 550px) {
+   /* MOBILE FIX: Keep padding-top at 100vh for scroll behavior */
   .landingContainer {
-    padding-top: 80vh;
+    padding-top: 100vh !important;
+  }
+
+  /* MOBILE FIX: Logo at 75% on small phones */
+  .logoContainer {
+    top: 25% !important;
   }
 
   .registerBtnContainer {
@@ -286,5 +515,566 @@
 
   .treeExtender {
     height: 30vh;
+  }
+
+  /* MOBILE FIX: Further reduce negative margin on small screens */
+  .bottomContainer {
+    margin-top: -20px !important;
+  }
+}
+
+/* SECTION TITLES */
+.sectionTitle {
+  font-family: "Langar-Regular";
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  color: #f2dd7c;
+  letter-spacing: 2px;
+  /* margin-bottom: 0.5rem; */
+  text-transform: uppercase;
+}
+
+
+
+/* SPONSORS SECTION - Highlighted Neon Style */
+.sponsorsSection {
+  padding: 1rem 1.5rem 2rem;
+  background: rgba(26, 26, 26, 0.9);
+  position: relative;
+  z-index: 0;
+}
+
+/* Decorative top divider */
+.sponsorsSection::before {
+  content: "";
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #f2dd7c88, transparent);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/* Row layout: Arrow | Carousel Track | Arrow */
+.sponsorsCarousel {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  /* margin-top: 3rem; */
+}
+
+/* Scrollable row of sponsors */
+.sponsorsGrid {
+  /*flex: 1;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-behavior: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+  padding: 2rem 1rem;*/
+  scroll-behavior: auto !important;   /* disable smooth CSS scrolling */
+  scroll-snap-type: none !important;  /* disable any snap if present */
+  overflow-x: auto;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  white-space: nowrap;
+  /* padding: 2rem 1rem; */
+}
+
+/* Hide scrollbars but keep scroll */
+.sponsorsGrid::-webkit-scrollbar {
+  display: none;
+}
+.sponsorsGrid {
+  -ms-overflow-style: none; /* IE */
+  scrollbar-width: none;    /* Firefox */
+}
+
+/* Sponsor item */
+.sponsorItem {
+  flex: 0 0 auto;
+  min-width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding:0.5rem;
+  flex-shrink: 0;
+  scroll-snap-align: center;
+}
+
+/* Logo base - slightly muted colors (desktop) */
+.sponsorLogoContainer img {
+  width: 200px;
+  height: auto;
+  /* filter: brightness(0.7) saturate(0.7) contrast(0.95); */
+  opacity: 0.9;
+  transition: 0.45s ease;
+  padding: 0.5rem;
+  border-radius: 14px;
+  border: 2px solid transparent;
+  background: radial-gradient(circle, rgba(255,255,255,0.04), transparent);
+  box-shadow: 0 0 0px rgba(242, 221, 124, 0);
+}
+
+/* Hover state — bright + gold outline (desktop only) */
+@media (min-width: 769px) {
+  .sponsorItem:hover img {
+    filter: brightness(1.05) saturate(1.1) contrast(1);
+    opacity: 1;
+    transform: translateY(-10px) scale(1.13);
+    border-color: #f2dd7c;
+    box-shadow:
+      0 0 15px rgba(242, 221, 124, 0.35),
+      0 0 30px rgba(242, 221, 124, 0.15);
+  }
+}
+
+/* Sponsor label text */
+.sponsorTitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.08rem;
+  font-weight: 500;
+  margin-top: 1.1rem;
+  color: #d8d8d8;
+  letter-spacing: 0.3px;
+}
+
+/* Arrows on each side — never overlapping images */
+.sponsorsArrow {
+  flex: 0 0 auto;
+  background: rgba(0, 0, 0, 0.7);
+  color: #f2dd7c;
+  border: none;
+  font-size: 2.2rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease-in-out;
+}
+
+.sponsorsArrow:hover {
+  background: rgba(242, 221, 124, 0.25);
+  transform: scale(1.08);
+}
+
+.sponsorsArrowLeft {
+  margin-left: 0.25rem;
+}
+.sponsorsArrowRight {
+  margin-right: 0.25rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .sponsorLogoContainer img {
+    width: 150px;
+    height: auto;
+    filter: none;
+    opacity: 1;
+    border-radius: 14px;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    transform: none;
+  }
+
+  .sponsorItem:hover img {
+    filter: none;
+    opacity: 1;
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .sponsorsCarousel {
+    gap: 0.75rem;
+  }
+
+  .sponsorsArrow {
+    font-size: 2rem;
+    padding: 0.2rem 0.55rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .sponsorLogoContainer img {
+    width: 130px;
+  }
+
+  .sponsorsArrow {
+    font-size: 1.8rem;
+  }
+
+  .sponsorsArrowLeft {
+    margin-left: 0.1rem;
+  }
+
+  .sponsorsArrowRight {
+    margin-right: 0.1rem;
+  }
+}
+
+
+/* PAST STARS SECTION */
+.pastStarsSection {
+  padding: 1rem 1.5rem 2rem;
+  background: rgba(26, 26, 26, 0.9);
+  text-align: center;
+  z-index: 0;
+  position: relative;
+}
+
+.pastStarsSection::before {
+  content: "";
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #f2dd7c88, transparent);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+/* Row 1: Two large posters */
+.starsMainRow {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  /* margin-top: 3rem; */
+  flex-wrap: wrap;
+}
+
+.starMainPoster {
+  width: 340px;
+  max-width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(242, 221, 124, 0.25);
+}
+
+/* Row 2: Carousel Layout */
+.starsCarouselRow {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-top: 3rem;
+  width: 100%;
+}
+
+/* Scrollable Posters Track */
+.starsCarouselTrack {
+  flex: 1;
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  scroll-behavior: auto;
+  scroll-snap-type: none;
+  padding: 0.5rem 0;
+  -ms-overflow-style: none; /* IE */
+  scrollbar-width: none;    /* Firefox */
+}
+
+/* Hide scrollbar for WebKit */
+.starsCarouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+/* Individual Poster Cards */
+.starPosterItem {
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+}
+
+.starPosterItem img {
+  height: 260px;
+  object-fit: cover;
+  border-radius: 14px;
+  border: 1px solid rgba(242, 221, 124, 0.18);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover only on Desktop */
+@media (min-width: 769px) {
+  .starPosterItem img:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(242, 221, 124, 0.25);
+  }
+}
+
+/* Carousel Arrows */
+.starsArrow {
+  background: rgba(0, 0, 0, 0.7);
+  color: #f2dd7c;
+  border: none;
+  font-size: 2.3rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s ease;
+}
+
+.starsArrow:hover {
+  background: rgba(242, 221, 124, 0.25);
+  transform: scale(1.08);
+}
+
+.starsArrowLeft {
+  margin-left: 0.5rem;
+}
+
+.starsArrowRight {
+  margin-right: 0.5rem;
+}
+
+.starsCarouselTrack {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: auto;     /* important: no smooth here for RAF */
+  scrollbar-width: none;
+}
+
+.starsCarouselTrack::-webkit-scrollbar {
+  display: none;
+}
+
+.starPosterItem {
+  flex: 0 0 auto;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .starMainPoster {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .starsCarouselRow {
+    gap: 0.6rem;
+  }
+
+  .starsArrow {
+    font-size: 2rem;
+    padding: 0.15rem 0.5rem;
+  }
+
+  /* Make the carousel track act like a paging container */
+  .starsCarouselTrack {
+    gap: 1rem;
+    align-items: center; /* ensure track height doesn't clip poster */
+  }
+
+  /* Make each poster take the full visible area of the track */
+
+  /* Poster image fit: contain so whole poster is visible */
+  .starPosterItem img {
+    height: 270px;     /* or 250px etc */
+    width: auto;       /* let width adjust */
+    object-fit: contain;
+  }
+
+  /* Keep arrows outside the poster area (no overlap) */
+  .starsArrowLeft,
+  .starsArrowRight {
+    z-index: 10;
+    flex: 0 0 auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .starsArrow {
+    font-size: 1.8rem;
+  }
+}
+
+
+
+/* SPEAKERS SECTION */
+.speakersSection {
+  padding: 1rem 1.5rem 2rem;
+  background: rgba(26, 26, 26, 0.9);
+  text-align: center;
+  z-index: 0;
+  position: relative;
+  
+}
+
+.speakersSection::before {
+  content: "";
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #f2dd7c88, transparent);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1; 
+}
+
+.speakersGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  /* max-width: 1100px; */
+  /* margin: 3rem auto 0; */
+}
+
+/* ----- STATIC SPEAKER CARD ----- */
+.speakerCard {
+  width: 260px;
+  background: #11161e;
+  border-radius: 16px;
+  overflow: hidden;
+  padding-bottom: 1.5rem;
+  border: 1px solid rgba(242,221,124,0.08);
+  transition: 0.35s ease-in-out;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  cursor: default;
+}
+
+/* Hover gold glow */
+.speakerCard:hover {
+  transform: translateY(-8px);
+  border: 2px solid rgba(242,221,124,0.35);
+  box-shadow: 0 0 25px rgba(242,221,124,0.28);
+}
+
+/* Speaker Image */
+.speakerImgRect {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-bottom: 2px solid rgba(242,221,124,0.15);
+}
+
+/* Speaker Name */
+.speakerCard h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+/* Speaker Role */
+.speakerCard p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+  margin-top: 0.35rem;
+  opacity: 0.9;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .sectionTitle {
+    font-size: 2.2rem;
+    font-family: "Langar-Regular", sans-serif;
+  }
+
+  .speakersGrid {
+    gap: 1.5rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 1rem;
+  }
+
+  .speakersGrid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .speakerCard {
+    width: 200px;
+    flex-shrink: 0;
+  }
+
+  .speakerImgRect {
+    height: 200px;
+  }
+}
+
+/* Code to fix Video Scaling & BG Issues */
+
+.treeContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 85%; /* Maximum container width */
+  margin: 0 auto; /* Centers the container */
+  /* padding: 0 20px;  Additional horizontal padding */
+}
+
+.tree {
+  width: 100%;
+  border-radius: 16px; /* Rounded corners for the frame */
+  overflow: hidden; /* Ensures video respects border-radius */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Optional: adds depth */
+  background: #000; /* Optional: background color for letterboxing */
+}
+
+.treeDesktop {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px; /* Rounded corners */
+}
+
+.treeMob {
+  width: 100%;
+  height: auto;
+  display: none;
+  border-radius: 16px; /* Rounded corners */
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .glimpsesSection {
+    padding: 1rem 1.5rem 2rem; /* Slightly less padding on mobile */
+  }
+  
+  .treeContainer {
+    /* padding: 0 15px; */
+    max-width: 100%;
+  }
+  
+  .treeDesktop {
+    display: none;
+  }
+  
+  .treeMob {
+    display: block;
+  }
+  
+  .tree {
+    border-radius: 12px; /* Slightly smaller radius on mobile */
+  }
+
+  .pastStarsSection{
+    padding: 1rem 1.5rem 2rem;
+  }
+
+  .speakersSection{
+    padding: 1rem 1.5rem 2rem;
   }
 }

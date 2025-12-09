@@ -1,88 +1,100 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./AboutPage.module.css";
-import VideoPlayer from "./VideoPlayer";
-import LetterCarousel from "./LetterCarousel";
 
 export default function AboutPage() {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentLetter, setCurrentLetter] = useState(0);
 
   return (
-    <div className={styles.aboutContainer}>
-      {/* Background */}
+     <div className={styles.wrapper}>
+      {/* Fixed Parallax Background */}
       <div className={styles.backgroundContainer}>
-        <img
-          src="/images/aboutus/backg.png"
-          alt="Background"
-          className={styles.bgImage}
-        />
-        <div className={styles.paperTexture}></div>
-      </div>
-
-      {/* Content 3D Container */}
-      <div className={styles.content3D}>
-        {/* Heading */}
-        <div className={styles.aboutHeading}>
+        {/* Desktop Background */}
+        <div className={styles.desktopBackground}>
           <img
-            src="/svgs/aboutus/abtus.svg"
-            alt="About Us"
-            className={styles.aboutBanner}
+            src="/images/landing/bg_landscape.webp"
+            alt="Edo Mountains"
+            className={styles.landingImage}
           />
-          <h1 className={styles.aboutTitle}>About OASIS</h1>
         </div>
 
-        {/* Video Player Section */}
-        <VideoPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+        {/* Mobile Background */}
+        <div className={styles.mobileBackgroundContainer}>
+          {/* <img
+            src="/svgs/svgs/landing/mobileBackground.svg"
+            alt="Background"
+            className={styles.mobileBackground}
+          /> */}
+          <img
+            src="/images/landing/bg_portrait.webp"
+            alt="Mountains"
+            className={styles.mobileMountains}
+          // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          />
 
-        {/* Description Text */}
+          </div></div>
+        <div className={styles.aboutHeading}>
+          <h1 className={styles.sectionTitle}>About IRIS</h1>
+        </div>
         <div className={styles.descriptionContainer}>
           <div className={styles.description}>
             <p>
-              OASIS, the annual cultural festival of BITS Pilani, Pilani Campus, stands as one of
-              Asia&apos;s largest and most vibrant student-run cultural festivals. For over five decades,
-              OASIS has been a celebration of creativity, talent, and cultural diversity.
-            </p>
-            <p>
-              This year, we embrace the theme <strong>&quot;Whispers of Edo&quot;</strong> - a journey through
-              the rich tapestry of traditional Japanese culture. From the elegant art forms to the
-              philosophical depth, we invite you to experience the magic of the Edo period.
-            </p>
-            <p>
-              Join us for three days of mesmerizing performances, thought-provoking competitions,
-              spectacular showcases, and unforgettable memories. OASIS 2025 promises to be an
-              immersive experience that transcends boundaries and celebrates the spirit of youth.
-            </p>
+              IIM Indore is set to host IRIS 2026, its annual cultural and management festival, in the month of Jan, 2026. Recognized as one of Central India&apos;s premier B-school fests, IRIS attracts over 40,000 participants from across the country, blending intellectual challenges, creative showcases, and industry insights into a dynamic three-day event.
+              IRIS 2026 offers a diverse range of competitions and activities designed to engage students across disciplines. Business enthusiasts can put their strategic acumen to the test in various case study challenges and entrepreneurship contests, while creative minds can participate in cultural events spanning fashion, dance, music, and quizzing.            </p>
+              <div style={{ textAlign: "center", marginTop: "2rem" }}>
+  <a
+    href="/brochure/iris-brochure.pdf"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: "inline-block",
+      padding: "14px 34px",
+      background: "linear-gradient(90deg, #f2dd7c, #c7b566)",
+      color: "#262626",
+      borderRadius: "6px",
+      fontFamily: "poppins",
+      fontWeight: "500",
+      fontSize: "1.0rem",
+      textDecoration: "none",
+      transition: "all 0.3s ease",
+      boxShadow: "0 4px 10px rgba(0,0,0,0.25)",
+    }}
+    onMouseEnter={(e) => {
+      e.currentTarget.style.transform = "translateY(-4px)";
+      e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.35)";
+    }}
+    onMouseLeave={(e) => {
+      e.currentTarget.style.transform = "translateY(0)";
+      e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.25)";
+    }}
+  >
+    Know More
+  </a>
+</div>
           </div>
+          
         </div>
 
-        {/* Letter Carousel */}
-        <LetterCarousel
-          currentLetter={currentLetter}
-          setCurrentLetter={setCurrentLetter}
-        />
-
-        {/* Stats Section */}
         <div className={styles.statsContainer}>
           <div className={styles.stat}>
-            <h3 className={styles.statNumber}>53+</h3>
+            <h3 className={styles.statNumber}>15+</h3>
             <p className={styles.statLabel}>Years of Legacy</p>
           </div>
           <div className={styles.stat}>
-            <h3 className={styles.statNumber}>50K+</h3>
+            <h3 className={styles.statNumber}>15K+</h3>
             <p className={styles.statLabel}>Footfall</p>
           </div>
           <div className={styles.stat}>
-            <h3 className={styles.statNumber}>300+</h3>
+            <h3 className={styles.statNumber}>25+</h3>
             <p className={styles.statLabel}>Colleges</p>
           </div>
           <div className={styles.stat}>
-            <h3 className={styles.statNumber}>100+</h3>
+            <h3 className={styles.statNumber}>40+</h3>
             <p className={styles.statLabel}>Events</p>
           </div>
         </div>
-      </div>
-    </div>
+
+
+
+        </div>
   );
 }

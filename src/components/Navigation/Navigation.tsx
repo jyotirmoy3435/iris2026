@@ -1,177 +1,153 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Navigation.module.css";
 
+interface NavLink {
+  href: string;
+  label: string;
+}
+
 export default function Navigation() {
-  const [hamOpen, setHamOpen] = useState(false);
-  const [mainHamOpen, setMainHamOpen] = useState(false);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
-  const toggleHam = () => {
-    setHamOpen(!hamOpen);
-  };
+  const [isDesktop, setIsDesktop] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(1);
 
-  const toggleMainHam = () => {
-    setMainHamOpen(!mainHamOpen);
-  };
+  useEffect(() => {
+    const check = () => setIsDesktop(window.innerWidth >= 769);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
-  const closeAll = () => {
-    setMainHamOpen(false);
-    setHamOpen(false);
-  };
+  useEffect(() => {
+    if (!isHome) {
+      setScrollProgress(1);
+      return;
+    }
+
+    const onScroll = () => {
+      const half = window.innerHeight / 2;
+      const progress = Math.min(window.scrollY / half, 1);
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isHome]);
+
+  const navLinks: NavLink[] = [
+    { href: "/", label: "HOME" },
+    { href: "/events", label: "EVENTS" },
+    // { href: "/gallery", label: "GALLERY" },
+    { href: "/team", label: "TEAM" },
+    { href: "/about", label: "ABOUT" }
+  ];
+
+  const gray = Math.round(255 * scrollProgress);
+  const navColor = `rgb(${gray}, ${gray}, ${gray})`;
+
+  const toggleSidebar = () => setSidebarOpen((v) => !v);
+  const closeSidebar = () => setSidebarOpen(false);
 
   return (
     <>
-      {/* Navigation Bar with Hamburger Button */}
-      <nav className={styles.nav}>
-        <button
-          className={styles.hamMenuBtn}
-          onClick={toggleHam}
-          aria-label="Open menu"
+      {/* Desktop Navbar */}
+      {isDesktop && (
+        <header
+          className={styles.desktopHeader}
+          style={{ "--nav-color": navColor } as React.CSSProperties}
         >
-          <img
-            src="/svgs/landing/moon1.svg"
-            alt="Menu"
-            className={styles.moon}
-          />
-        </button>
-      </nav>
+          <nav className={styles.desktopNav}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${styles.desktopLink} ${
+                  pathname === link.href ? styles.active : ""
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </header>
+      )}
 
-      {/* First Level Hamburger Container */}
-      <div
-        className={`${styles.hamContainer} ${hamOpen ? styles.hamOpen : ""}`}
-      >
-        {/* Blur Background */}
-        <div className={styles.blur} onClick={toggleHam}></div>
-
-        {/* Hamburger Menu Content */}
-        <div className={styles.translateHam}>
-          <button
-            className={styles.hamButton}
-            onClick={toggleMainHam}
-            aria-label="Open main menu"
+      {/* Mobile Navbar */}
+      {!isDesktop && (
+        <>
+          <nav
+            className={`${styles.nav} ${
+              sidebarOpen ? styles.hideHamburger : ""
+            }`}
           >
-            <img
-              src="/svgs/landing/hamBack.svg"
-              alt="Menu Background"
-              className={styles.hamBack}
-            />
-          </button>
-
-          {/* Close Button */}
-          <button
-            className={styles.closeBtn}
-            onClick={closeAll}
-            aria-label="Close menu"
-          >
-            <img
-              src="/svgs/landing/hamX.svg"
-              alt="Close"
-              className={styles.hamX}
-            />
-          </button>
-        </div>
-      </div>
-
-      {/* Second Level - Main Hamburger Menu */}
-      <div
-        className={`${styles.mainHamContainer} ${
-          mainHamOpen ? styles.mainHamOpen : ""
-        }`}
-      >
-        <div className={styles.showMainHam}>
-          {/* Main Ham Background */}
-          <div className={styles.mainHamBg}>
-            {/* Cloud decorations */}
-            <img
-              src="/svgs/landing/hamClouds/cloud1.min.svg"
-              alt=""
-              className={styles.cloud1}
-            />
-            <img
-              src="/svgs/landing/hamClouds/cloud2.min.svg"
-              alt=""
-              className={styles.cloud2}
-            />
-            <img
-              src="/svgs/landing/hamClouds/cloud3.min.svg"
-              alt=""
-              className={styles.cloud3}
-            />
-          </div>
-
-          {/* Navigation Items */}
-          <div className={styles.navItems}>
-            <Link href="/" className={styles.navItem} onClick={closeAll}>
-              <img
-                src="/svgs/landing/homeIcon.svg"
-                alt="Home"
-                className={styles.navIcon}
-              />
-              <span>Home</span>
-            </Link>
-
-            <Link href="/events" className={styles.navItem} onClick={closeAll}>
-              <img
-                src="/svgs/landing/eventsIcon.svg"
-                alt="Events"
-                className={styles.navIcon}
-              />
-              <span>Events</span>
-            </Link>
-
-            <Link href="/about" className={styles.navItem} onClick={closeAll}>
-              <img
-                src="/svgs/landing/aboutusIcon.svg"
-                alt="About Us"
-                className={styles.navIcon}
-              />
-              <span>About Us</span>
-            </Link>
-
-            <Link href="/contact" className={styles.navItem} onClick={closeAll}>
-              <img
-                src="/svgs/landing/heartIcon.svg"
-                alt="Contact"
-                className={styles.navIcon}
-              />
-              <span>Contact</span>
-            </Link>
-
-            <Link
-              href="/register"
-              className={`${styles.navItem} ${styles.registerItem}`}
-              onClick={closeAll}
+            <button
+              className={styles.hamMenuBtn}
+              onClick={toggleSidebar}
+              aria-label="Open menu"
             >
-              <span>Register</span>
-            </Link>
+              <img
+                src="/svgs/landing/moonHam.svg"
+                alt="Menu"
+                className={styles.moon}
+              />
+            </button>
+          </nav>
+
+          <div
+            className={`${styles.sidebarContainer} ${
+              sidebarOpen ? styles.sidebarOpen : ""
+            }`}
+          >
+            <div
+              className={styles.sidebarOverlay}
+              onClick={closeSidebar}
+            />
+
+            <aside className={styles.sidebar}>
+              <button
+                className={styles.sidebarClose}
+                onClick={closeSidebar}
+                aria-label="Close menu"
+              >
+                <img
+                  src="/svgs/landing/hamX.svg"
+                  alt="Close"
+                  className={styles.hamX}
+                />
+              </button>
+
+              <div className={styles.sidebarNav}>
+                {navLinks.map((link, idx) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={`${styles.sidebarItem} ${
+                      pathname === link.href ? styles.active : ""
+                    }`}
+                    onClick={closeSidebar}
+                    style={{ "--i": idx + 1 } as React.CSSProperties}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </aside>
           </div>
 
-          {/* Back Button */}
-          <button
-            className={styles.backBtn}
-            onClick={toggleMainHam}
-            aria-label="Go back"
-          >
-            <img
-              src="/svgs/registration/back.svg"
-              alt="Back"
-              className={styles.backIcon}
-            />
-          </button>
-
-          {/* Footer Text */}
-          <div className={styles.mwd}>Made with ❤️ by Dept. of Visual Media</div>
-        </div>
-      </div>
-
-      {/* Background Overlay Mask */}
-      <div
-        className={`${styles.wrapper} ${hamOpen ? styles.mask : ""} ${
-          hamOpen || mainHamOpen ? styles.pointerNoneEvent : ""
-        }`}
-      />
+          <div
+            className={`${styles.wrapper} ${
+              sidebarOpen ? styles.mask : ""
+            }`}
+          />
+        </>
+      )}
     </>
   );
 }

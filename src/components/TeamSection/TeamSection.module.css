@@ -1,0 +1,72 @@
+.section {
+  margin-bottom: 2rem;
+}
+
+/* ✅ Default title styling */
+.title {
+  font-family: 'Langar-Regular';
+  text-align: center;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #f2dd7c;
+}
+
+/* ========================= */
+/* ✅ Grid */
+/* ========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--columns, 4), 1fr);
+  gap: 32px;
+  justify-items: center;
+  font-family: "Poppins-SemiBold", sans-serif;
+}
+
+/* ✅ Center last two items when 4 columns */
+.centerLastTwo > :nth-last-child(2) {
+  grid-column: 2;
+}
+
+.centerLastTwo > :last-child {
+  grid-column: 3;
+}
+
+/* ========================= */
+/* ✅ Tablet */
+/* ========================= */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .centerLastTwo > :nth-last-child(2),
+  .centerLastTwo > :last-child {
+    grid-column: auto;
+  }
+}
+
+/* ========================= */
+/* ✅ Mobile FIX */
+/* ========================= */
+@media (max-width: 640px) {
+  .section {
+    padding-top: 90px; /* adjust if navbar height changes */
+  }
+
+  .title {
+    margin-top: 0;
+    font-size: 1.6rem;
+    color: #f2dd7c;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .centerLastTwo > :nth-last-child(2),
+  .centerLastTwo > :last-child {
+    grid-column: auto;
+  }
+}
