@@ -80,8 +80,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preload critical assets */}
-        <link rel="preload" as="image" href="/videos/ink-spread-5.gif" />
       </head>
       <body className={`${saman.variable} antialiased`}>
         <Navigation />

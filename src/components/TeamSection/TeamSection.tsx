@@ -39,7 +39,7 @@ const TeamSection: React.FC<Props> = ({
 
       <div
         className={clsx(styles.grid, { [styles.centerLastTwo as string]: addCenterClass })}
-        style={{ ["--columns" as any]: columns }}
+        style={{ "--columns": columns } as React.CSSProperties}
       >
         {members.map((member) => (
           <TeamMemberCard key={member.id} member={member} />

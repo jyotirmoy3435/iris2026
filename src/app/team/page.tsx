@@ -1,7 +1,6 @@
 import React from 'react';
 import TeamSection from '@/components/TeamSection/TeamSection';
 import styles from './TeamPage.module.css';
-import { Title } from '@radix-ui/react-dialog';
 
 export const metadata = {
   title: 'Our Team - IRIS 2026',

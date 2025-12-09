@@ -1,12 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import styles from "./AboutPage.module.css";
-import VideoPlayer from "./VideoPlayer";
-import LetterCarousel from "./LetterCarousel";
 
 export default function AboutPage() {
-  const [scrollY, setScrollY] = useState(0);
 
   return (
      <div className={styles.wrapper}>
@@ -18,7 +14,6 @@ export default function AboutPage() {
             src="/images/landing/bg_landscape.webp"
             alt="Edo Mountains"
             className={styles.landingImage}
-            style={{ transform: `translateY(${scrollY * 0.5}px)` }}
           />
         </div>
 
@@ -43,7 +38,7 @@ export default function AboutPage() {
         <div className={styles.descriptionContainer}>
           <div className={styles.description}>
             <p>
-              IIM Indore is set to host IRIS 2026, its annual cultural and management festival, in the month of Jan, 2026. Recognized as one of Central India's premier B-school fests, IRIS attracts over 40,000 participants from across the country, blending intellectual challenges, creative showcases, and industry insights into a dynamic three-day event.
+              IIM Indore is set to host IRIS 2026, its annual cultural and management festival, in the month of Jan, 2026. Recognized as one of Central India&apos;s premier B-school fests, IRIS attracts over 40,000 participants from across the country, blending intellectual challenges, creative showcases, and industry insights into a dynamic three-day event.
               IRIS 2026 offers a diverse range of competitions and activities designed to engage students across disciplines. Business enthusiasts can put their strategic acumen to the test in various case study challenges and entrepreneurship contests, while creative minds can participate in cultural events spanning fashion, dance, music, and quizzing.            </p>
               <div style={{ textAlign: "center", marginTop: "2rem" }}>
   <a

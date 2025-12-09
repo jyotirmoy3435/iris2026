@@ -53,12 +53,12 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       const validElements = childArray.filter(React.isValidElement) as React.ReactElement[]
 
       if (validElements.length === 1) {
-        const child = validElements[0] as React.ReactElement<any, any>
+        const child = validElements[0] as React.ReactElement<React.HTMLAttributes<HTMLElement>>
         return React.cloneElement(child, {
-          ...(props as any),
-          className: cn((child.props as any)?.className, classNameFinal),
+          ...props,
+          className: cn(child.props.className, classNameFinal),
           ref,
-        } as any)
+        } as any) // eslint-disable-line @typescript-eslint/no-explicit-any
       }
 
       // Fallback: render a normal button if we don't have exactly one element

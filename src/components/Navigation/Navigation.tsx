@@ -44,7 +44,7 @@ export default function Navigation() {
   const navLinks: NavLink[] = [
     { href: "/", label: "HOME" },
     { href: "/events", label: "EVENTS" },
-    { href: "/gallery", label: "GALLERY" },
+    // { href: "/gallery", label: "GALLERY" },
     { href: "/team", label: "TEAM" },
     { href: "/about", label: "ABOUT" }
   ];

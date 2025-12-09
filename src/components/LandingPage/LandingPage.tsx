@@ -3,13 +3,10 @@
 import { useEffect, useState, useRef } from "react";
 import styles from "./LandingPage.module.css";
 import CountdownTimer from "./CountdownTimer";
-import SocialLinks from "./SocialLinks";
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0);
   const sponsorsRef = useRef<HTMLDivElement | null>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
   const starsRef = useRef<HTMLDivElement | null>(null);
   const [isStarsPaused, setIsStarsPaused] = useState(false);
   const starsRafRef = useRef<number | null>(null);
@@ -33,7 +30,6 @@ export default function LandingPage() {
     const el = sponsorsRef.current;
     if (!el) return;
     const { scrollLeft, clientWidth, scrollWidth } = el;
-    const maxScroll = scrollWidth - clientWidth;
 
     if (scrollLeft <= 0) {
       // at start → jump to end
@@ -60,7 +56,6 @@ export default function LandingPage() {
   const [isPaused, setIsPaused] = useState(false);
   // ======= continuous RAF scroll (drop-in replacement) =======
   const rafRef = useRef<number | null>(null);
-  const startedRef = useRef(false);
 
   useEffect(() => {
     const el = sponsorsRef.current;
@@ -100,8 +95,7 @@ export default function LandingPage() {
   const handlePrevStars = () => {
     const el = starsRef.current;
     if (!el) return;
-    const { scrollLeft, clientWidth, scrollWidth } = el;
-    const maxScroll = scrollWidth - clientWidth;
+    const { scrollLeft } = el;
 
     if (scrollLeft <= 0) {
       // at start → jump to end
@@ -159,17 +153,6 @@ export default function LandingPage() {
     };
   }, [isStarsPaused]);
 
-
-
-
-
-  const checkScroll = () => {
-    if (!sponsorsRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = sponsorsRef.current;
-    setCanScrollLeft(scrollLeft > 0);
-    setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -177,14 +160,6 @@ export default function LandingPage() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const el = sponsorsRef.current;
-    if (!el) return;
-    checkScroll();
-    el.addEventListener("scroll", checkScroll);
-    return () => el.removeEventListener("scroll", checkScroll);
   }, []);
 
   return (
