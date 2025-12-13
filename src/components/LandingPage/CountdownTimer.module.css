@@ -5,6 +5,7 @@
   padding: 1rem 2rem;
   background-color: #f1ead40f;
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-radius: 15px;
   border: 2px solid rgba(242, 221, 124, 0.3);
   /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), */

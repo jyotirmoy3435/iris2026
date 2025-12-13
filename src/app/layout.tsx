@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     "engineering",
     "student fest India",
   ],
-  authors: [{ name: "Department of Visual Media, BITS Pilani" }],
+  authors: [{ name: "Systems & IT team of IRIS 2026" }],
   openGraph: {
     type: "website",
     title: "IRIS 2026 | Indiverse",
@@ -56,17 +56,6 @@ export const metadata: Metadata = {
         alt: "IRIS 2026 Logo",
       },
     ],
-  },
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: "IRIS 2026 | Indiverse",
-  //   description:
-  //     "Asia's Largest Student-Run College Cultural Festival returns for its 53rd edition in 2025! Est. 1971",
-  //   images: ["https://www.bits-oasis.org/logo2.png"],
-  //   site: "@bitsoasis",
-  // },
-  icons: {
-    icon: "/logo2.png",
   },
   verification: {
     google: "u_D4irk99rP4PM6hQYcHiNDbZAvwjoduuU3eZeo5hA8",
