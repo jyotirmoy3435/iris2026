@@ -58,7 +58,7 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   /* will-change: transform; */
 }
 
@@ -297,6 +297,14 @@
 
   .statLabel {
     font-size: 1rem;
+  }
+
+  .desktopBackground {
+    display: none;
+  }
+
+  .mobileBackgroundContainer {
+    display: block;
   }
 }
 

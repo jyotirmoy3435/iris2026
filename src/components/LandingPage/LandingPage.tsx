@@ -260,15 +260,25 @@ export default function LandingPage() {
                         <span className={styles.dateLabel} style={{ fontWeight: 'bold' }}>16<sup>th</sup> - 18<sup>th</sup> January, 2026</span>
                       </div> */}
 
-                      {/* Register Button */}
-                      <a
-                        href="https://unstop.com/college-fests/iris-2026-iim-indores-flagship-fest-indian-institute-of-management-iim-indore-416510" // Replace with your new website URL
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={styles.newRegisterBtn}
-                      >
-                        Register Now
-                      </a>
+                      {/* Buttons: Register + Brochure */}
+                      <div className={styles.buttonGroup}>
+                        <a
+                          href="https://unstop.com/college-fests/iris-2026-iim-indores-flagship-fest-indian-institute-of-management-iim-indore-416510"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.newRegisterBtn}
+                        >
+                          Register Now
+                        </a>
+                        <a
+                          href="/brochure/iris-brochure.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={styles.brochureBtn}
+                        >
+                          Fest Brochure
+                        </a>
+                      </div>
 
                     </div>
 
