@@ -1,0 +1,78 @@
+.container {
+  min-height: 100vh;
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative; 
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Background Container */
+.backgroundContainer {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.desktopBackground {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.landingImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(6px);
+  transform: scale(1.05);
+}
+
+/* Mobile Background */
+.mobileBackgroundContainer {
+  position: absolute;
+  inset: 0;
+  display: none;
+}
+
+.mobileMountains {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(6px);
+  transform: scale(1.05);
+}
+
+/* Dark overlay */
+.backgroundOverlay {
+  position: fixed; 
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: -1; 
+  pointer-events: none; 
+}
+
+.container > *:not(.backgroundContainer):not(.backgroundOverlay) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .desktopBackground {
+    display: none;
+  }
+
+  .mobileBackgroundContainer {
+    display: block;
+  }
+}
