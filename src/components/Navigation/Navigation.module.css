@@ -33,7 +33,7 @@
 
 /* Base link */
 .desktopLink {
-  color: #000;
+  color: var(--nav-color, #382e28);
   text-decoration: none;
   font-family: "Langar-Regular";
   font-weight: 500;
@@ -77,6 +77,23 @@
 
 .desktopLink.active::after {
   width: 80%;
+}
+
+/* Dark background pages - lighter hover/active colors */
+.darkBg .desktopLink:hover {
+  color: #e0bc84;
+}
+
+.darkBg .desktopLink:hover::after {
+  background: #e0bc84;
+}
+
+.darkBg .desktopLink.active {
+  color: #e0bc84;
+}
+
+.darkBg .desktopLink.active::after {
+  background: #e0bc84;
 }
 
 @media (max-width: 768px) {
@@ -248,7 +265,7 @@
 
 /* ✅ ACTIVE SIDEBAR ITEM */
 .sidebarItem.active {
-  background: linear-gradient(135deg, #f2dd7c 0%, #d69b65 100%);
+  background: linear-gradient(135deg, #e0bc84 0%, #d69b65 100%);
   box-shadow: 0 0 25px rgba(242, 221, 124, 0.8);
   transform: scale(1.07);
 }

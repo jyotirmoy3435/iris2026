@@ -40,7 +40,7 @@
   text-align: center;
   font-weight: 600;
   font-family: "Poppins-SemiBold", sans-serif;
-  background: rgba(244, 211, 66, 0.829);
+  background: rgba(240, 221, 180, 0.829);
   color: black;
   transition: transform 0.3s ease;
 }
@@ -60,7 +60,7 @@
   width: 100%;
   font-family: "Poppins-Bold", sans-serif;
   font-size: small;
-  background: rgba(244, 211, 66, 0.829);
+  background: rgba(240, 221, 180, 0.829);
   backdrop-filter: blur(4px);
   color: black;
   padding: 14px;
@@ -76,6 +76,12 @@
 .overlay h3 {
   margin: 0;
   font-size: 15px;
+}
+
+.hoveredName {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
 }
 
 .role {

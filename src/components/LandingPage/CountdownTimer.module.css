@@ -3,14 +3,14 @@
   font-family: "Langar", sans-serif;
   position: relative;
   padding: 1rem 2rem;
-  background-color: #f1ead40f;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(241, 234, 212, 0.15);
+  backdrop-filter: blur(12px);
   border-radius: 15px;
   border: 2px solid rgba(242, 221, 124, 0.3);
   /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), */
     /* 0 0 30px rgba(242, 221, 124, 0.2); */
   animation: fadeInUp 0.5s ease-in 0.5s both;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* Time Left Container */
@@ -36,7 +36,7 @@
   font-family: "Langar-Regular", sans-serif;
   font-size: clamp(1rem, 2.5vw, 2rem);
   font-weight: 700;
-  color: #38282a;
+  color: #382e28;
   /* text-shadow: 0 0 20px rgba(242, 221, 124, 0.5), */
     /* 0 0 40px rgba(214, 155, 101, 0.3); */
   line-height: 1;
@@ -53,7 +53,7 @@
 .label {
   font-family: "Langar-Regular", sans-serif;
   font-size: clamp(0.7rem, 1vw, 0.5rem);
-  color: #38282a;
+  color: #382e28;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 600;
@@ -64,7 +64,7 @@
   font-family: "Langar-Regular", sans-serif;
   font-size: clamp(1.5rem, 3vw, 2.5rem);
   margin-bottom: 5%;
-  color: #38282a;
+  color: #382e28;
   font-weight: 700;
   opacity: 0.7;
   animation: blink 2s ease-in-out infinite;

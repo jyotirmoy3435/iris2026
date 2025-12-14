@@ -13,6 +13,10 @@ interface NavLink {
 export default function Navigation() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  
+  // Pages with dark backgrounds that need light text
+  const darkPages = ["/events", "/team", "/gallery"];
+  const isDarkBackground = darkPages.includes(pathname);
 
   const [isDesktop, setIsDesktop] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -49,8 +53,11 @@ export default function Navigation() {
     { href: "/about", label: "ABOUT" }
   ];
 
-  const gray = Math.round(255 * scrollProgress);
-  const navColor = `rgb(${gray}, ${gray}, ${gray})`;
+  // For dark background pages, use light text (#f0ddb4)
+  // For home and about pages, use dark text (#382e28)
+  const navColor = isDarkBackground 
+    ? "#f0ddb4" 
+    : "#382e28";
 
   const toggleSidebar = () => setSidebarOpen((v) => !v);
   const closeSidebar = () => setSidebarOpen(false);
@@ -60,7 +67,7 @@ export default function Navigation() {
       {/* Desktop Navbar */}
       {isDesktop && (
         <header
-          className={styles.desktopHeader}
+          className={`${styles.desktopHeader} ${isDarkBackground ? styles.darkBg : ""}`}
           style={{ "--nav-color": navColor } as React.CSSProperties}
         >
           <nav className={styles.desktopNav}>
