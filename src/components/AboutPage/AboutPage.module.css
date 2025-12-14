@@ -77,7 +77,7 @@
   font-size: 3rem;
   font-weight: bold;
   text-align: center;
-  color: #000000;
+  color: #382e28;
   letter-spacing: 2px;
   margin-bottom: -2rem;
 }
@@ -154,7 +154,7 @@
   transform: translate(-50%, -50%);
   font-family: "Langar-Regular", sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
-  color: #1a1a1a;
+  color: #382e28;
   font-weight: 700;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   letter-spacing: 2px;
@@ -171,11 +171,11 @@
 .description {
   max-width: 900px;
   padding: 2.5rem;
-  background: rgba(26, 26, 26, 0.7);
+  background: rgba(28, 23, 20, 0.6);
   border: 2px solid rgba(242, 221, 124, 0.3);
   border-radius: 20px;
   backdrop-filter: blur(2px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 40px rgba(28, 23, 20, 0.5);
   text-align: justify;
 }
 
@@ -203,7 +203,7 @@
   gap: 2rem;
   margin: 4rem 4rem;
   padding: 3rem 2rem;
-  background: rgba(26, 26, 26, 0.7);
+  background: rgba(28, 23, 20, 0.6);
   border: 2px solid rgba(242, 221, 124, 0.2);
   border-radius: 20px;
   backdrop-filter: blur(2px);
@@ -212,7 +212,7 @@
 .stat {
   text-align: center;
   padding: 1.5rem;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(28, 23, 20, 0.25);
   border: 1px solid rgba(242, 221, 124, 0.2);
   border-radius: 15px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

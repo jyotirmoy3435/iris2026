@@ -18,7 +18,7 @@ const TeamMemberCard: React.FC<Props> = ({ member }) => {
 
       {/* Hover content */}
       <div className={styles.overlay}>
-        <h3>{member.name}</h3>
+        <h3 className={styles.hoveredName}>{member.name}</h3>
         <p className={styles.role}>{member.role}</p>
 
         {member.bio && <p className={styles.bio}>{member.bio}</p>}
@@ -27,7 +27,7 @@ const TeamMemberCard: React.FC<Props> = ({ member }) => {
           <div className={styles.social}>
             {member.social.email && (
               <a
-                href={`https://mail.google.com/mail/?view=cm&to=${member.social.email}`}
+                href={`mailto:${member.social.email}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Email ${member.name} via Gmail`}
