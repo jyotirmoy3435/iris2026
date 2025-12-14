@@ -11,16 +11,16 @@ export default function LandingPage() {
   const [isStarsPaused, setIsStarsPaused] = useState(false);
   const starsRafRef = useRef<number | null>(null);
   const sponsors = [
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s2.png", alt: "SBI", title: "Platinum Sponsor" },
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s3.png", alt: "Lifestyle", title: "Fashion Partner" },
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s4.png", alt: "Unstop", title: "Platform Partner" },
+    { src: "/images/sponsors/s1.png", alt: "HP", title: "Platinum Sponsor" },
+    { src: "/images/sponsors/s2.png", alt: "SBI", title: "Platinum Sponsor" },
+    { src: "/images/sponsors/s3.png", alt: "Lifestyle", title: "Fashion Partner" },
+    { src: "/images/sponsors/s4.png", alt: "Unstop", title: "Platform Partner" },
 
     // repeated items preserved to match original output/order
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s5.png", alt: "Business  Standard", title: "Media Partner" },
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s6.png", alt: "Safexpress", title: "Logistics Partner" },
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s7.png", alt: "SheKunj", title: "Community Partner" },
-    { src: "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/sponsors/s8.png", alt: "Jyesta", title: "Career Accelerator Partner" },
+    { src: "/images/sponsors/s5.png", alt: "Business  Standard", title: "Media Partner" },
+    { src: "/images/sponsors/s6.png", alt: "Safexpress", title: "Logistics Partner" },
+    { src: "/images/sponsors/s7.png", alt: "SheKunj", title: "Community Partner" },
+    { src: "/images/sponsors/s8.png", alt: "Jyesta", title: "Career Accelerator Partner" },
   ];
   const SCROLL_STEP = 260; // same scroll step as original
   const scrollToStart = (el: HTMLDivElement) => el.scrollTo({ left: 0, behavior: "smooth" });
@@ -169,7 +169,7 @@ export default function LandingPage() {
         {/* Desktop Background */}
         <div className={styles.desktopBackground}>
           <img
-            src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/landing/bg_landscape.webp"
+            src="/images/landing/bg_landscape.webp"
             alt="Edo Mountains"
             className={styles.landingImage}
             style={{ transform: `translateY(${scrollY * 0.5}px)` }}
@@ -184,7 +184,7 @@ export default function LandingPage() {
             className={styles.mobileBackground}
           /> */}
           <img
-            src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/landing/bg_portrait.webp"
+            src="/images/landing/bg_portrait.webp"
             alt="Mountains"
             className={styles.mobileMountains}
           // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
@@ -194,7 +194,7 @@ export default function LandingPage() {
         {/* Logo + Timer - Position Preserved */}
         <div className={styles.logoContainer}>
           <img
-            src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/landing/irislogo.png"
+            src="/images/landing/irislogo.png"
             alt="IRIS 2026"
             className={styles.logo}
           />
@@ -239,7 +239,7 @@ export default function LandingPage() {
                     <div className={styles.irisThemeImageSide}>
                       <img
                         // Placeholder: Change this to your desired about image
-                        src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/aboutus/indieverse.jpeg"
+                        src="/images/aboutus/indieverse.jpeg"
                         alt="INDIEVERSE"
                         className={styles.irisThemeFeatureImage}
                       />
@@ -350,8 +350,8 @@ export default function LandingPage() {
 
               {/* Row 1 – Two main posters */}
               <div className={styles.starsMainRow}>
-                <img src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/main1.png" alt="Main Star 1" className={styles.starMainPoster} />
-                <img src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/main2.png" alt="Main Star 2" className={styles.starMainPoster} />
+                <img src="/images/stars/main1.png" alt="Main Star 1" className={styles.starMainPoster} />
+                <img src="/images/stars/main2.png" alt="Main Star 2" className={styles.starMainPoster} />
               </div>
 
               <div className={styles.starsCarouselRow}
@@ -372,14 +372,14 @@ export default function LandingPage() {
                 {/* Posters Track */}
                 <div ref={starsRef} className={styles.starsCarouselTrack}>
                   {[
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p1.png",
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p2.png",
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p3.png",
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p4.png",
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p5.png",
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p6.png",
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p7.png",
-                    "https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/stars/p8.png",
+                    "/images/stars/p1.png",
+                    "/images/stars/p2.png",
+                    "/images/stars/p3.png",
+                    "/images/stars/p4.png",
+                    "/images/stars/p5.png",
+                    "/images/stars/p6.png",
+                    "/images/stars/p7.png",
+                    "/images/stars/p8.png",
                   ].map((src, i) => (
                     <div key={i} className={styles.starPosterItem}>
                       <img src={src} alt={`Star Poster ${i + 1}`} />
@@ -408,7 +408,7 @@ export default function LandingPage() {
                 {/* Speaker Card */}
                 <div className={styles.speakerCard}>
                   <img
-                    src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/speakers/sp1.png"
+                    src="/images/speakers/sp1.png"
                     alt="Rahul Gehani"
                     className={styles.speakerImgRect}
                   />
@@ -418,7 +418,7 @@ export default function LandingPage() {
 
                 <div className={styles.speakerCard}>
                   <img
-                    src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/speakers/sp2.png"
+                    src="/images/speakers/sp2.png"
                     alt="K Radhakrishnan"
                     className={styles.speakerImgRect}
                   />
@@ -428,7 +428,7 @@ export default function LandingPage() {
 
                 <div className={styles.speakerCard}>
                   <img
-                    src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/speakers/sp3.png"
+                    src="/images/speakers/sp3.png"
                     alt="Rana Kapoor"
                     className={styles.speakerImgRect}
                   />

@@ -1,0 +1,145 @@
+/* Social Links Container */
+.socialLinksContainer {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8rem;
+  width: 100%;
+  max-width: 900px;
+  z-index: 10;
+}
+
+/* Individual Social Link Container */
+.socialLinkContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Wire Decoration */
+.wire {
+  position: absolute;
+  top: -30px;
+  left: -4rem;
+  width: 8rem;
+  height: auto;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* Social Link */
+.socialLink {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.socialLink:hover {
+  transform: translateY(-5px);
+}
+
+/* Social Icon */
+.socialIcon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 4px 10px rgba(242, 221, 124, 0.3));
+}
+
+.socialLink:hover .socialIcon {
+  filter: drop-shadow(0 6px 15px rgba(242, 221, 124, 0.5));
+  transform: scale(1.1);
+}
+
+/* Social Lamp with Glow */
+.socialLamp {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 8px 20px rgba(214, 155, 101, 0.4));
+}
+
+.socialLink:hover .socialLamp {
+  filter: drop-shadow(0 10px 30px rgba(214, 155, 101, 0.7))
+          drop-shadow(0 0 40px rgba(242, 221, 124, 0.5));
+  transform: scale(1.05);
+  animation: glow 2s ease-in-out infinite;
+}
+
+/* Glow Animation */
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 10px 30px rgba(214, 155, 101, 0.7))
+            drop-shadow(0 0 40px rgba(242, 221, 124, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 10px 35px rgba(214, 155, 101, 0.9))
+            drop-shadow(0 0 50px rgba(242, 221, 124, 0.7));
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .socialLinksContainer {
+    top: 10%;
+    gap: 4rem;
+    max-width: 600px;
+  }
+
+  .wire {
+    left: -2rem;
+    width: 4rem;
+    top: -20px;
+  }
+
+  .socialIcon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .socialLamp {
+    width: 60px;
+  }
+
+  .socialLink {
+    gap: 0.7rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .socialLinksContainer {
+    top: 8%;
+    gap: 2.5rem;
+    max-width: 400px;
+  }
+
+  .wire {
+    left: -1.3rem;
+    width: 2.6rem;
+    top: -15px;
+  }
+
+  .socialIcon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .socialLamp {
+    width: 45px;
+  }
+
+  .socialLink {
+    gap: 0.5rem;
+  }
+}
