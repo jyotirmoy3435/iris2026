@@ -271,7 +271,7 @@ export default function LandingPage() {
                           Register Now
                         </a>
                         <a
-                          href="/brochure/iris-brochure.pdf"
+                          href="https://drive.google.com/file/d/1iOhiOkkYy3hJjm-4EiL-rBNJiQKUthDF/view"
                           target="_blank"
                           rel="noopener noreferrer"
                           className={styles.brochureBtn}
@@ -332,16 +332,16 @@ export default function LandingPage() {
               <div className={styles.treeContainer}>
                 <div className={styles.tree}>
                   <video
-                    src="/background-video.mp4"
-                    poster="/iris_logo.png"
+                    src="https://raw.githubusercontent.com/jyotirmoy3435/iris2026/refs/heads/main/public/background-video.mp4"
+                    poster="/images/irislogo_white.webp"
                     controls
                     // loop
                     playsInline
                     className={styles.treeDesktop}
                   />
                   <video
-                    src="/background-video.mp4"
-                    poster="/iris_logo.png"
+                    src="https://raw.githubusercontent.com/jyotirmoy3435/iris2026/refs/heads/main/public/background-video.mp4"
+                    poster="/images/irislogo_white.webp"
                     controls
                     // loop
                     playsInline

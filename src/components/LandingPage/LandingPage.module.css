@@ -517,14 +517,14 @@
     display: none;
   }
 
- /* MOBILE FIX: Video section - zoom in with cover */
+ /* MOBILE FIX: Video section */
   .treeMob {
     display: block;
     width: 100%;
-    height: 100vh;
-    object-fit: cover;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
     object-position: center center;
-    transform: scale(1.2);
   }
 
   /* MOBILE FIX: Reduce negative margin */
