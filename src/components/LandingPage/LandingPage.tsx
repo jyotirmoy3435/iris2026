@@ -331,23 +331,14 @@ export default function LandingPage() {
               <h2 className={styles.sectionTitle}>PAST GLIMPSES</h2>
               <div className={styles.treeContainer}>
                 <div className={styles.tree}>
-                  <video
-                    src="https://raw.githubusercontent.com/jyotirmoy3435/iris2026/refs/heads/main/public/background-video.mp4"
-                    poster="/images/irislogo_white.webp"
-                    controls
-                    // loop
-                    playsInline
-                    className={styles.treeDesktop}
+                  <iframe
+                    className={styles.irisVideoContainer}
+                    src="https://www.youtube.com/embed/WcSoz4-ofHo"
+                    title="Iris'25 | IIM Indore | Official Recap Video"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
                   />
-                  <video
-                    src="https://raw.githubusercontent.com/jyotirmoy3435/iris2026/refs/heads/main/public/background-video.mp4"
-                    poster="/images/irislogo_white.webp"
-                    controls
-                    // loop
-                    playsInline
-                    className={styles.treeMob}
-                  />
-                  {/*<SocialLinks />*/}
                 </div>
               </div>
             </section>

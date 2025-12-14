@@ -1132,3 +1132,18 @@
     padding: 1rem 1.5rem 2rem;
   }
 }
+
+.irisVideoContainer{
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  display: block;
+  margin: 0 auto;
+  border: none;
+}
+
+/* On mobile devices, use the full width of the screen */
+@media (max-width: 768px) {
+  .irisVideoContainer {
+    width: 100%;
+  }
+}
