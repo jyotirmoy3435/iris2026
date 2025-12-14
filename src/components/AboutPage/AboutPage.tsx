@@ -11,7 +11,7 @@ export default function AboutPage() {
         {/* Desktop Background */}
         <div className={styles.desktopBackground}>
           <img
-            src="/images/landing/bg_landscape.webp"
+            src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/landing/bg_landscape.webp"
             alt="Edo Mountains"
             className={styles.landingImage}
           />
@@ -25,7 +25,7 @@ export default function AboutPage() {
             className={styles.mobileBackground}
           /> */}
           <img
-            src="/images/landing/bg_portrait.webp"
+            src="https://raw.githubusercontent.com/systemsit-iris/iris2026/refs/heads/main/public/images/landing/bg_portrait.webp"
             alt="Mountains"
             className={styles.mobileMountains}
           // style={{ transform: `translateY(${scrollY * 0.3}px)` }}
