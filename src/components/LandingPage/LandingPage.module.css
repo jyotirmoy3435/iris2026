@@ -451,9 +451,15 @@
     border-top: 3px solid #f0ddb4;
   }
   
-  .newRegisterBtn {
-    width: auto; /* Auto width on mobile */
-    min-width: 200px;
+  .buttonGroup {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .newRegisterBtn,
+  .brochureBtn {
+    width: 100%;
+    flex: none;
   }
 }
 
