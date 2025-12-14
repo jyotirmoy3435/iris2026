@@ -271,7 +271,7 @@ export default function LandingPage() {
                           Register Now
                         </a>
                         <a
-                          href="/brochure/iris-brochure.pdf"
+                          href="https://drive.google.com/file/d/1iOhiOkkYy3hJjm-4EiL-rBNJiQKUthDF/view"
                           target="_blank"
                           rel="noopener noreferrer"
                           className={styles.brochureBtn}
