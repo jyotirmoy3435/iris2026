@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 
 // Load custom fonts
 const saman = localFont({
-  src: "../../public/fonts/Saman.ttf",
+  src: "https://iris.cdn.jyotirmoysaha.co.in/fonts/Saman.ttf",
   variable: "--font-saman",
   display: "swap",
 });
